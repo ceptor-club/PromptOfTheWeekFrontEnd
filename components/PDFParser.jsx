@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Vector2 from "../public/images/CREATE-hero/Vector2.png"
+import Image from "next/image";
 
 export default function PDFParser({ setPdfData, pdfData, setError }) {
   const [pdf, setPdf] = useState(null);
@@ -40,34 +42,47 @@ export default function PDFParser({ setPdfData, pdfData, setError }) {
   }, [pdf]);
 
   return (
-    <div className={`flex items-center justify-center w-full ${!pdf && "animate-pulse"}`}>
-      <label
-        htmlFor="dropzone-file"
-        className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-      >
-        <div className="flex flex-col items-center justify-center pt-5 pb-6">
-          <svg
-            aria-hidden="true"
-            className="w-10 h-10 mb-3 text-gray-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-            ></path>
-          </svg>
-          <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-            <span className="font-semibold">Click to upload</span> or drag and drop
-          </p>
-          <p className="text-xs text-gray-500 dark:text-gray-400">Standard DnD Character sheet</p>
-        </div>
+    <div className={`relative h-64 w-72 grid ${!pdf}`}>
+      
+      <Image src={Vector2} className="h-96 w-68 bg-contain bg-no-repeat cursor-pointer" onClick={() => document.getElementById("dropzone-file").click()} />
+      
         <input onChange={handlePDFChange} id="dropzone-file" type="file" className="hidden" />
-      </label>
+        
+          <div className="absolute inset-x-0 top-10 left-20 text-4xl cursor-pointer">
+        <p onClick={() => document.getElementById("dropzone-file").click()}>
+          <strong>FEED A</strong></p>
+          </div>
+
+          <div className="absolute inset-x-0 top-24 left-16 text-4xl cursor-pointer">
+        <p onClick={() => document.getElementById("dropzone-file").click()}>
+          character</p>
+          </div>
+
+          <div className="absolute inset-x-0 top-36 left-24 text-4xl cursor-pointer">
+        <p onClick={() => document.getElementById("dropzone-file").click()}>
+          sheet</p>
+          </div>
+
+          <div className="absolute inset-x-0 top-48 left-20 text-4xl cursor-pointer">
+        <p onClick={() => document.getElementById("dropzone-file").click()}>
+          TO THE</p>
+          </div>
+
+          <div className="absolute inset-x-0 top-60 left-16 text-4xl cursor-pointer">
+        <p onClick={() => document.getElementById("dropzone-file").click()}>
+          CREATOR</p>
+          </div>
+
+          <div className="absolute inset-x-0 top-72 left-10 cursor-pointer">
+        <p onClick={() => document.getElementById("dropzone-file").click()}>
+          & let's see what you look like</p>
+          </div>
+
+          <div className="absolute inset-x-0 top-80 left-14 text-sm cursor-pointer">
+        <p onClick={() => document.getElementById("dropzone-file").click()}>
+          UPLOAD OR DRAG HERE</p>
+          </div>
+
     </div>
   );
 }

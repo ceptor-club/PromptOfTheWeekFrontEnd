@@ -8,7 +8,7 @@ const StartButton = () => {
             <div className="relative text-center text-2xl mx-auto">
                 <p>Press</p>
             </div>
-            <a href="#receive">
+            <a>
                 <Image src={buttonImage} />
                 <div className="relative bottom-10 text-black text-3xl left-8 mx-auto">
                     <p>Start</p>

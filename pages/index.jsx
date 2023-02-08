@@ -2,12 +2,12 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { avatarNFTSTORAGE } from "../utils/web3utils";
-import elfImage from "../public/elf-3600557344.png";
-import PDFParser from "../components/PDFParser";
 import CreateHero from "../components/CreateHero";
-import CreateMidpage from "../components/CreateMidpage";
 // import { createPrompt } from "../utils/promptGen";
 import { Create } from "../components/Create";
+import GenerateHero from "../components/GenerateHero";
+
+
 export default function Home() {
   const [data, setData] = useState({
     race: "",
@@ -20,6 +20,7 @@ export default function Home() {
   const [CID, setCID] = useState(null); //url
   // const [pdfData, setPdfData] = useState(null); //url
   // const [prompt, setPrompt] = useState(null); //url
+
 
   const setValue = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -49,6 +50,7 @@ export default function Home() {
   return (
     <div>
       <CreateHero />
+
       <Create />
     </div>
   );

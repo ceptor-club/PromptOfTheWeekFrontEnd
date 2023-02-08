@@ -15,6 +15,7 @@ import CharacterStats from "./CharacterStats"
 import ToolTip from "./ToolTip"
 import WalletConnectButton from "./WalletConnectButton";
 import MintButton from "./MintButton"
+import GenerateHero from "../components/GenerateHero";
 
 import { useContractWrite, usePrepareContractWrite } from "wagmi";
 
@@ -98,20 +99,16 @@ export const Create = () => {
 
   return (
     <>
+      <GenerateHero
+        setPdfData={setPdfData}
+        pdfData={pdfData}
+        setError={setError}
+      />
       <ToolTip />
       <div className="flex flex-col xl:flex-nowrap w-screen gap-2 justify-start items-center">
         <div className="flex flex-col xl:w-2/5 w-full p-4 gap-4 justify-around">
           <div className="w-full h-full text-left flex flex-row space-between">
-            <h2 id="create" className=" text-4xl">
-              FEED A character sheet TO THE CREATOR
-            </h2>
-
           </div>
-          <PDFParser
-            setPdfData={setPdfData}
-            pdfData={pdfData}
-            setError={setError}
-          />
 
           <div className="flex flex-col items-center justify-center">
             {pdfData ? (
@@ -141,14 +138,19 @@ export const Create = () => {
                     height={64}
                     className="mr-4"
                   />
-                  <button
-                    type="button"
+                  <div
                     className="flex items-center text-4xl"
                     onClick={generateImages}
                     disabled={pdfData ? false : true}
                   >
                     GENERATE
-                  </button>
+                    {isMinting ? (
+                      <p className="w-fit bg-[#D89A00] hover:bg-[#ab8933] py-1 px-6 rounded-full text-black cursor-not-allowed">
+                        Minting...
+                      </p>
+                    ) : null}
+
+                  </div>
                 </div>
                 <p>CHARACTER IMAGES</p>
 

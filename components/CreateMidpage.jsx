@@ -7,9 +7,10 @@ import choiceIcon from "../public/images/CREATE-midpage/icon3.png";
 import nftIcon from "../public/images/CREATE-midpage/icon4.png";
 import communityIcon from "../public/images/CREATE-midpage/icon5.png";
 import diceIcon from "../public/images/CREATE-midpage/icon6.png";
+
 export default function CreateMidpage() {
   return (
-    
+
     <div className="m-1 p-1">
       {/* Content in the center */}
       <div className="flex md:flex-nowrap flex-wrap bg-[#0F1E31] h-full flex-col m-12 p-8 shadow-lg mt-5">
@@ -21,7 +22,7 @@ export default function CreateMidpage() {
           more visually engaging. Make your Tabletop RPG character sheet into an
           incredible, original work of art in just a few steps. Try it out!
         </h3>
-        
+
       </div>
 
       {/* Intruction Cards 1 - Responsive by Tippi */}
@@ -51,7 +52,7 @@ export default function CreateMidpage() {
           </Link>
         </div>
         <div id="receive" className="flex flex-row sm:flex-col justify-center align-center items-center bg-[#110402] p-6 md:w-1/4 w-4/5 m-3">
-          <p  className="justify-center text-center">
+          <p className="justify-center text-center">
             Receive 3, 4 or 9 avatar images based on your character sheet
           </p>
           <Link href="#create">
