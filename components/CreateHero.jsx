@@ -12,7 +12,7 @@ import VectorImage from "./VectorImage";
 import StartButton from "./StartButton";
 
 
-export default function CreateHero() {
+export default function CreateHero({ isStart, setIsStart }) {
   return (
     <div>
       <div className="relative flex justify-center bg-pink-400">
@@ -32,7 +32,10 @@ export default function CreateHero() {
             <VectorImage />
           </div>
           <div className="relative mx-auto bottom-3/4 h-32 w-32">
-            <StartButton />
+            <StartButton
+              isStart={isStart}
+              setIsStart={setIsStart}
+            />
           </div>
         </div>
 

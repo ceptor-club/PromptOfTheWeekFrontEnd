@@ -5,7 +5,7 @@ import { avatarNFTSTORAGE } from "../utils/web3utils";
 import CreateHero from "../components/CreateHero";
 // import { createPrompt } from "../utils/promptGen";
 import { Create } from "../components/Create";
-import GenerateHero from "../components/GenerateHero";
+import { Logo } from "../components/Logo"
 
 
 export default function Home() {
@@ -20,6 +20,7 @@ export default function Home() {
   const [CID, setCID] = useState(null); //url
   // const [pdfData, setPdfData] = useState(null); //url
   // const [prompt, setPrompt] = useState(null); //url
+  const [isStart, setIsStart] = useState(false);
 
 
   const setValue = (e) => {
@@ -49,9 +50,18 @@ export default function Home() {
 
   return (
     <div>
-      <CreateHero />
-
-      <Create />
+      {/*       <Logo
+        isStart={isStart}
+        setIsStart={setIsStart}
+      /> */}
+      {isStart ? (
+        <Create />
+      ) : (
+        <CreateHero
+          isStart={isStart}
+          setIsStart={setIsStart}
+        />
+      )}
     </div>
   );
 }

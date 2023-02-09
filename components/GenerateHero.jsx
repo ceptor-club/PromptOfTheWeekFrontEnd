@@ -5,6 +5,7 @@ import midPageImage from "../public/images/CREATE-midPage/midPageImage.png";
 import VectorImage from "./VectorImage";
 import PDFParser from "./PDFParser";
 import Options from "../public/images/CREATE/Options.png";
+import ToolTip from "./ToolTip";
 
 
 export default function GenerateHero({ setPdfData, pdfData, setError }) {
@@ -12,6 +13,7 @@ export default function GenerateHero({ setPdfData, pdfData, setError }) {
         <div>
             <div className="relative flex justify-center bg-pink-400">
                 <div className="relative w-full max-h-screen ">
+
                     <Image
                         src={midPageImage}
                         alt="midPage"
@@ -25,6 +27,7 @@ export default function GenerateHero({ setPdfData, pdfData, setError }) {
                         />
                     </div>
                     <div className="absolute inset-x-0 bottom-24 w-96 mx-auto cursor-pointer">
+                        <ToolTip text="passed as props" />
                         <Image
                             src={Options}
                             alt="options"
@@ -33,9 +36,8 @@ export default function GenerateHero({ setPdfData, pdfData, setError }) {
                     <div className="absolute inset-x-0 bottom-14 w-96 left-56 font-extralight text-sm mx-auto">
                         <p>SELECT UPLOAD TYPE</p>
                     </div>
-                    <Link href="/">
+                    <div>
                         <svg viewBox="0 0 194 197" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute cursor-pointer justify-center flex object-contain inset-x-0 top-14 right-8 mx-auto my-auto h-20 w-20">
-
                             <path d="M163.984 143.031C161.854 144.451 159.794 146.001 157.574 147.281C139.124 157.891 120.604 168.391 102.204 179.081C98.7144 181.111 96.1344 181.521 92.2644 179.231C73.9644 168.371 55.3544 158.031 36.8844 147.451C34.6544 146.181 32.6144 144.581 30.4844 143.141C30.6344 142.751 30.7844 142.351 30.9344 141.961C75.0544 141.961 119.164 141.961 163.284 141.961C163.514 142.311 163.754 142.671 163.984 143.031Z" fill="white" />
                             <path d="M91.1137 19.4425C69.3337 57.1225 47.5537 94.8025 25.7737 132.473C25.2637 132.353 24.7637 132.232 24.2537 132.122C24.1037 130.632 23.8237 129.133 23.8237 127.643C23.8037 105.643 23.8937 83.6525 23.7437 61.6525C23.7137 57.4925 25.0537 55.0425 28.7737 52.9425C48.0137 42.0725 67.0937 30.9025 86.2437 19.8625C87.3537 19.2225 88.6037 18.8225 89.7937 18.3125C90.2337 18.6825 90.6737 19.0625 91.1137 19.4425Z" fill="white" />
                             <path d="M104.495 18.2422C109.175 20.8322 113.895 23.3422 118.525 26.0122C134.375 35.1322 150.235 44.2122 165.945 53.5622C167.755 54.6322 169.725 57.2822 169.745 59.2222C169.975 82.3722 169.865 105.522 169.805 128.672C169.805 129.452 169.455 130.222 169.265 130.992C168.795 131.202 168.315 131.422 167.845 131.632C146.275 94.3522 124.715 57.0722 103.145 19.7822C103.605 19.2722 104.045 18.7522 104.495 18.2422Z" fill="white" />
@@ -56,8 +58,7 @@ export default function GenerateHero({ setPdfData, pdfData, setError }) {
                             <path d="M191.564 114.501C188.524 125.401 187.544 137.541 181.874 146.831C176.264 156.021 165.924 162.331 157.284 170.251C168.214 151.331 179.024 132.611 189.844 113.891C190.414 114.101 190.984 114.301 191.564 114.501Z" fill="white" />
                             <path d="M65.0037 186.867C86.3337 186.867 107.664 186.867 128.984 186.867C129.064 187.287 129.144 187.697 129.234 188.117C125.924 189.057 122.614 190.027 119.294 190.937C114.004 192.387 108.734 193.897 103.404 195.187C100.994 195.777 98.3137 196.637 96.0437 196.127C85.5637 193.757 75.1837 190.947 64.7637 188.297C64.8537 187.817 64.9237 187.347 65.0037 186.867Z" fill="white" />
                         </svg>
-
-                    </Link>
+                    </div>
                 </div>
             </div>
         </div>

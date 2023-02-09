@@ -104,7 +104,7 @@ export const Create = () => {
         pdfData={pdfData}
         setError={setError}
       />
-      <ToolTip />
+
       <div className="flex flex-col xl:flex-nowrap w-screen gap-2 justify-start items-center">
         <div className="flex flex-col xl:w-2/5 w-full p-4 gap-4 justify-around">
           <div className="w-full h-full text-left flex flex-row space-between">
@@ -177,7 +177,7 @@ export const Create = () => {
             ) : <></>
             }
 
-            {isMinting ? (
+            {/*             {isMinting ? (
               <p className="w-fit bg-[#D89A00] hover:bg-[#ab8933] py-1 px-6 rounded-full text-black cursor-not-allowed">
                 Minting...
               </p>
@@ -203,7 +203,7 @@ export const Create = () => {
               <p className="w-fit bg-[#D89A00] hover:bg-[#ab8933] py-1 px-6 rounded-full text-black cursor-not-allowed">
                 Upload first!
               </p>
-            )}
+            )} */}
           </div>
         </div>
       </div>
