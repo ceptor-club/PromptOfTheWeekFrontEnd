@@ -2,11 +2,11 @@ import React from "react";
 import buttonImage from "../public/images/CREATE-hero/buttonImage.png";
 import Image from "next/image";
 
-const StartButton = ({ isStart, setIsStart }) => {
+const StartButton = ({ setConditionalRender }) => {
     return (
         <div
             className="h-32 w-32 mx-auto"
-            onClick={() => setIsStart(!isStart)}
+            onClick={() => setConditionalRender("start")}
         >
             <div className="relative text-center text-2xl mx-auto">
                 <p>Press</p>

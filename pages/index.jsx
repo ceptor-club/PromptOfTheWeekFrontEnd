@@ -6,6 +6,7 @@ import CreateHero from "../components/CreateHero";
 // import { createPrompt } from "../utils/promptGen";
 import { Create } from "../components/Create";
 import { Logo } from "../components/Logo"
+import HamburgerMenu from "../components/HamburgerMenu";
 
 
 export default function Home() {
@@ -20,7 +21,7 @@ export default function Home() {
   const [CID, setCID] = useState(null); //url
   // const [pdfData, setPdfData] = useState(null); //url
   // const [prompt, setPrompt] = useState(null); //url
-  const [isStart, setIsStart] = useState(false);
+  const [conditionalRender, setConditionalRender] = useState("");
 
 
   const setValue = (e) => {
@@ -49,19 +50,24 @@ export default function Home() {
   };
 
   return (
-    <div>
-      {/*       <Logo
-        isStart={isStart}
-        setIsStart={setIsStart}
-      /> */}
-      {isStart ? (
+    <>
+      <div className="absolute top-4 z-10 flex flex-col justify-center items-center w-full">
+        <p>Version 0.1.13</p>
+        <div className="">
+          <HamburgerMenu />
+        </div>
+        <Logo
+          setConditionalRender={setConditionalRender}
+        />
+      </div>
+      {(conditionalRender === "start") ? (
         <Create />
       ) : (
         <CreateHero
-          isStart={isStart}
-          setIsStart={setIsStart}
+          conditionalRender={conditionalRender}
+          setConditionalRender={setConditionalRender}
         />
       )}
-    </div>
+    </>
   );
 }

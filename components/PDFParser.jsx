@@ -43,45 +43,45 @@ export default function PDFParser({ setPdfData, pdfData, setError }) {
 
   return (
     <div className={`relative h-64 w-72 grid ${!pdf}`}>
-      
-      <Image src={Vector2} className="h-96 w-68 bg-contain bg-no-repeat cursor-pointer" onClick={() => document.getElementById("dropzone-file").click()} />
-      
-        <input onChange={handlePDFChange} id="dropzone-file" type="file" className="hidden" />
-        
-          <div className="absolute inset-x-0 top-10 left-20 text-4xl cursor-pointer">
+
+      <Image src={Vector2} className="mt-6 h-96 w-68 bg-contain bg-no-repeat cursor-pointer" onClick={() => document.getElementById("dropzone-file").click()} />
+
+      <input onChange={handlePDFChange} id="dropzone-file" type="file" className="hidden" />
+
+      <div className="absolute inset-x-0 top-12 left-20 text-4xl cursor-pointer">
         <p onClick={() => document.getElementById("dropzone-file").click()}>
           <strong>FEED A</strong></p>
-          </div>
+      </div>
 
-          <div className="absolute inset-x-0 top-24 left-16 text-4xl cursor-pointer">
+      <div className="absolute inset-x-0 top-24 left-16 text-4xl cursor-pointer">
         <p onClick={() => document.getElementById("dropzone-file").click()}>
           character</p>
-          </div>
+      </div>
 
-          <div className="absolute inset-x-0 top-36 left-24 text-4xl cursor-pointer">
+      <div className="absolute inset-x-0 top-36 left-24 text-4xl cursor-pointer">
         <p onClick={() => document.getElementById("dropzone-file").click()}>
           sheet</p>
-          </div>
+      </div>
 
-          <div className="absolute inset-x-0 top-48 left-20 text-4xl cursor-pointer">
+      <div className="absolute inset-x-0 top-48 left-20 text-4xl cursor-pointer">
         <p onClick={() => document.getElementById("dropzone-file").click()}>
           TO THE</p>
-          </div>
+      </div>
 
-          <div className="absolute inset-x-0 top-60 left-16 text-4xl cursor-pointer">
+      <div className="absolute inset-x-0 top-60 left-16 text-4xl cursor-pointer">
         <p onClick={() => document.getElementById("dropzone-file").click()}>
           CREATOR</p>
-          </div>
+      </div>
 
-          <div className="absolute inset-x-0 top-72 left-10 cursor-pointer">
+      <div className="absolute inset-x-0 top-72 left-10 cursor-pointer">
         <p onClick={() => document.getElementById("dropzone-file").click()}>
           & let's see what you look like</p>
-          </div>
+      </div>
 
-          <div className="absolute inset-x-0 top-80 left-14 text-sm cursor-pointer">
+      <div className="absolute inset-x-0 top-80 left-14 text-sm cursor-pointer">
         <p onClick={() => document.getElementById("dropzone-file").click()}>
           UPLOAD OR DRAG HERE</p>
-          </div>
+      </div>
 
     </div>
   );
