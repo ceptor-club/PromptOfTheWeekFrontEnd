@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Vector2 from "../public/images/CREATE-hero/Vector2.png"
 import Image from "next/image";
+import { Oswald } from '@next/font/google'
+
+const oswald = Oswald({ weight: '700', subsets: ['latin'] });
 
 export default function PDFParser({ setPdfData, pdfData, setError }) {
   const [pdf, setPdf] = useState(null);
@@ -42,7 +45,7 @@ export default function PDFParser({ setPdfData, pdfData, setError }) {
   }, [pdf]);
 
   return (
-    <div className={`relative h-64 w-72 grid ${!pdf}`}>
+    <div className={` ${oswald.className} relative h-64 w-72 grid ${!pdf}`}>
 
       <Image src={Vector2} className="mt-6 h-96 w-68 bg-contain bg-no-repeat cursor-pointer" onClick={() => document.getElementById("dropzone-file").click()} />
 
