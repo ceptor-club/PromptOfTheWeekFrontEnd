@@ -1,13 +1,16 @@
 import React from 'react';
 import Vector2 from "../public/images/CREATE-hero/Vector2.png";
 import Image from 'next/image';
+import { Oswald } from '@next/font/google'
+
+const oswald = Oswald({ weight: '700', subsets: ['latin'] });
 
 
 const VectorImage = () => {
   return (
     <div>
       <Image src={Vector2} alt="Vector" className="Vector-image" />
-      <div className="relative bottom-60 left-8 mx-auto text-4xl">
+      <div className={` ${oswald.className} relative bottom-60 left-8 mx-auto text-4xl`}>
         <p><strong>Build</strong> character, </p>
       </div>
       <div className="relative bottom-56 left-8 mx-auto text-4xl">

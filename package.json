@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@next/font": "^13.1.4",
+    "@next/font": "^13.1.6",
     "@web3modal/ethereum": "^2.0.0-rc.3",
     "@web3modal/react": "^2.0.0-rc.3",
     "axios": "^1.1.3",
