@@ -16,7 +16,7 @@ export default function CreateHero({ setConditionalRender }) {
   return (
     <div>
       <div className="relative flex justify-center">
-        <div className="w-full max-h-screen">
+        <div className="object-cover h-screen">
           <Image
             src={LandingPage}
             alt="LandingPage"
