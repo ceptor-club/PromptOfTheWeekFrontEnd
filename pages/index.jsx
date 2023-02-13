@@ -7,6 +7,7 @@ import CreateHero from "../components/CreateHero";
 import { Create } from "../components/Create";
 import { Logo } from "../components/Logo"
 import HamburgerMenu from "../components/HamburgerMenu";
+import GenerateHero from "../components/GenerateHero";
 
 
 export default function Home() {
@@ -22,6 +23,8 @@ export default function Home() {
   // const [pdfData, setPdfData] = useState(null); //url
   // const [prompt, setPrompt] = useState(null); //url
   const [conditionalRender, setConditionalRender] = useState("");
+  const [pdfData, setPdfData] = useState(null); //url
+
 
 
   const setValue = (e) => {
@@ -60,8 +63,19 @@ export default function Home() {
           setConditionalRender={setConditionalRender}
         />
       </div>
-      {(conditionalRender === "start") ? (
-        <Create />
+      {(pdfData) ? (
+        <>
+          <Create
+            setPdfData={setPdfData}
+            pdfData={pdfData}
+          />
+        </>
+      ) : (conditionalRender === "start") ? (
+        <GenerateHero
+          setPdfData={setPdfData}
+          pdfData={pdfData}
+          setError={setError}
+        />
       ) : (
         <CreateHero
           conditionalRender={conditionalRender}

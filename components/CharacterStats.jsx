@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { createPrompt } from "../utils/promptGen";
 
 
-const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData, }) => {
+const CharacterStats = ({ pdfData, setPrompt, setError, setPdfData, }) => {
 
     useEffect(() => {
         if (pdfData) {

@@ -5,7 +5,7 @@ export const Logo = ({ setConditionalRender }) => {
                 viewBox="0 0 194 197"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="cursor-pointer justify-center flex object-contain mt-6 h-20 w-20"
+                className="cursor-pointer justify-center flex object-contain mt-6 h-20 w-20 z-10"
                 onClick={() => setConditionalRender(false)}
             >
                 <path d="M163.984 143.031C161.854 144.451 159.794 146.001 157.574 147.281C139.124 157.891 120.604 168.391 102.204 179.081C98.7144 181.111 96.1344 181.521 92.2644 179.231C73.9644 168.371 55.3544 158.031 36.8844 147.451C34.6544 146.181 32.6144 144.581 30.4844 143.141C30.6344 142.751 30.7844 142.351 30.9344 141.961C75.0544 141.961 119.164 141.961 163.284 141.961C163.514 142.311 163.754 142.671 163.984 143.031Z" fill="white" />

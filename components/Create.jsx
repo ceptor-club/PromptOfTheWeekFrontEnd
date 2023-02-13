@@ -19,8 +19,8 @@ import GenerateHero from "../components/GenerateHero";
 
 import { useContractWrite, usePrepareContractWrite } from "wagmi";
 
-export const Create = () => {
-  const [pdfData, setPdfData] = useState(null); //url
+export const Create = ({ pdfData, setPdfData }) => {
+
   const [prompt, setPrompt] = useState(null); //url
   const [imageProcessing, setImageProcessing] = useState(false); //processing state ie. loading...
   const [error, setError] = useState(null); //error msg
@@ -99,13 +99,7 @@ export const Create = () => {
 
   return (
     <>
-      <GenerateHero
-        setPdfData={setPdfData}
-        pdfData={pdfData}
-        setError={setError}
-      />
-
-      <div className="flex flex-col xl:flex-nowrap w-screen gap-2 justify-start items-center">
+      <div className="flex flex-col xl:flex-nowrap w-screen gap-2 justify-start items-center mt-24">
         <div className="flex flex-col xl:w-2/5 w-full p-4 gap-4 justify-around">
           <div className="w-full h-full text-left flex flex-row space-between">
           </div>
