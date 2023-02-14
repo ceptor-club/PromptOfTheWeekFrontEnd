@@ -16,18 +16,20 @@ import ToolTip from "./ToolTip"
 import WalletConnectButton from "./WalletConnectButton";
 import MintButton from "./MintButton"
 import GenerateHero from "../components/GenerateHero";
+import GenerateButton from "./GenerateButton";
 
 import { useContractWrite, usePrepareContractWrite } from "wagmi";
 
-export const Create = ({ pdfData, setPdfData }) => {
+export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalRender }) => {
 
   const [prompt, setPrompt] = useState(null); //url
   const [imageProcessing, setImageProcessing] = useState(false); //processing state ie. loading...
   const [error, setError] = useState(null); //error msg
   const [imageResult, setImageResult] = useState(null); //url
   const [selectedImage, setSelectedImage] = useState(null); //image chosen by user
-  const [isMinting, setIsMinting] = useState(false); //minting nft state ie. loading...
+
   const [metadataUrl, setMetadataUrl] = useState(null); //url
+  const [conditionalCreate, setConditionalCreate] = useState("");
 
   const { data, isLoading, isSuccess, write } = useContractWrite({
     mode: "recklesslyUnprepared",
@@ -68,44 +70,25 @@ export const Create = ({ pdfData, setPdfData }) => {
     setIsMinting(false);
   };
 
-  const generateImages = async () => {
-    console.log("Generating images... for ", prompt);
-    setError(false);
-    setImageProcessing(true);
-    const fetchResult = await fetch("/api/getImage", {
-      // <------------- COMMENTED OUT FOR TESTING
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        data: prompt,
-      }),
-    }); //result is given as base64 encoded images
-    const result = await fetchResult.json();
-
-    // const result = { images: [CONSTANTS.testBase64Image] }; // <------------- THIS IS FOR TESTING
-
-    // console.log("result: ", result)
-
-    setImageProcessing(false);
-    if (result.error) {
-      return setError(result.error);
-    }
-    setImageResult(result);
-  };
-
-
   return (
     <>
+      {(!pdfData) ? (
+        <GenerateHero
+          setPdfData={setPdfData}
+          pdfData={pdfData}
+          setError={setError}
+          setConditionalRender={setConditionalRender}
+        />
+      ) : null}
+
       <div className="flex flex-col xl:flex-nowrap w-screen gap-2 justify-start items-center mt-24">
         <div className="flex flex-col xl:w-2/5 w-full p-4 gap-4 justify-around">
           <div className="w-full h-full text-left flex flex-row space-between">
           </div>
 
           <div className="flex flex-col items-center justify-center">
-            {pdfData ? (
+
+            {(pdfData) ? (
               <>
                 <CharacterStats
                   pdfData={pdfData}
@@ -114,40 +97,19 @@ export const Create = ({ pdfData, setPdfData }) => {
                   setError={setError}
                   setPdfData={setPdfData}
                 />
-                <h3>Edit Your Prompt Manually</h3>
-                <div className="bg-black text-left text-sm min-h-[150px] p-2 w-full">
-                  <h3 className="mb-4">Your Prompt Was Recovered from the Fires of the Forge!</h3>
-                  <textarea
-                    onChange={(e) => setPrompt(e.target.value)}
-                    className="w-full h-[200px] bg-transparent resize-none"
-                    value={prompt || ""}
-                  />
-                </div>
+                <GenerateButton
+                  setConditionalCreate={setConditionalCreate}
+                  setImageProcessing={setImageProcessing}
+                  setError={setError}
+                  setImageResult={setImageResult}
+                  imageResult={imageResult}
+                  pdfData={pdfData}
+                />
+              </>
+            ) : null}
 
-                <div className="flex w-72 item-center justify-center text-center align-center bg-black p-4 mt-6 animate-pulse">
-                  <Image
-                    src="/images\CREATE\dice.svg"
-                    alt=""
-                    width={64}
-                    height={64}
-                    className="mr-4"
-                  />
-                  <div
-                    className="flex items-center text-4xl"
-                    onClick={generateImages}
-                    disabled={pdfData ? false : true}
-                  >
-                    GENERATE
-                    {isMinting ? (
-                      <p className="w-fit bg-[#D89A00] hover:bg-[#ab8933] py-1 px-6 rounded-full text-black cursor-not-allowed">
-                        Minting...
-                      </p>
-                    ) : null}
-
-                  </div>
-                </div>
-                <p>CHARACTER IMAGES</p>
-
+            {(conditionalCreate === "results") ? (
+              <>
                 <div className="flex flex-col items-center bg-black mt-8">
                   <h3 className="text-4xl mb-4">RESULTS</h3>
                   <p>Select an image to save or mint</p>
@@ -168,8 +130,21 @@ export const Create = ({ pdfData, setPdfData }) => {
                 <CopyButton selectedImage={selectedImage} />
                 <WalletConnectButton />
               </>
-            ) : <></>
-            }
+            ) : null}
+
+            {(conditionalRender === "advanced") ? (
+              <>
+                <h3>Edit Your Prompt Manually</h3>
+                <div className="bg-black text-left text-sm min-h-[150px] p-2 w-full">
+                  <h3 className="mb-4">Your Prompt Was Recovered from the Fires of the Forge!</h3>
+                  <textarea
+                    onChange={(e) => setPrompt(e.target.value)}
+                    className="w-full h-[200px] bg-transparent resize-none"
+                    value={prompt || ""}
+                  />
+                </div>
+              </>
+            ) : null}
 
             {/*             {isMinting ? (
               <p className="w-fit bg-[#D89A00] hover:bg-[#ab8933] py-1 px-6 rounded-full text-black cursor-not-allowed">

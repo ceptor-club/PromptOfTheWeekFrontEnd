@@ -38,17 +38,17 @@ const conversions = {
   // aarakocra: "humanoid bird",
 
   // Dragonborn Solution 1.
-  dragonborn: "DnDDragonborn dragonborn",
-  dwarf: "DnDDragonborn dragonborn",
-  elf: "DnDDragonborn dragonborn",
-  gnome: "DnDDragonborn dragonborn",
-  human: "DnDDragonborn dragonborn",
-  halfling: "DnDDragonborn dragonborn",
-  halfelf: "DnDDragonborn dragonborn",
-  halforc: "DnDDragonborn dragonborn",
-  tiefling: "DnDDragonborn dragonborn",
-  "wood elf": "DnDDragonborn dragonborn",
-  aarakocra: "DnDDragonborn dragonborn",
+  dragonborn: "DnDDragonbornGeneral",
+  dwarf: "DnDDragonbornGeneral",
+  elf: "DnDDragonbornGeneral",
+  gnome: "DnDDragonbornGeneral",
+  human: "DnDDragonbornGeneral",
+  halfling: "DnDDragonbornGeneral",
+  halfelf: "DnDDragonbornGeneral",
+  halforc: "DnDDragonbornGeneral",
+  tiefling: "DnDDragonbornGeneral",
+  "wood elf": "DnDDragonbornGeneral",
+  aarakocra: "DnDDragonbornGeneral",
 
   //backgrounds used to put the character in a scene
   entertainer: "performing a song in a tavern",

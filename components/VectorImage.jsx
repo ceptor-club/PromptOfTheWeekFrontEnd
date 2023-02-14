@@ -5,7 +5,6 @@ import { Oswald } from '@next/font/google'
 
 const oswald = Oswald({ weight: '700', subsets: ['latin'] });
 
-
 const VectorImage = () => {
   return (
     <div>
