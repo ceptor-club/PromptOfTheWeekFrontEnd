@@ -6,7 +6,7 @@ export default function handler(req, res) {
 
   const obj = {
     prompt: data,
-    seed: 10000,
+    seed: -1,
     batch_size: 2,
     n_iter: 1,
     steps: 20,

@@ -6,12 +6,6 @@ const SaveButton = (selectedImage) => {
       <a
         href={selectedImage.selectedImage}
         download="character_image"
-        onClick={() => {
-          alert(
-            "clicked on the SAVE BUTTON",
-            selectedImage.selectedImage
-          );
-        }}
         className="grid grid-cols-1 grid-rows-2 text-black text-4xl mt-6"
 
       >

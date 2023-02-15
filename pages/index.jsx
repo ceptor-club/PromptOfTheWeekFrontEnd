@@ -50,7 +50,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="absolute top-4 z-10 flex flex-col justify-center items-center w-full">
+      <div className="absolute top-0 z-10 flex flex-col justify-center items-center w-full">
         <p>Version 0.1.13</p>
         <div className="">
           <HamburgerMenu />
@@ -59,28 +59,29 @@ export default function Home() {
           setConditionalRender={setConditionalRender}
           setPdfData={setPdfData}
         />
+
+
+        {(conditionalRender) ? (
+          <>
+            <div className="bg-create">
+              <Create
+                pdfData={pdfData}
+                setPdfData={setPdfData}
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="bg-start w-full">
+              <CreateHero
+                conditionalRender={conditionalRender}
+                setConditionalRender={setConditionalRender}
+              />
+            </div>
+
+          </>
+        )}
       </div>
-
-      {(conditionalRender) ? (
-        <>
-          <div className="bg-create">
-            <Create
-              pdfData={pdfData}
-              setPdfData={setPdfData}
-            />
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="bg-start w-full">
-            <CreateHero
-              conditionalRender={conditionalRender}
-              setConditionalRender={setConditionalRender}
-            />
-          </div>
-        </>
-      )}
-
     </>
   );
 }

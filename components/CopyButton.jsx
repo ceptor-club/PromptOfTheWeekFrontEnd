@@ -1,11 +1,10 @@
 import Image from "next/image";
 
+
 const CopyButton = ({ selectedImage }) => {
     return (
         <>
             <a
-                href={selectedImage}
-                download="character_image"
                 onClick={() => {
                     try {
                         navigator.clipboard.write([
@@ -18,6 +17,7 @@ const CopyButton = ({ selectedImage }) => {
                     }
                 }}
                 className="grid grid-cols-1 grid-rows-2 text-black text-4xl mt-6"
+
             >
                 <Image
                     src="/images/Buttons/copy-btn.svg"

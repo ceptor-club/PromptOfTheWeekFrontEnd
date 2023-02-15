@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-const GenerateButton = ({ setConditionalCreate, pdfData, setImageProcessing, setError, setImageResult, imageResult }) => {
-    const [isMinting, setIsMinting] = useState(false); //minting nft state ie. loading...
+const GenerateButton = ({ setConditionalCreate, pdfData, setImageProcessing, setError, setImageResult, imageResult, imageProcessing }) => {
+
 
 
     const generateImages = async () => {
@@ -49,21 +49,29 @@ const GenerateButton = ({ setConditionalCreate, pdfData, setImageProcessing, set
             <div
                 className="flex items-center text-4xl"
             >
-                {(!imageResult) ? (
-                    <>
-                        GENERATE
-                    </>
 
-                ) : (
-                    <>
-                        REROLL
-                    </>
-                )}
-                {isMinting ? (
-                    <p className="w-fit bg-[#D89A00] hover:bg-[#ab8933] py-1 px-6 rounded-full text-black cursor-not-allowed">
-                        Minting...
+                {imageResult ? (
+                    <p
+                        className="w-fit bg-[#D89A00] hover:bg-[#ab8933] py-1 px-6 rounded-full text-black cursor-pointer animate-pulse"
+                    >
+                        Reroll
                     </p>
-                ) : null}
+                ) : imageProcessing ? (
+                    <p className="w-fit bg-[#D89A00] hover:bg-[#ab8933] py-1 px-6 rounded-full text-black cursor-not-allowed">
+                        images loading...
+                    </p>
+                ) : pdfData ? (
+                    <p
+                        className="w-fit bg-emerald-600 hover:bg-emerald-500 py-1 px-6 rounded-full text-black cursor-pointer animate-pulse"
+                        onClick={generateImages}
+                    >
+                        Generate Images
+                    </p>
+                ) : (
+                    <p className="w-fit bg-[#D89A00] hover:bg-[#ab8933] py-1 px-6 rounded-full text-black cursor-not-allowed">
+                        Generate
+                    </p>
+                )}
             </div>
         </div>
     );

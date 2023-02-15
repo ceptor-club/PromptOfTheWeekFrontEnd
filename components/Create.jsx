@@ -1,14 +1,11 @@
-import Image from "next/image";
 import React from "react";
 import { useEffect, useState } from "react";
 import { createPrompt } from "../utils/promptGen";
-import { avatarNFTSTORAGE } from "../utils/web3utils";
 import { CharacterBackstory } from "./CharacterBackstory";
 import { CreateImageGrid } from "./CreateImageGrid";
 import PDFParser from "./PDFParser";
 import Placeholder from "../public/images/CREATE/placeholder.png";
 import HelpToggle from "./HelpToggle";
-import { CONSTANTS } from "../utils/CONSTANTS";
 import SaveButton from "./SaveButton";
 import CopyButton from "./CopyButton";
 import CharacterStats from "./CharacterStats"
@@ -18,8 +15,6 @@ import MintButton from "./MintButton"
 import GenerateHero from "../components/GenerateHero";
 import GenerateButton from "./GenerateButton";
 
-import { useContractWrite, usePrepareContractWrite } from "wagmi";
-
 export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalRender }) => {
 
   const [prompt, setPrompt] = useState(null); //url
@@ -27,18 +22,8 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
   const [error, setError] = useState(null); //error msg
   const [imageResult, setImageResult] = useState(null); //url
   const [selectedImage, setSelectedImage] = useState(null); //image chosen by user
-
-  const [metadataUrl, setMetadataUrl] = useState(null); //url
   const [conditionalCreate, setConditionalCreate] = useState("");
-
-  const { data, isLoading, isSuccess, write } = useContractWrite({
-    mode: "recklesslyUnprepared",
-    address: CONSTANTS.contractAddress,
-    abi: CONSTANTS.contractABI,
-    functionName: "mint",
-    // args: [],
-    chainId: 5,
-  });
+  const [isMinting, setIsMinting] = useState(false); //minting nft state ie. loading...
 
   //states: no data, pdf uploaded, images generated, nft minted
 
@@ -52,23 +37,6 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
       setError(null);
     }
   }, [pdfData]);
-
-  const mintAvatar = async () => {
-    setIsMinting(true);
-    console.log("Minting avatar...");
-
-    const _metadataUrl = await avatarNFTSTORAGE(selectedImage, prompt, pdfData); //returns url of metadata json
-    console.log("metadata url: ", _metadataUrl);
-    setMetadataUrl(_metadataUrl);
-
-    //mint nft
-    const mintResult = write({
-      recklesslySetUnpreparedArgs: [_metadataUrl],
-    });
-    console.log("mintResult: ", mintResult);
-    //check for error
-    setIsMinting(false);
-  };
 
   return (
     <>
@@ -104,6 +72,8 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
                   setImageResult={setImageResult}
                   imageResult={imageResult}
                   pdfData={pdfData}
+                  isMinting={isMinting}
+                  imageProcessing={imageProcessing}
                 />
               </>
             ) : null}
@@ -125,10 +95,16 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
                     />
                   </div>
                 </div>
-                <MintButton selectedImage={selectedImage} />
+                <WalletConnectButton />
+                <MintButton
+                  selectedImage={selectedImage}
+                  pdfData={pdfData}
+                  setIsMinting={setIsMinting}
+                  isMinting={isMinting}
+                  prompt={prompt}
+                />
                 <SaveButton selectedImage={selectedImage} />
                 <CopyButton selectedImage={selectedImage} />
-                <WalletConnectButton />
               </>
             ) : null}
 
@@ -146,33 +122,7 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
               </>
             ) : null}
 
-            {/*             {isMinting ? (
-              <p className="w-fit bg-[#D89A00] hover:bg-[#ab8933] py-1 px-6 rounded-full text-black cursor-not-allowed">
-                Minting...
-              </p>
-            ) : imageResult ? (
-              <p
-                className="w-fit bg-[#D89A00] hover:bg-[#ab8933] py-1 px-6 rounded-full text-black cursor-pointer animate-pulse"
-                onClick={mintAvatar}
-              >
-                Mint Avatar
-              </p>
-            ) : imageProcessing ? (
-              <p className="w-fit bg-[#D89A00] hover:bg-[#ab8933] py-1 px-6 rounded-full text-black cursor-not-allowed">
-                images loading...
-              </p>
-            ) : pdfData ? (
-              <p
-                className="w-fit bg-emerald-600 hover:bg-emerald-500 py-1 px-6 rounded-full text-black cursor-pointer animate-pulse"
-                onClick={generateImages}
-              >
-                Generate Images
-              </p>
-            ) : (
-              <p className="w-fit bg-[#D89A00] hover:bg-[#ab8933] py-1 px-6 rounded-full text-black cursor-not-allowed">
-                Upload first!
-              </p>
-            )} */}
+
           </div>
         </div>
       </div>

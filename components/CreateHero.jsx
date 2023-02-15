@@ -10,11 +10,11 @@ import StartButton from "./StartButton";
 
 export default function CreateHero({ setConditionalRender }) {
   return (
-    <div className="flex flex-col w-full mt-96">
-      <div className="relative mx-auto h-96 w-96 bottom-3/4">
+    <div className="flex flex-col mt-36 h-full">
+      <div className="mx-auto h-96 w-96">
         <VectorImage />
       </div>
-      <div className="relative mx-auto bottom-3/4 h-32 w-32">
+      <div className="mx-auto h-32 w-32">
         <StartButton
           setConditionalRender={setConditionalRender}
         />
