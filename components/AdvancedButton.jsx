@@ -4,10 +4,10 @@ const AdvancedButton = ({ advanced, setAdvanced }) => {
     return (
         <div
             className="flex items-center justify-center bg-blue-400 p-0 cursor-pointer"
-
+            onClick={() => setAdvanced(!advanced)}
         >
             <p
-                onClick={() => setAdvanced(!advanced)}
+
             >Click for Advanced Prompt Editing</p>
         </div>
     )
