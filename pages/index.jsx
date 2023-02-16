@@ -60,7 +60,6 @@ export default function Home() {
           setPdfData={setPdfData}
         />
 
-
         {(conditionalRender) ? (
           <>
             <div className="bg-create">

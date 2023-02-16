@@ -6,10 +6,9 @@ import { CONSTANTS } from "../utils/CONSTANTS";
 import { useEffect, useState } from "react";
 
 
-
 const MintButton = ({ selectedImage, pdfData, setIsMinting, prompt, isMinting }) => {
   const [metadataUrl, setMetadataUrl] = useState(null); //url
-
+  const grayDisable = selectedImage ? "grayscale-0" : "grayscale opacity-50"
   const { data, isLoading, isSuccess, write } = useContractWrite({
     mode: "recklesslyUnprepared",
     address: CONSTANTS.contractAddress,
@@ -40,7 +39,7 @@ const MintButton = ({ selectedImage, pdfData, setIsMinting, prompt, isMinting })
     <>
       <a
         onClick={mintAvatar}
-        className="grid grid-cols-1 grid-rows-2 text-black text-4xl mt-6 cursor-pointer hover:opacity-80"
+        className={`${grayDisable} grid grid-cols-1 grid-rows-2 text-black text-4xl mt-6 cursor-pointer`}
       >
         <Image
           src="/images/Buttons/mint-btn.svg"

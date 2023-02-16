@@ -77,7 +77,6 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
                 />
               </>
             ) : null}
-
             {(conditionalCreate === "results") ? (
               <>
                 <div className="flex flex-col items-center bg-black mt-8">
@@ -94,6 +93,7 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
                       setSelectedImage={setSelectedImage}
                     />
                   </div>
+
                 </div>
                 <WalletConnectButton />
                 <MintButton
@@ -107,22 +107,6 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
                 <CopyButton selectedImage={selectedImage} />
               </>
             ) : null}
-
-            {(conditionalRender === "advanced") ? (
-              <>
-                <h3>Edit Your Prompt Manually</h3>
-                <div className="bg-black text-left text-sm min-h-[150px] p-2 w-full">
-                  <h3 className="mb-4">Your Prompt Was Recovered from the Fires of the Forge!</h3>
-                  <textarea
-                    onChange={(e) => setPrompt(e.target.value)}
-                    className="w-full h-[200px] bg-transparent resize-none"
-                    value={prompt || ""}
-                  />
-                </div>
-              </>
-            ) : null}
-
-
           </div>
         </div>
       </div>

@@ -1,13 +1,14 @@
 import Image from "next/image";
 
-const SaveButton = (selectedImage) => {
+const SaveButton = ({ selectedImage }) => {
+  const grayDisable = selectedImage ? "grayscale-0" : "grayscale opacity-50"
+
   return (
     <>
       <a
-        href={selectedImage.selectedImage}
+        href={selectedImage}
         download="character_image"
-        className="grid grid-cols-1 grid-rows-2 text-black text-4xl mt-6"
-
+        className={`${grayDisable} grid grid-cols-1 grid-rows-2 text-black text-4xl mt-6`}
       >
         <Image
           src="/images/Buttons/save-btn.svg"

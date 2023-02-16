@@ -49,7 +49,6 @@ const GenerateButton = ({ setConditionalCreate, pdfData, setImageProcessing, set
             <div
                 className="flex items-center text-4xl"
             >
-
                 {imageResult ? (
                     <p
                         className="w-fit bg-[#D89A00] hover:bg-[#ab8933] py-1 px-6 rounded-full text-black cursor-pointer animate-pulse"

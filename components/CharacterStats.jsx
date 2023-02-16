@@ -1,9 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { createPrompt } from "../utils/promptGen";
+import AdvancedButton from "./AdvancedButton";
 
 
-const CharacterStats = ({ pdfData, setPrompt, setError, setPdfData }) => {
+const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) => {
+    const [advanced, setAdvanced] = useState(false)
 
     useEffect(() => {
         if (pdfData) {
@@ -182,46 +184,28 @@ const CharacterStats = ({ pdfData, setPrompt, setError, setPdfData }) => {
                                         onChange={handleGenderSelect}
                                     ></textarea>
                                 </div>
+                                <AdvancedButton
+                                    advanced={advanced}
+                                    setAdvanced={setAdvanced}
+                                />
                             </div>
                         </div>
+                        {(advanced) ? (
+                            <>
+                                <h3>Edit Your Prompt Manually</h3>
+                                <div className="bg-black text-left text-sm p-2">
+                                    <h3 className="mb-4">Your Prompt Was Recovered from the Fires of the Forge!</h3>
+                                    <textarea
+                                        onChange={(e) => setPrompt(e.target.value)}
+                                        className="w-full h-[150px] bg-transparent resize-none"
+                                        value={prompt || ""}
+                                    />
+                                </div>
+                            </>
+                        ) : null}
                     </div>
                 </>
-            ) : (
-                <div className="stats text-white h-[600px] w-[500px] pt-20">
-                    <h1 className="text-2xl">Your Stats</h1>
-                    <h4 className="text-center">From your Character Sheet</h4>
-                    <div>
-                        <p className="mx-[48px] mb-2 mt-6">ON</p>
-                        <div className="flex items-center mx-[48px] mt-2 mb-6">
-                            <input type="checkbox" className="checkbox-stats" checked readOnly></input>
-                            <p className="mx-4">RACE: Dragonborn (LOCKED)</p>
-                        </div>
-                        <div className="flex items-center mx-[48px] my-6">
-                            <input type="checkbox" className="checkbox-stats" disabled></input>
-                            <p className="mx-4">CLASS: </p>
-                        </div>
-                        <div className="flex items-center mx-[48px] my-6">
-                            <input type="checkbox" className="checkbox-stats" disabled></input>
-                            <p className="mx-4">ARMOR: </p>
-                        </div>
-                        <div className="flex items-center mx-[48px] my-6">
-                            <input type="checkbox" className="checkbox-stats" disabled></input>
-                            <p className="mx-4">BACKGROUND: </p>
-                        </div>
-                        <div className="flex items-center mx-[48px] my-6">
-                            <input type="checkbox" className="checkbox-stats" disabled></input>
-                            <p className="mx-4">ALIGNMENT: </p>
-                        </div>
-                        <div className="flex items-center mx-[48px] my-6">
-                            <input type="checkbox" className="checkbox-stats" disabled></input>
-                            <p className="mx-4">FEATURE: </p>
-                        </div>
-                        <div className="flex items-center mx-[48px] my-6">
-                            <input type="checkbox" className="checkbox-stats" disabled></input>
-                            <p className="mx-4">GENDER: </p>
-                        </div>
-                    </div>
-                </div>
+            ) : (null
             )}
         </>
     );
