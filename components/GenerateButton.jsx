@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-const GenerateButton = ({ setConditionalCreate, pdfData, setImageProcessing, setError, setImageResult, imageResult, imageProcessing }) => {
-
-
+const GenerateButton = ({ setConditionalCreate, prompt, pdfData, setImageProcessing, setError, setImageResult, imageResult, imageProcessing }) => {
 
     const generateImages = async () => {
         console.log("Generating images... for ", prompt);

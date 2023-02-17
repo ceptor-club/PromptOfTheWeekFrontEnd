@@ -74,6 +74,7 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
                   pdfData={pdfData}
                   isMinting={isMinting}
                   imageProcessing={imageProcessing}
+                  prompt={prompt}
                 />
               </>
             ) : null}
@@ -95,15 +96,20 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
                   </div>
 
                 </div>
-                <MintButton
-                  selectedImage={selectedImage}
-                  pdfData={pdfData}
-                  setIsMinting={setIsMinting}
-                  isMinting={isMinting}
-                  prompt={prompt}
-                />
-                <SaveButton selectedImage={selectedImage} />
-                <CopyButton selectedImage={selectedImage} />
+
+                {(imageResult) ? (
+                  <>
+                    <MintButton
+                      selectedImage={selectedImage}
+                      pdfData={pdfData}
+                      setIsMinting={setIsMinting}
+                      isMinting={isMinting}
+                      prompt={prompt}
+                    />
+                    <SaveButton selectedImage={selectedImage} />
+                    <CopyButton selectedImage={selectedImage} />
+                  </>
+                ) : null}
               </>
             ) : null}
           </div>

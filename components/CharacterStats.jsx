@@ -9,7 +9,7 @@ const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) =>
 
     useEffect(() => {
         if (pdfData) {
-            console.log("pdfData: ", pdfData);
+            /* console.log("pdfData: ", pdfData); */
             //create text prompt using pdfData and other data
             const prompt = createPrompt(pdfData);
             setPrompt(prompt);

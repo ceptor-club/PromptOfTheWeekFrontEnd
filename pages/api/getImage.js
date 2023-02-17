@@ -9,7 +9,7 @@ export default function handler(req, res) {
     seed: -1,
     batch_size: 2,
     n_iter: 1,
-    steps: 20,
+    steps: 150,
     cfg_scale: 8,
     width: 512,
     height: 512,
