@@ -7,6 +7,7 @@ const GenerateButton = ({ setConditionalCreate, prompt, pdfData, setImageProcess
         console.log("Generating images... for ", prompt);
         setError(false);
         setImageProcessing(true);
+        setConditionalCreate("results")
         const fetchResult = await fetch("/api/getImage", {
             // <------------- COMMENTED OUT FOR TESTING
             method: "POST",
@@ -23,7 +24,6 @@ const GenerateButton = ({ setConditionalCreate, prompt, pdfData, setImageProcess
         // const result = { images: [CONSTANTS.testBase64Image] }; // <------------- THIS IS FOR TESTING
 
         // console.log("result: ", result)
-        setConditionalCreate("results")
         setImageProcessing(false);
         if (result.error) {
             return setError(result.error);

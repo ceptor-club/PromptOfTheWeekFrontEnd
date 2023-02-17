@@ -13,6 +13,7 @@ import ToolTip from "./ToolTip"
 import MintButton from "./MintButton"
 import GenerateHero from "../components/GenerateHero";
 import GenerateButton from "./GenerateButton";
+import GenerateLoading from "./GenerateLoading";
 
 export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalRender }) => {
 
@@ -36,7 +37,10 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
       setError(null);
     }
   }, [pdfData]);
-  console.log("pdfData: ", pdfData);
+
+  const retry = () => {
+    setConditionalCreate("")
+  }
 
   return (
     <>
@@ -56,7 +60,7 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
 
           <div className="flex flex-col items-center justify-center">
 
-            {(pdfData) ? (
+            {(conditionalCreate === "") ? (
               <>
                 <CharacterStats
                   pdfData={pdfData}
@@ -65,20 +69,37 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
                   setError={setError}
                   setPdfData={setPdfData}
                 />
-                <GenerateButton
-                  setConditionalCreate={setConditionalCreate}
-                  setImageProcessing={setImageProcessing}
-                  setError={setError}
-                  setImageResult={setImageResult}
-                  imageResult={imageResult}
-                  pdfData={pdfData}
-                  isMinting={isMinting}
-                  imageProcessing={imageProcessing}
-                  prompt={prompt}
-                />
               </>
             ) : null}
-            {(conditionalCreate === "results") ? (
+
+            {(imageProcessing) ? (
+              <>
+                <GenerateLoading />
+              </>
+            ) : (error) ? (
+              <>
+                <h1 className="text-4xl mt-48">ERROR</h1>
+                <h1
+                  className="text-4xl bg-blue-200"
+                  onClick={retry}
+                >{error}</h1>
+              </>
+            )
+              : null}
+
+            <GenerateButton
+              setConditionalCreate={setConditionalCreate}
+              setImageProcessing={setImageProcessing}
+              setError={setError}
+              setImageResult={setImageResult}
+              imageResult={imageResult}
+              pdfData={pdfData}
+              isMinting={isMinting}
+              imageProcessing={imageProcessing}
+              prompt={prompt}
+            />
+
+            {(imageResult) ? (
               <>
                 <div className="flex flex-col items-center bg-black mt-8">
                   <h3 className="text-4xl mb-4">RESULTS</h3>
@@ -94,7 +115,6 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
                       setSelectedImage={setSelectedImage}
                     />
                   </div>
-
                 </div>
 
                 {(imageResult) ? (
