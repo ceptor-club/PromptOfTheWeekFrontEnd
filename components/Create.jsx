@@ -10,7 +10,6 @@ import SaveButton from "./SaveButton";
 import CopyButton from "./CopyButton";
 import CharacterStats from "./CharacterStats"
 import ToolTip from "./ToolTip"
-import WalletConnectButton from "./WalletConnectButton";
 import MintButton from "./MintButton"
 import GenerateHero from "../components/GenerateHero";
 import GenerateButton from "./GenerateButton";
@@ -37,6 +36,7 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
       setError(null);
     }
   }, [pdfData]);
+  console.log("pdfData: ", pdfData);
 
   return (
     <>
@@ -95,7 +95,6 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
                   </div>
 
                 </div>
-                <WalletConnectButton />
                 <MintButton
                   selectedImage={selectedImage}
                   pdfData={pdfData}

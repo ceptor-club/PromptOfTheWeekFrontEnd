@@ -4,11 +4,13 @@ import { avatarNFTSTORAGE } from "../utils/web3utils";
 import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import { CONSTANTS } from "../utils/CONSTANTS";
 import { useEffect, useState } from "react";
+import { useAccount, useDisconnect } from "wagmi";
+import { useWeb3Modal } from "@web3modal/react";
 
 
 const MintButton = ({ selectedImage, pdfData, setIsMinting, prompt, isMinting }) => {
   const [metadataUrl, setMetadataUrl] = useState(null); //url
-  const grayDisable = selectedImage ? "grayscale-0" : "grayscale opacity-50"
+  const grayDisable = selectedImage ? "grayscale-0 cursor-pointer" : "grayscale opacity-50"
   const { data, isLoading, isSuccess, write } = useContractWrite({
     mode: "recklesslyUnprepared",
     address: CONSTANTS.contractAddress,
@@ -18,7 +20,22 @@ const MintButton = ({ selectedImage, pdfData, setIsMinting, prompt, isMinting })
     chainId: 5,
   });
 
+  const { address, isConnected } = useAccount();
+  const { open, isOpen, close } = useWeb3Modal();
+  const { disconnect } = useDisconnect();
+
   const mintAvatar = async () => {
+    if (!selectedImage) {
+      console.log("no image slected")
+      return
+    }
+
+    if (!isConnected) {
+      open();
+    } else if (isConnected) {
+      console.log("wallet is connected")
+    };
+
     setIsMinting(true);
     console.log("Minting avatar...");
 
@@ -39,7 +56,8 @@ const MintButton = ({ selectedImage, pdfData, setIsMinting, prompt, isMinting })
     <>
       <a
         onClick={mintAvatar}
-        className={`${grayDisable} grid grid-cols-1 grid-rows-2 text-black text-4xl mt-6 cursor-pointer`}
+        className={`${grayDisable} grid grid-cols-1 grid-rows-2 text-black text-4xl mt-6`
+        }
       >
         <Image
           src="/images/Buttons/mint-btn.svg"

@@ -17,7 +17,6 @@ const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) =>
         }
     }, [pdfData]);
 
-
     const handleGenderSelect = (e) => {
         const input = document.getElementById("genderInput")
         if (document.getElementById("genderCheck").checked === true && input.value !== "") {

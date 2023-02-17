@@ -2,7 +2,7 @@ import Image from "next/image";
 
 
 const CopyButton = ({ selectedImage }) => {
-    const grayDisable = selectedImage ? "grayscale-0" : "grayscale opacity-50"
+    const grayDisable = selectedImage ? "grayscale-0 cursor-pointer" : "grayscale opacity-50"
 
     return (
         <>
@@ -18,7 +18,7 @@ const CopyButton = ({ selectedImage }) => {
                         console.error(error);
                     }
                 }}
-                className={`${grayDisable} grid grid-cols-1 grid-rows-2 text-black text-4xl mt-6 cursor-pointer`}
+                className={`${grayDisable} grid grid-cols-1 grid-rows-2 text-black text-4xl mt-6`}
 
             >
                 <Image
