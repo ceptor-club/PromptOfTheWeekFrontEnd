@@ -26,6 +26,11 @@ export const CreateImageGrid = ({
     setCurrentSelection(parseInt(e.target.id))
   }
 
+  function handleDblClick(e) {
+    e.preventDefault();
+    // this needs written to display double clicked result image full screen
+  }
+
 
   if (error)
     return (
@@ -62,6 +67,7 @@ export const CreateImageGrid = ({
               key={i}
               id={i}
               onClick={(e) => handleImageSelect(image, e)}
+              onDoubleClick={(e) => handleDblClick(e)}
               src={image}
               alt=""
               width={128}

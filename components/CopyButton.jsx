@@ -1,11 +1,12 @@
 import Image from "next/image";
 
+
 const CopyButton = ({ selectedImage }) => {
+    const grayDisable = selectedImage ? "grayscale-0 cursor-pointer" : "grayscale opacity-50"
+
     return (
         <>
             <a
-                href={selectedImage}
-                download="character_image"
                 onClick={() => {
                     try {
                         navigator.clipboard.write([
@@ -17,7 +18,8 @@ const CopyButton = ({ selectedImage }) => {
                         console.error(error);
                     }
                 }}
-                className="grid grid-cols-1 grid-rows-2 text-black text-4xl mt-6"
+                className={`${grayDisable} grid grid-cols-1 grid-rows-2 text-black text-4xl mt-6`}
+
             >
                 <Image
                     src="/images/Buttons/copy-btn.svg"

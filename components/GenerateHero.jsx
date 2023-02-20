@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import midPageImage from "../public/images/CREATE-midPage/midPageImage.png";
@@ -8,11 +8,14 @@ import Options from "../public/images/CREATE/Options.png";
 import ToolTip from "./ToolTip";
 
 
-export default function GenerateHero({ setPdfData, pdfData, setError }) {
+export default function GenerateHero({ setPdfData, pdfData, setError, setConditionalRender }) {
+
+
+
     return (
         <div>
             <div className="relative flex justify-center">
-                <div className="relative w-full max-h-screen ">
+                <div className="relative w-full max-h-screen">
 
                     <Image
                         src={midPageImage}
