@@ -27,6 +27,7 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
 
   //states: no data, pdf uploaded, images generated, nft minted
 
+
   useEffect(() => {
     if (pdfData) {
       console.log("pdfData: ", pdfData);

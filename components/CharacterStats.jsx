@@ -7,6 +7,7 @@ import AdvancedButton from "./AdvancedButton";
 const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) => {
     const [advanced, setAdvanced] = useState(false)
 
+
     useEffect(() => {
         if (pdfData) {
             /* console.log("pdfData: ", pdfData); */
@@ -99,7 +100,7 @@ const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) =>
                                     <p className="mx-4">CLASS: </p>
                                     <textarea
                                         id="levelInput"
-                                        placeholder={pdfData.class}
+                                        placeholder="Class"
                                         className="bg-transparent resize-none h-6"
                                         onChange={handleLevelSelect}
                                     ></textarea>
@@ -115,7 +116,7 @@ const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) =>
                                     <p className="mx-4">ARMOR: </p>
                                     <textarea
                                         id="armorInput"
-                                        placeholder={pdfData.armorWorn}
+                                        placeholder="Armor"
                                         className="bg-transparent resize-none h-6 overflow-hidden"
                                         onChange={handleArmorSelect}
                                     ></textarea>
@@ -131,7 +132,7 @@ const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) =>
                                     <p className="mx-4">BACKGROUND: </p>
                                     <textarea
                                         id="backgroundInput"
-                                        placeholder={pdfData.background}
+                                        placeholder="Background"
                                         className="bg-transparent resize-none h-6"
                                         onChange={handleBackgroundSelect}
                                     ></textarea>
@@ -147,7 +148,7 @@ const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) =>
                                     <p className="mx-4">ALIGNMENT: </p>
                                     <textarea
                                         id="alignmentInput"
-                                        placeholder={pdfData.alignment}
+                                        placeholder="Alignment"
                                         className="bg-transparent resize-none h-6"
                                         onChange={handleAlignmentSelect}
                                     ></textarea>
@@ -163,7 +164,7 @@ const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) =>
                                     <p className="mx-4">FEATURE: </p>
                                     <textarea
                                         id="featureInput"
-                                        placeholder={pdfData.feature}
+                                        placeholder="Feature"
                                         className="bg-transparent resize-none h-6 overflow-hidden"
                                         onChange={handleFeatureSelect}
                                     ></textarea>

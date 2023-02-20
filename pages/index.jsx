@@ -14,7 +14,15 @@ export default function Home() {
 
   const [imageProcessing, setImageProcessing] = useState(false); //processing state ie. loading...
   const [conditionalRender, setConditionalRender] = useState("");
-  const [pdfData, setPdfData] = useState(null); //url
+  const [pdfData, setPdfData] = useState({
+    race: "",
+    class: "",
+    armorWorn: "",
+    background: "",
+    alignment: "",
+    feature: "",
+    gender: ""
+  }); //url
   /*   const [prompt, setPrompt] = useState(null); //url
     const [error, setError] = useState(null); //error msg
     const [imageResult, setImageResult] = useState(null); //url
