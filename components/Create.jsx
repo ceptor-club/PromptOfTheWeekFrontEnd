@@ -44,14 +44,14 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
 
   return (
     <>
-      {(!pdfData) ? (
+      {/*       {(!pdfData) ? (
         <GenerateHero
           setPdfData={setPdfData}
           pdfData={pdfData}
           setError={setError}
           setConditionalRender={setConditionalRender}
         />
-      ) : null}
+      ) : null} */}
 
       <div className="flex flex-col xl:flex-nowrap w-screen gap-2 justify-start items-center mt-24">
         <div className="flex flex-col xl:w-2/5 w-full p-4 gap-4 justify-around">
@@ -60,15 +60,16 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
 
           <div className="flex flex-col items-center justify-center">
 
+            <CharacterStats
+              pdfData={pdfData}
+              prompt={prompt}
+              setPrompt={setPrompt}
+              setError={setError}
+              setPdfData={setPdfData}
+            />
+
             {(conditionalCreate === "") ? (
               <>
-                <CharacterStats
-                  pdfData={pdfData}
-                  prompt={prompt}
-                  setPrompt={setPrompt}
-                  setError={setError}
-                  setPdfData={setPdfData}
-                />
               </>
             ) : null}
 

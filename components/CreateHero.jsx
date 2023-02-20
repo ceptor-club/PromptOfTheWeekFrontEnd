@@ -20,7 +20,5 @@ export default function CreateHero({ setConditionalRender }) {
         />
       </div>
     </div>
-
   );
-
 }

@@ -50,7 +50,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="absolute top-0 z-10 flex flex-col justify-center items-center w-full">
+      <div className="absolute top-0 flex flex-col justify-center items-center w-full">
         <p>Version 0.1.13</p>
         <div className="">
           <HamburgerMenu />
@@ -77,7 +77,6 @@ export default function Home() {
                 setConditionalRender={setConditionalRender}
               />
             </div>
-
           </>
         )}
       </div>

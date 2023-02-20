@@ -73,7 +73,7 @@ const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) =>
 
     return (
         <>
-            {pdfData ? (
+            {true ? (
                 <>
                     <div>
                         <div className="stats text-white pt-20 w-full md:3/6 h-[600px]">
