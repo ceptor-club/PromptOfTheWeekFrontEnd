@@ -4,6 +4,7 @@ import CreateHero from "../components/CreateHero";
 import { Create } from "../components/Create";
 import { Logo } from "../components/Logo"
 import HamburgerMenu from "../components/HamburgerMenu";
+import VectorImage from "../components/VectorImage";
 
 
 export default function Home() {
@@ -59,27 +60,25 @@ export default function Home() {
   return (
     <>
       <div className="absolute top-0 flex flex-col justify-center items-center w-full">
-        <p>Version 0.1.13</p>
-        <div className="">
-          <HamburgerMenu />
-        </div>
+        <p className="z-10">Version 0.1.13</p>
+       
         <Logo
           setConditionalRender={setConditionalRender}
           setPdfData={setPdfData}
         />
-
+        
         {(conditionalRender) ? (
           <>
-            <div className="bg-create">
+           <div className="absolute top-0 w-full">
               <Create
                 pdfData={pdfData}
                 setPdfData={setPdfData}
               />
-            </div>
+           </div>
           </>
         ) : (
           <>
-            <div className="bg-start w-full">
+            <div className="absolute top-0 w-full">
               <CreateHero
                 conditionalRender={conditionalRender}
                 setConditionalRender={setConditionalRender}

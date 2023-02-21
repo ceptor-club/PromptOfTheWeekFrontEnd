@@ -13,6 +13,10 @@ import ToolTip from "./ToolTip"
 import MintButton from "./MintButton"
 import GenerateButton from "./GenerateButton";
 import GenerateLoading from "./GenerateLoading";
+import Image from "next/image";
+import midPageImage from "../public/images/CREATE-midpage/midPageImage.png"
+
+
 
 export const Create = ({ pdfData, setPdfData }) => {
 
@@ -53,12 +57,12 @@ export const Create = ({ pdfData, setPdfData }) => {
         />
       ) : null} */}
 
-      <div className="flex flex-col xl:flex-nowrap w-screen gap-2 justify-start items-center mt-24">
-        <div className="flex flex-col xl:w-2/5 w-full p-4 gap-4 justify-around">
-          <div className="w-full h-full text-left flex flex-row space-between">
-          </div>
+      <div className="flex flex-col xl:flex-nowrap w-screen gap-2 justify-center items-center">
+        <Image src={midPageImage} alt="midPage" className="object-fit: cover h-screen" />
+        <div className="absolute top-24 flex flex-col xl:w-2/5 w-full justify-center items-center">
+        
 
-          <div className="flex flex-col items-center justify-center">
+          
 
             {(imageProcessing) ? (
               <>
@@ -133,7 +137,7 @@ export const Create = ({ pdfData, setPdfData }) => {
 
           </div>
         </div>
-      </div>
+      
     </>
   );
 };
