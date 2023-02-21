@@ -8,7 +8,7 @@ const StartButton = ({ setConditionalRender }) => {
 
     return (
         <div
-            className="h-32 w-32 mx-auto curosr-pointer"
+            className="h-32 w-32 mx-auto cursor-pointer"
             onClick={() => setConditionalRender(true)}
         >
             <div className="relative text-center text-2xl mx-auto">

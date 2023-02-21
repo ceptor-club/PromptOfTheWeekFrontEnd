@@ -41,6 +41,7 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
 
   const retry = () => {
     setConditionalCreate("")
+    setError(null)
   }
 
   return (
@@ -61,18 +62,11 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
 
           <div className="flex flex-col items-center justify-center">
 
-            <CharacterStats
-              pdfData={pdfData}
-              prompt={prompt}
-              setPrompt={setPrompt}
-              setError={setError}
-              setPdfData={setPdfData}
-            />
 
-            {(conditionalCreate === "") ? (
+            {/*             {(conditionalCreate === "") ? (
               <>
               </>
-            ) : null}
+            ) : null} */}
 
             {(imageProcessing) ? (
               <>
@@ -80,31 +74,27 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
               </>
             ) : (error) ? (
               <>
-                <h1 className="text-4xl mt-48">ERROR</h1>
                 <h1
-                  className="text-4xl bg-blue-200"
+                  className="text-4xl bg-red-400 text-red-800 cursor-pointer mt-48"
                   onClick={retry}
                 >{error}</h1>
               </>
-            )
-              : null}
-
-            <GenerateButton
-              setConditionalCreate={setConditionalCreate}
-              setImageProcessing={setImageProcessing}
-              setError={setError}
-              setImageResult={setImageResult}
-              imageResult={imageResult}
-              pdfData={pdfData}
-              isMinting={isMinting}
-              imageProcessing={imageProcessing}
-              prompt={prompt}
-            />
+            ) : (!imageProcessing) ? (
+              <>
+                <CharacterStats
+                  pdfData={pdfData}
+                  prompt={prompt}
+                  setPrompt={setPrompt}
+                  setError={setError}
+                  setPdfData={setPdfData}
+                />
+              </>
+            ) : null}
 
             {(imageResult) ? (
               <>
                 <div className="flex flex-col items-center bg-black mt-8">
-                  <h3 className="text-4xl mb-4">RESULTS</h3>
+                  <h3 id="results" className="text-4xl mb-4">RESULTS</h3>
                   <p>Select an image to save or mint</p>
                   {/* images grid */}
                   <div className="md:w-2/3 m-4 mb-6">
@@ -134,6 +124,21 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
                 ) : null}
               </>
             ) : null}
+
+            {(error || imageProcessing) ? null : (
+              <GenerateButton
+                setConditionalCreate={setConditionalCreate}
+                setImageProcessing={setImageProcessing}
+                setError={setError}
+                setImageResult={setImageResult}
+                imageResult={imageResult}
+                pdfData={pdfData}
+                isMinting={isMinting}
+                imageProcessing={imageProcessing}
+                prompt={prompt}
+              />
+            )}
+
           </div>
         </div>
       </div>
