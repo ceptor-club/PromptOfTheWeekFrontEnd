@@ -3,6 +3,14 @@ import Image from "next/image";
 
 const GenerateButton = ({ setConditionalCreate, prompt, pdfData, setImageProcessing, setError, setImageResult, imageResult, imageProcessing }) => {
 
+    // Attempting to scroll to the results section whenever imageResult is updated
+    useEffect(() => {
+        if (imageResult) {
+            const resultSection = document.getElementById("results")
+            resultSection.scrollIntoView({ behavior: "smooth" })
+        }
+    }, [imageResult]);
+
     const generateImages = async () => {
         console.log("Generating images... for ", prompt);
         setError(false);
@@ -60,7 +68,6 @@ const GenerateButton = ({ setConditionalCreate, prompt, pdfData, setImageProcess
                 ) : pdfData ? (
                     <p
                         className="w-fit bg-emerald-600 hover:bg-emerald-500 py-1 px-6 rounded-full text-black cursor-pointer animate-pulse"
-                        onClick={generateImages}
                     >
                         Generate Images
                     </p>

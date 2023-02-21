@@ -11,11 +11,10 @@ import CopyButton from "./CopyButton";
 import CharacterStats from "./CharacterStats"
 import ToolTip from "./ToolTip"
 import MintButton from "./MintButton"
-import GenerateHero from "../components/GenerateHero";
 import GenerateButton from "./GenerateButton";
 import GenerateLoading from "./GenerateLoading";
 
-export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalRender }) => {
+export const Create = ({ pdfData, setPdfData }) => {
 
   const [prompt, setPrompt] = useState(null); //url
   const [imageProcessing, setImageProcessing] = useState(false); //processing state ie. loading...
@@ -26,7 +25,6 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
   const [isMinting, setIsMinting] = useState(false); //minting nft state ie. loading...
 
   //states: no data, pdf uploaded, images generated, nft minted
-
 
   useEffect(() => {
     if (pdfData) {
@@ -62,12 +60,6 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
 
           <div className="flex flex-col items-center justify-center">
 
-
-            {/*             {(conditionalCreate === "") ? (
-              <>
-              </>
-            ) : null} */}
-
             {(imageProcessing) ? (
               <>
                 <GenerateLoading />
@@ -75,7 +67,7 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
             ) : (error) ? (
               <>
                 <h1
-                  className="text-4xl bg-red-400 text-red-800 cursor-pointer mt-48"
+                  className="text-4xl bg-red-400 text-red-800 cursor-pointer mt-48 animate-pulse"
                   onClick={retry}
                 >{error}</h1>
               </>
@@ -108,24 +100,10 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
                     />
                   </div>
                 </div>
-
-                {(imageResult) ? (
-                  <>
-                    <MintButton
-                      selectedImage={selectedImage}
-                      pdfData={pdfData}
-                      setIsMinting={setIsMinting}
-                      isMinting={isMinting}
-                      prompt={prompt}
-                    />
-                    <SaveButton selectedImage={selectedImage} />
-                    <CopyButton selectedImage={selectedImage} />
-                  </>
-                ) : null}
               </>
             ) : null}
 
-            {(error || imageProcessing) ? null : (
+            {(error) ? null : (
               <GenerateButton
                 setConditionalCreate={setConditionalCreate}
                 setImageProcessing={setImageProcessing}
@@ -138,6 +116,20 @@ export const Create = ({ pdfData, setPdfData, conditionalRender, setConditionalR
                 prompt={prompt}
               />
             )}
+
+            {(imageResult) ? (
+              <>
+                <MintButton
+                  selectedImage={selectedImage}
+                  pdfData={pdfData}
+                  setIsMinting={setIsMinting}
+                  isMinting={isMinting}
+                  prompt={prompt}
+                />
+                <SaveButton selectedImage={selectedImage} />
+                <CopyButton selectedImage={selectedImage} />
+              </>
+            ) : null}
 
           </div>
         </div>

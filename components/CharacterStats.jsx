@@ -77,7 +77,7 @@ const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) =>
             {true ? (
                 <>
                     <div>
-                        <div className="stats text-white pt-10 w-full md:3/6 h-[400px] overflow-visible mt-10">
+                        <div className="stats text-white py-10 w-full md:3/6 overflow-visible mt-10">
                             <h3>Your Stats</h3>
 
                             <h4 className="text-center">From your Character Sheet</h4>
@@ -184,7 +184,6 @@ const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) =>
                                         onChange={handleGenderSelect}
                                     ></textarea>
                                 </div>
-
                             </div>
                         </div>
                         <AdvancedButton

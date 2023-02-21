@@ -15,7 +15,7 @@ export default function Home() {
   const [imageProcessing, setImageProcessing] = useState(false); //processing state ie. loading...
   const [conditionalRender, setConditionalRender] = useState("");
   const [pdfData, setPdfData] = useState({
-    race: "",
+    race: "DnDDragonbornGeneral",
     class: "",
     armorWorn: "",
     background: "",
