@@ -55,9 +55,9 @@ Use the `utils/` folder to add general functions (such as generating prompts, or
 
 Ideally, we have a frontend that:
 
-- [ ] Has a "download namedDragonborn.png" button so users that don't know about right clicking or screenshotting can easily get their picture onto their device.
+- [x] Has a "download namedDragonborn.png" button so users that don't know about right clicking or screenshotting can easily get their picture onto their device.
 
-- [ ] Has a "Save as NFT" for permanant decentralized file storage
+- [x] Has a "Save as NFT" for permanant decentralized file storage
 
 - [x] Has a "Connect Wallet" button to enable Save as NFT.
 
@@ -67,12 +67,12 @@ Ideally, we have a frontend that:
 
 - [x] Displays response of images (choices) for the users character avatar
 
-- [ ] Serverside API call to backend / back-up to nft.storage ??
+- [x] Serverside API call to backend / back-up to nft.storage
 
-- [ ] After character selection, send and save chosen character with character sheet
+- [x] After character selection, send and save chosen character with character sheet
 
 - [x] Fully responsive hamburger menu and mobile-friendly
-- [ ] Image selection UX highlighting and features
+- [x] Image selection UX highlighting and features
 
 ## endpoint documentation
 
@@ -80,7 +80,9 @@ Ideally, we have a frontend that:
 
 Our backend endpoint information sprang forth from the mind and cloud of Somya the Dragonborn Cleric. Here is a [link to our Documentation page on Notion, check out "Dragonborn Backend"](https://www.notion.so/danj-o/R-D-6575f7b14c5949c0b65215c052c21b17). Happy adventuring!
 
-- [ ] Somya & Tippi's advice about Front-end to back-end connection
+- [x] Somya & Tippi's advice about Front-end to back-end connection
+
+Just do it! And ask q in the group :D
 
 ### Roadmaps
 
