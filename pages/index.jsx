@@ -2,10 +2,10 @@
 import { useState, useEffect } from "react";
 import CreateHero from "../components/CreateHero";
 import { Create } from "../components/Create";
-import { Logo } from "../components/Logo"
+import { Logo } from "../components/Logo";
 import HamburgerMenu from "../components/HamburgerMenu";
 import VectorImage from "../components/VectorImage";
-
+import Meta from "../components/Meta";
 
 export default function Home() {
   /*   const [data, setData] = useState({
@@ -22,14 +22,13 @@ export default function Home() {
     background: "",
     alignment: "",
     feature: "",
-    gender: ""
+    gender: "",
   }); //url
   /*   const [prompt, setPrompt] = useState(null); //url
     const [error, setError] = useState(null); //error msg
     const [imageResult, setImageResult] = useState(null); //url
     const [nftStorageProcessing, setNftStorageProcessing] = useState(false); //processing state ie. loading...
     const [CID, setCID] = useState(null); //url */
-
 
   const toggleImageProcessing = async () => {
     setImageProcessing(false);
@@ -59,22 +58,20 @@ export default function Home() {
 
   return (
     <>
+      <Meta />
       <div className="absolute top-0 flex flex-col justify-center items-center w-full">
-        <p className="z-10">Version 0.1.13</p>
-       
+        <p className="z-10">Version 0.2.28*</p>
+
         <Logo
           setConditionalRender={setConditionalRender}
           setPdfData={setPdfData}
         />
-        
-        {(conditionalRender) ? (
+
+        {conditionalRender ? (
           <>
-           <div className="absolute top-0 w-full">
-              <Create
-                pdfData={pdfData}
-                setPdfData={setPdfData}
-              />
-           </div>
+            <div className="absolute top-0 w-full">
+              <Create pdfData={pdfData} setPdfData={setPdfData} />
+            </div>
           </>
         ) : (
           <>
@@ -86,6 +83,8 @@ export default function Home() {
             </div>
           </>
         )}
+        {/* danjo or Alex, how do I get this to appear always on the bottom of the page easily? */}
+        <p className="bottom-0 float-right">*Now with Google Analytics!</p>
       </div>
     </>
   );
