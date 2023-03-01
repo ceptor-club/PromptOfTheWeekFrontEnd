@@ -125,23 +125,5 @@ button {
   background-color: rgb(255, 45, 80);
 }
 
-.bg-create {
-  background-image: url('../public/images/CREATE-midpage/midPageImage.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  top: 0;
-  position: absolute
-}
 
-.bg-start {
-  background-image: url("../public/images/CREATE-hero/LandingPage.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  top: 0;
-  position: absolute;
-  overflow-y: hidden
-}
+

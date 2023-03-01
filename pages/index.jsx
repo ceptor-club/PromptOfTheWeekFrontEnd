@@ -2,9 +2,10 @@
 import { useState, useEffect } from "react";
 import CreateHero from "../components/CreateHero";
 import { Create } from "../components/Create";
-import { Logo } from "../components/Logo"
+import { Logo } from "../components/Logo";
 import HamburgerMenu from "../components/HamburgerMenu";
-
+import VectorImage from "../components/VectorImage";
+import Meta from "../components/Meta";
 
 export default function Home() {
   /*   const [data, setData] = useState({
@@ -14,13 +15,20 @@ export default function Home() {
 
   const [imageProcessing, setImageProcessing] = useState(false); //processing state ie. loading...
   const [conditionalRender, setConditionalRender] = useState("");
-  const [pdfData, setPdfData] = useState(null); //url
+  const [pdfData, setPdfData] = useState({
+    race: "DnDDragonbornGeneral",
+    class: "",
+    armorWorn: "",
+    background: "",
+    alignment: "",
+    feature: "",
+    gender: "",
+  }); //url
   /*   const [prompt, setPrompt] = useState(null); //url
     const [error, setError] = useState(null); //error msg
     const [imageResult, setImageResult] = useState(null); //url
     const [nftStorageProcessing, setNftStorageProcessing] = useState(false); //processing state ie. loading...
     const [CID, setCID] = useState(null); //url */
-
 
   const toggleImageProcessing = async () => {
     setImageProcessing(false);
@@ -50,36 +58,33 @@ export default function Home() {
 
   return (
     <>
-      <div className="absolute top-0 z-10 flex flex-col justify-center items-center w-full">
-        <p>Version 0.1.13</p>
-        <div className="">
-          <HamburgerMenu />
-        </div>
+      <Meta />
+      <div className="absolute top-0 flex flex-col justify-center items-center w-full">
+        <p className="z-10">Version 0.2.28*</p>
+
         <Logo
           setConditionalRender={setConditionalRender}
           setPdfData={setPdfData}
         />
 
-        {(conditionalRender) ? (
+        {conditionalRender ? (
           <>
-            <div className="bg-create">
-              <Create
-                pdfData={pdfData}
-                setPdfData={setPdfData}
-              />
+            <div className="absolute top-0 w-full">
+              <Create pdfData={pdfData} setPdfData={setPdfData} />
             </div>
           </>
         ) : (
           <>
-            <div className="bg-start w-full">
+            <div className="absolute top-0 w-full">
               <CreateHero
                 conditionalRender={conditionalRender}
                 setConditionalRender={setConditionalRender}
               />
             </div>
-
           </>
         )}
+        {/* danjo or Alex, how do I get this to appear always on the bottom of the page easily? */}
+        <p className="bottom-0 float-right">*Now with Google Analytics!</p>
       </div>
     </>
   );

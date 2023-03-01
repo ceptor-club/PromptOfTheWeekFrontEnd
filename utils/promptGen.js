@@ -6,15 +6,8 @@ const descriptives = "fantasy illustration, unreal 5 render, 8k";
 const conversions = {
   // these are distractions to our sprint goal of getting a dragonborn to work, but they are good to have for the future
   // it's also a little confusing how these are used, so we should probably clean this up
-  cha: { positive: "charismatic", negative: "poorly spoken" },
-  con: { positive: "healthy", negative: "sickly" },
-  dex: { positive: "nimble", negative: "clumsy" },
-  int: { positive: "intelligent", negative: "stupid looking" },
-  str: { positive: "strong", negative: "weak" },
-  wis: { positive: "wise", negative: "foolish" },
-
   //classes
-  cleric: "cleric",
+  cleric: "DnDCleric",
   druid: "druid",
   bard: "bard",
   warlock: "warlock",
@@ -56,7 +49,7 @@ const conversions = {
   criminal: "stealing from a shop",
   noble: "dressed in finery, in a fancy noble's castle",
   soldier: "in a battle",
-  sage: "in a fantastic library or classroom",
+  sage: "wearing glasses in a fantastic ancient library",
   acolyte: "in a church",
   charlatan: "in a tavern, telling a tall tale",
   folkhero: "rescuing a cat from a tree",
@@ -89,15 +82,25 @@ const createPrompt = (data) => {
   // returns a prompt with:
   // alignment, race (converted to prompt language or our unique identifier such as DnDDragonborn),
   // class, armorWorn, background & scene, "holding a dragons egg", descriptives
-  return `${styleOf} of ${data.alignment} ${data.feature} ${data.gender ? data.gender : ""} ${conversions[data.race.toLowerCase()] ?
+  return `${styleOf} of ${data.alignment} ${data.feature} ${
+    data.gender ? data.gender : ""
+  } ${
     conversions[data.race.toLowerCase()]
-    : data.race
-    }, ${conversions[data.class.toLowerCase()] ? conversions[data.class.toLowerCase()]
-      : data.class}, wearing ${conversions[data.armorWorn.toLowerCase()] ? conversions[data.armorWorn.toLowerCase()]
-        : data.armorWorn} and holding a small dragon egg, ${conversions[data.background.toLowerCase()]
-          ? conversions[data.background.toLowerCase()]
-          : data.background // or "in a cavern" or "in a mine"
-    }, ${descriptives}.`;
+      ? conversions[data.race.toLowerCase()]
+      : data.race
+  }, ${
+    conversions[data.class.toLowerCase()]
+      ? conversions[data.class.toLowerCase()]
+      : data.class
+  }, wearing ${
+    conversions[data.armorWorn.toLowerCase()]
+      ? conversions[data.armorWorn.toLowerCase()]
+      : data.armorWorn
+  } and holding a small dragon egg, ${
+    conversions[data.background.toLowerCase()]
+      ? conversions[data.background.toLowerCase()]
+      : data.background // or "in a cavern" or "in a mine"
+  }, ${descriptives}.`;
 
   // Non-Dragonborn Solution 1.
   // return `${ styleOf } of(${ data.alignment }) ${ data.race } ${

@@ -2,7 +2,6 @@ export const Logo = ({ setConditionalRender, setPdfData }) => {
 
     const handleOnClick = () => {
         setConditionalRender(false)
-        setPdfData("")
     }
 
     return (

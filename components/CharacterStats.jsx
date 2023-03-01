@@ -7,6 +7,7 @@ import AdvancedButton from "./AdvancedButton";
 const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) => {
     const [advanced, setAdvanced] = useState(false)
 
+
     useEffect(() => {
         if (pdfData) {
             /* console.log("pdfData: ", pdfData); */
@@ -73,21 +74,21 @@ const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) =>
 
     return (
         <>
-            {pdfData ? (
+            {true ? (
                 <>
                     <div>
-                        <div className="stats text-white pt-20 w-full md:3/6 h-[600px]">
+                        <div className="stats text-white py-10 w-full md:3/6 overflow-visible mt-10">
                             <h3>Your Stats</h3>
 
                             <h4 className="text-center">From your Character Sheet</h4>
 
-                            <p className="mx-[48px] mb-2 mt-6">ON</p>
-                            <div>
-                                <div className="flex items-center mx-[48px] mt-2 mb-6">
+                            <p className="mx-[48px] mb-2 mt-4">ON</p>
+                            <div className="h-full">
+                                <div className="flex items-center mx-[48px] mt-2 mb-4">
                                     <input type="checkbox" className="checkbox-stats" checked></input>
                                     <p className="mx-4">RACE: Dragonborn (LOCKED)</p>
                                 </div>
-                                <div className="flex items-center mx-[48px] mt-2 mb-6">
+                                <div className="flex items-center mx-[48px] mt-2 mb-4">
                                     <input
                                         id="levelCheck"
                                         type="checkbox"
@@ -99,12 +100,12 @@ const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) =>
                                     <p className="mx-4">CLASS: </p>
                                     <textarea
                                         id="levelInput"
-                                        placeholder={pdfData.class}
+                                        placeholder="Class"
                                         className="bg-transparent resize-none h-6"
                                         onChange={handleLevelSelect}
                                     ></textarea>
                                 </div>
-                                <div className="flex items-center mx-[48px] mt-2 mb-6">
+                                <div className="flex items-center mx-[48px] mt-2 mb-4">
                                     <input
                                         type="checkbox"
                                         className="checkbox-stats"
@@ -115,12 +116,12 @@ const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) =>
                                     <p className="mx-4">ARMOR: </p>
                                     <textarea
                                         id="armorInput"
-                                        placeholder={pdfData.armorWorn}
+                                        placeholder="Armor"
                                         className="bg-transparent resize-none h-6 overflow-hidden"
                                         onChange={handleArmorSelect}
                                     ></textarea>
                                 </div>
-                                <div className="flex items-center mx-[48px] mt-2 mb-6">
+                                <div className="flex items-center mx-[48px] mt-2 mb-4">
                                     <input
                                         id="backgroundCheck"
                                         type="checkbox"
@@ -131,12 +132,12 @@ const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) =>
                                     <p className="mx-4">BACKGROUND: </p>
                                     <textarea
                                         id="backgroundInput"
-                                        placeholder={pdfData.background}
+                                        placeholder="Background"
                                         className="bg-transparent resize-none h-6"
                                         onChange={handleBackgroundSelect}
                                     ></textarea>
                                 </div>
-                                <div className="flex items-center mx-[48px] mt-2 mb-6">
+                                <div className="flex items-center mx-[48px] mt-2 mb-4">
                                     <input
                                         id="alignmentCheck"
                                         type="checkbox"
@@ -147,12 +148,12 @@ const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) =>
                                     <p className="mx-4">ALIGNMENT: </p>
                                     <textarea
                                         id="alignmentInput"
-                                        placeholder={pdfData.alignment}
+                                        placeholder="Alignment"
                                         className="bg-transparent resize-none h-6"
                                         onChange={handleAlignmentSelect}
                                     ></textarea>
                                 </div>
-                                <div className="flex items-center ml-[48px] mt-2 mb-6">
+                                <div className="flex items-center ml-[48px] mt-2 mb-4">
                                     <input
                                         id="featureCheck"
                                         type="checkbox"
@@ -163,12 +164,12 @@ const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) =>
                                     <p className="mx-4">FEATURE: </p>
                                     <textarea
                                         id="featureInput"
-                                        placeholder={pdfData.feature}
+                                        placeholder="Feature"
                                         className="bg-transparent resize-none h-6 overflow-hidden"
                                         onChange={handleFeatureSelect}
                                     ></textarea>
                                 </div>
-                                <div className="flex items-center mx-[48px] mt-2 mb-6">
+                                <div className="flex items-center mx-[48px] mt-2 mb-4">
                                     <input
                                         id="genderCheck"
                                         type="checkbox"
@@ -183,12 +184,12 @@ const CharacterStats = ({ pdfData, prompt, setPrompt, setError, setPdfData }) =>
                                         onChange={handleGenderSelect}
                                     ></textarea>
                                 </div>
-                                <AdvancedButton
-                                    advanced={advanced}
-                                    setAdvanced={setAdvanced}
-                                />
                             </div>
                         </div>
+                        <AdvancedButton
+                            advanced={advanced}
+                            setAdvanced={setAdvanced}
+                        />
                         {(advanced) ? (
                             <>
                                 <h3>Edit Your Prompt Manually</h3>

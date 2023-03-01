@@ -59,7 +59,7 @@ export const CreateImageGrid = ({
     );
   else if (imageResult)
     return (
-      <div className="flex justify-center items-center">
+      <div className="flex flex-col justify-center items-center">
         {imageResult.images.map((image, i) => {
           return (
             <Image
@@ -87,7 +87,7 @@ export const CreateImageGrid = ({
     );
   }
   return (
-    <div className="grid grid-cols-3 gap-4 p-4">
+    <div className="grid grid-cols-1 gap-0 p-4 border">
       <div className={`${imgState}`}>
         <Image src={Placeholder} alt="" />
       </div>
