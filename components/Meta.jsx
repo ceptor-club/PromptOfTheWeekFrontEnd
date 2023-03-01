@@ -3,24 +3,11 @@ import Script from "next/script";
 
 const Meta = () => (
   // const Head = ({ title, desc, canonical, image, props }) => (
-  <Head>
-    <title>CEPTOR CLUB</title>
-    <div>
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-37VQF6EBG7"
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          gtag('js', new Date());
+  <>
+    <Head>
+      <title>CEPTOR CLUB</title>
 
-          gtag('config', 'G-37VQF6EBG7');
-        `}
-      </Script>
-    </div>
-    {/* <meta name="viewport" content="width=device-width, initial-scale=1" />
+      {/* <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:image" content={`${image}`} />
     <meta name="description" content={desc} />
     <meta property="og:type" content="website" />
@@ -35,6 +22,20 @@ const Meta = () => (
     <meta name="twitter:creator" content="@dynamiccryptog" />
     <link rel="icon" type="image/png" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/favicon.ico" /> */}
-  </Head>
+    </Head>
+    <Script
+      src="https://www.googletagmanager.com/gtag/js?id=G-37VQF6EBG7"
+      strategy="afterInteractive"
+    />
+    <Script id="google-analytics" strategy="afterInteractive">
+      {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){window.dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-37VQF6EBG7');
+    `}
+    </Script>
+  </>
 );
 export default Meta;
