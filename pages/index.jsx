@@ -1,20 +1,20 @@
 // import Head from "next/head";
-import { useState, useEffect } from "react";
-import CreateHero from "../components/CreateHero";
-import { Create } from "../components/Create";
-import { Logo } from "../components/Logo";
-import HamburgerMenu from "../components/HamburgerMenu";
-import VectorImage from "../components/VectorImage";
-import Meta from "../components/Meta";
+import { useState, useEffect } from "react"
+import CreateHero from "../components/CreateHero"
+import { Create } from "../components/Create"
+import { Logo } from "../components/Logo"
+import HamburgerMenu from "../components/HamburgerMenu"
+import VectorImage from "../components/VectorImage"
+import Meta from "../components/Meta"
 
 export default function Home() {
   /*   const [data, setData] = useState({
       race: "",
       class: "",
     }); */
-
-  const [imageProcessing, setImageProcessing] = useState(false); //processing state ie. loading...
-  const [conditionalRender, setConditionalRender] = useState("");
+  // test
+  const [imageProcessing, setImageProcessing] = useState(false) //processing state ie. loading...
+  const [conditionalRender, setConditionalRender] = useState("")
   const [pdfData, setPdfData] = useState({
     race: "DnDDragonbornGeneral",
     class: "",
@@ -23,7 +23,7 @@ export default function Home() {
     alignment: "",
     feature: "",
     gender: "",
-  }); //url
+  }) //url
   /*   const [prompt, setPrompt] = useState(null); //url
     const [error, setError] = useState(null); //error msg
     const [imageResult, setImageResult] = useState(null); //url
@@ -31,15 +31,15 @@ export default function Home() {
     const [CID, setCID] = useState(null); //url */
 
   const toggleImageProcessing = async () => {
-    setImageProcessing(false);
-  };
+    setImageProcessing(false)
+  }
 
   useEffect(() => {
     if (imageProcessing) {
-      console.log(imageProcessing);
-      setTimeout(toggleImageProcessing, 3000);
+      console.log(imageProcessing)
+      setTimeout(toggleImageProcessing, 3000)
     }
-  }, [imageProcessing]);
+  }, [imageProcessing])
 
   /*   const storeImage = async () => {
       setNftStorageProcessing(true);
@@ -62,10 +62,7 @@ export default function Home() {
       <div className="absolute top-0 flex flex-col justify-center items-center w-full">
         <p className="z-10">Version 0.2.28*</p>
 
-        <Logo
-          setConditionalRender={setConditionalRender}
-          setPdfData={setPdfData}
-        />
+        <Logo setConditionalRender={setConditionalRender} setPdfData={setPdfData} />
 
         {conditionalRender ? (
           <>
@@ -76,10 +73,7 @@ export default function Home() {
         ) : (
           <>
             <div className="absolute top-0 w-full">
-              <CreateHero
-                conditionalRender={conditionalRender}
-                setConditionalRender={setConditionalRender}
-              />
+              <CreateHero conditionalRender={conditionalRender} setConditionalRender={setConditionalRender} />
             </div>
           </>
         )}
@@ -87,5 +81,5 @@ export default function Home() {
         <p className="bottom-0 float-right">*Now with Google Analytics!</p>
       </div>
     </>
-  );
+  )
 }
