@@ -35,7 +35,8 @@ export default function handler(req, res) {
         response.data.images[i] = "data:image/png;base64," + image;
       });
       console.log("RESPONSE DATA", response.data);
-
+      response.data.prompted = data;
+      console.log("RESPONSE DATA with prompt", response.data.prompted);
       res.status(200).json(response.data);
     })
     .catch(function (error) {
