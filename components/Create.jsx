@@ -68,7 +68,7 @@ export const Create = ({ pdfData, setPdfData }) => {
           alt="midPage"
           className="object-fit: cover h-screen"
         />
-        <div className="absolute top-24 flex flex-col xl:w-2/5 w-full justify-center items-center">
+        <div className="absolute top-24 flex flex-col w-full justify-center items-center">
           {imageProcessing ? (
             <>
               <GenerateLoading />
@@ -102,7 +102,7 @@ export const Create = ({ pdfData, setPdfData }) => {
                 </h3>
                 <p>Select an image to save or mint</p>
                 {/* images grid */}
-                <div className="md:w-2/3 m-4 mb-6">
+                <div className="m-4 mb-6">
                   {/* a grid of 9 images */}
                   <CreateImageGrid
                     imageResult={imageResult}
@@ -131,7 +131,7 @@ export const Create = ({ pdfData, setPdfData }) => {
           )}
 
           {imageResult ? (
-            <>
+            <div className="flex gap-4 justify-center items-center">
               <MintButton
                 selectedImage={selectedImage}
                 pdfData={pdfData}
@@ -140,8 +140,8 @@ export const Create = ({ pdfData, setPdfData }) => {
                 prompt={prompt}
               />
               <SaveButton selectedImage={selectedImage} />
-              <CopyButton selectedImage={selectedImage} />
-            </>
+              {/* <CopyButton selectedImage={currentSelection} /> */}
+            </div>
           ) : null}
         </div>
       </div>
