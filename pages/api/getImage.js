@@ -10,7 +10,7 @@ export default function handler(req, res) {
     batch_size: 2,
     n_iter: 1,
     steps: 42,
-    cfg_scale: 10,
+    cfg_scale: 9,
     width: 512,
     height: 512,
     sampler_index: "Euler a",
