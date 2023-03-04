@@ -16,7 +16,7 @@ const CharacterStats = ({
     if (pdfData) {
       /* console.log("pdfData: ", pdfData); */
       //create text prompt using pdfData and other data
-      // const prompt = createPrompt(pdfData);
+      const prompt = createPrompt(pdfData);
       setPrompt(prompt);
       setError(null);
     }
@@ -53,6 +53,7 @@ const CharacterStats = ({
       input.value !== ""
     ) {
       setPdfData({ ...pdfData, armorWorn: input.value });
+      createPrompt(pdfData);
     } else {
       setPdfData({ ...pdfData, armorWorn: "" });
     }
@@ -137,7 +138,6 @@ const CharacterStats = ({
                     className="checkbox-stats"
                     id="armorCheck"
                     onChange={handleArmorSelect}
-                    defaultChecked
                   ></input>
                   <p className="mx-4">ARMOR: </p>
                   <textarea
@@ -169,12 +169,11 @@ const CharacterStats = ({
                     type="checkbox"
                     className="checkbox-stats"
                     onChange={handleAlignmentSelect}
-                    defaultChecked
                   ></input>
                   <p className="mx-4">ALIGNMENT: </p>
                   <textarea
                     id="alignmentInput"
-                    placeholder="Alignment"
+                    placeholder="Neutral Good"
                     className="bg-transparent resize-none h-6"
                     onChange={handleAlignmentSelect}
                   ></textarea>

@@ -14,6 +14,7 @@ export default function CreateHero({ setConditionalRender }) {
         src={landingpage}
         alt="LandingPage"
         className="object-fit: cover h-screen"
+        priority
       />
       <div className="absolute my-auto  h-72 w-96">
         <VectorImage />
