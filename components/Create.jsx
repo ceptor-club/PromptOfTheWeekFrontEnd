@@ -107,7 +107,7 @@ export const Create = ({ pdfData, setPdfData }) => {
   }, [prompt])
 
   useEffect(() => {
-    if (isConnected) {
+    if (isConnected && diceBalance) {
       console.log("wallet is connected", address)
       //call the dice contract
 
