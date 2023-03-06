@@ -93,7 +93,7 @@ const createPrompt = (data) => {
   console.log("adjectives: ", adjectives);
   // returns a prompt with:
   // alignment, race (converted to prompt language or our unique identifier such as DnDDragonborn),
-  // class, armorWorn, background & scene, "holding a dragons egg", descriptives
+  // class, armorWorn, background & scene, descriptives
   return `${styleOf} of ${data.feature} ${data.gender ? data.gender : ""} ${
     conversions[data.race.toLowerCase()]
       ? conversions[data.race.toLowerCase()]
