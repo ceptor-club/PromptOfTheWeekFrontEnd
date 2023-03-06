@@ -16,7 +16,7 @@ const MintButton = ({ selectedImage, pdfData, setIsMinting, prompt, isMinting })
     abi: CONSTANTS.ceptorABI,
     functionName: "mint",
     // args: [],
-    chainId: 5,
+    chainId: 11155111,
   })
 
   const { address, isConnected } = useAccount()
