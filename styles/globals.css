@@ -123,3 +123,9 @@ button {
 .checkbox-stats:checked {
   background-color: rgb(255, 45, 80);
 }
+
+option {
+  background-color:rgb(0, 0, 0);
+  color: white;
+  width: 200px;
+}

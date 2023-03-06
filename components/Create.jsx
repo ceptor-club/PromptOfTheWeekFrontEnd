@@ -170,7 +170,7 @@ export const Create = () => {
         <div className="flex flex-col w-full justify-center items-center">
           {imageProcessing ? (
             <>
-              <GenerateLoading />
+              null
             </>
           ) : error ? (
             <>

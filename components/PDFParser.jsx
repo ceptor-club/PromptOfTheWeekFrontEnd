@@ -47,7 +47,7 @@ export default function PDFParser({ setPdfData, pdfData, setError }) {
   return (
     <div className={` ${oswald.className} relative h-64 w-72 grid ${!pdf}`}>
       <Image
-        src={Vector2}
+        src="../public/images/CREATE-hero/Vector2.png"
         className="mt-6 h-96 w-68 bg-contain bg-no-repeat cursor-pointer"
         onClick={() => document.getElementById("dropzone-file").click()}
       />
