@@ -18,19 +18,18 @@ export const CreateImageGrid = ({
     // console.log("imageResult: ", imageResult);
   }, [imageProcessing, imageResult]);
 
-  const [currentSelection, setCurrentSelection] = useState(false)
+  const [currentSelection, setCurrentSelection] = useState(false);
 
   function handleImageSelect(image, e) {
     e.preventDefault();
     setSelectedImage(image);
-    setCurrentSelection(parseInt(e.target.id))
+    setCurrentSelection(parseInt(e.target.id));
   }
 
   function handleDblClick(e) {
     e.preventDefault();
     // this needs written to display double clicked result image full screen
   }
-
 
   if (error)
     return (
@@ -59,20 +58,26 @@ export const CreateImageGrid = ({
     );
   else if (imageResult)
     return (
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex gap-4 justify-center items-center flex-wrap lg:flex-nowrap">
         {imageResult.images.map((image, i) => {
           return (
-            <Image
-              className={`w-1/2 cursor-pointer m-2 ${currentSelection === i ? "border border-8" : null}`}
-              key={i}
-              id={i}
-              onClick={(e) => handleImageSelect(image, e)}
-              onDoubleClick={(e) => handleDblClick(e)}
-              src={image}
-              alt=""
-              width={128}
-              height={128}
-            />
+            <>
+              <div className="flex justify-center items-center max-w-[512px] max-h-[512px]">
+                <Image
+                  className={`cursor-pointer m-2 ${
+                    currentSelection === i ? "border border-8" : null
+                  }`}
+                  key={i}
+                  id={i}
+                  onClick={(e) => handleImageSelect(image, e)}
+                  onDoubleClick={(e) => handleDblClick(e)}
+                  src={image}
+                  alt=""
+                  width={512}
+                  height={512}
+                />
+              </div>
+            </>
           );
         })}
       </div>

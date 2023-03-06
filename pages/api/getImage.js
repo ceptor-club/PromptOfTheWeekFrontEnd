@@ -9,8 +9,8 @@ export default function handler(req, res) {
     seed: -1,
     batch_size: 2,
     n_iter: 1,
-    steps: 20,
-    cfg_scale: 18,
+    steps: 42,
+    cfg_scale: 9,
     width: 512,
     height: 512,
     sampler_index: "Euler a",
@@ -35,7 +35,8 @@ export default function handler(req, res) {
         response.data.images[i] = "data:image/png;base64," + image;
       });
       console.log("RESPONSE DATA", response.data);
-
+      response.data.prompted = data;
+      console.log("RESPONSE DATA with prompt", response.data.prompted);
       res.status(200).json(response.data);
     })
     .catch(function (error) {

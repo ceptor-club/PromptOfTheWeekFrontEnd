@@ -1,4 +1,4 @@
-const styleOf = "Medieval war hero portrait";
+const styleOf = "Medieval hero portrait";
 const descriptives = "fantasy illustration, unreal 5 render, 8k";
 
 //TODO: dont use positive negative, use -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 MAYBE
@@ -57,7 +57,19 @@ const conversions = {
   outlander: "in a forest",
   urchin: "in an alleyway",
   pirate: "on a ship",
+  fartraveller: "sitting on cloud",
   //armorWorn
+
+  //9 alignments converted into 9 different cinematic lighting descriptive
+  "lawful good": "bright lighting, warm lighting, golden lighting",
+  "neutral good": "bright light and some shadow",
+  "chaotic good": "dramatic lighting, high contrast",
+  "lawful neutral": "direct light",
+  "true neutral": "balanced light and shadow",
+  "chaotic neutral": "dramatic lighting, high contrast",
+  "lawful evil": "evil dark lighting, underlight, cinematic lighting",
+  "neutral evil": "ambient lighting, deep shadows, smoke",
+  "chaotic evil": "sinister dramatic dark lighting, mysterious glows",
 };
 
 export default conversions;
@@ -82,25 +94,21 @@ const createPrompt = (data) => {
   // returns a prompt with:
   // alignment, race (converted to prompt language or our unique identifier such as DnDDragonborn),
   // class, armorWorn, background & scene, "holding a dragons egg", descriptives
-  return `${styleOf} of ${data.alignment} ${data.feature} ${
-    data.gender ? data.gender : ""
-  } ${
+  return `${styleOf} of ${data.feature} ${data.gender ? data.gender : ""} ${
     conversions[data.race.toLowerCase()]
       ? conversions[data.race.toLowerCase()]
       : data.race
   }, ${
     conversions[data.class.toLowerCase()]
-      ? conversions[data.class.toLowerCase()]
+      ? `${conversions[data.class.toLowerCase()]},`
       : data.class
-  }, wearing ${
-    conversions[data.armorWorn.toLowerCase()]
-      ? conversions[data.armorWorn.toLowerCase()]
-      : data.armorWorn
-  } and holding a small dragon egg, ${
+  } ${data.armorWorn ? `wearing ${data.armorWorn}` : data.armorWorn} ${
     conversions[data.background.toLowerCase()]
       ? conversions[data.background.toLowerCase()]
       : data.background // or "in a cavern" or "in a mine"
-  }, ${descriptives}.`;
+  }, ${
+    conversions[data.alignment] ? `${conversions[data.alignment]},` : ""
+  } ${descriptives}.`;
 
   // Non-Dragonborn Solution 1.
   // return `${ styleOf } of(${ data.alignment }) ${ data.race } ${
