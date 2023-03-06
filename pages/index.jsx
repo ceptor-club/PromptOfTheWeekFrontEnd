@@ -1,12 +1,12 @@
 // import Head from "next/head";
-import { useState, useEffect } from "react"
-import CreateHero from "../components/CreateHero"
-import { Create } from "../components/Create"
-import { Logo } from "../components/Logo"
-import HamburgerMenu from "../components/HamburgerMenu"
-import VectorImage from "../components/VectorImage"
-import Meta from "../components/Meta"
-import Image from "next/image"
+import { useState, useEffect } from "react";
+import CreateHero from "../components/CreateHero";
+import { Create } from "../components/Create";
+import { Logo } from "../components/Logo";
+import HamburgerMenu from "../components/HamburgerMenu";
+import VectorImage from "../components/VectorImage";
+import Meta from "../components/Meta";
+import Image from "next/image";
 
 export default function Home() {
   /*   const [data, setData] = useState({
@@ -14,25 +14,25 @@ export default function Home() {
       class: "",
     }); */
 
-  const [imageProcessing, setImageProcessing] = useState(false) //processing state ie. loading...
-  const [conditionalRender, setConditionalRender] = useState("")
+  const [imageProcessing, setImageProcessing] = useState(false); //processing state ie. loading...
+  const [conditionalRender, setConditionalRender] = useState("");
 
   const toggleImageProcessing = async () => {
-    setImageProcessing(false)
-  }
+    setImageProcessing(false);
+  };
 
   useEffect(() => {
     if (imageProcessing) {
-      console.log(imageProcessing)
-      setTimeout(toggleImageProcessing, 3000)
+      console.log(imageProcessing);
+      setTimeout(toggleImageProcessing, 3000);
     }
-  }, [imageProcessing])
+  }, [imageProcessing]);
 
   return (
     <>
       <Meta />
       <div className="flex flex-col justify-center items-center w-full">
-        <p className="z-10">Version 0.2.28*</p>
+        <p className="z-10">Version 0.3.06*</p>
 
         <Logo setConditionalRender={setConditionalRender} />
 
@@ -56,5 +56,5 @@ export default function Home() {
         </div>
       </div>
     </>
-  )
+  );
 }
