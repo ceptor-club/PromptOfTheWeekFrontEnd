@@ -15,6 +15,10 @@ import GenerateButton from "./GenerateButton"
 import GenerateLoading from "./GenerateLoading"
 import Image from "next/image"
 
+import { useAccount, useDisconnect, useContractReads, useContractRead } from "wagmi"
+import { useWeb3Modal } from "@web3modal/react"
+import { CONSTANTS } from "../utils/CONSTANTS"
+
 export const Create = ({ pdfData, setPdfData }) => {
   const [prompt, setPrompt] = useState(null) //url
   const [imageProcessing, setImageProcessing] = useState(false) //processing state ie. loading...
@@ -23,6 +27,63 @@ export const Create = ({ pdfData, setPdfData }) => {
   const [selectedImage, setSelectedImage] = useState(null) //image chosen by user
   const [conditionalCreate, setConditionalCreate] = useState("")
   const [isMinting, setIsMinting] = useState(false) //minting nft state ie. loading...
+  const [userDice, setUserDice] = useState([0, 0, 0, 0, 0, 0]) //dice balance
+
+  const { address, isConnected } = useAccount()
+  const { open, isOpen, close } = useWeb3Modal()
+  const { disconnect } = useDisconnect()
+
+  const { data: userTimer } = useContractRead({
+    address: CONSTANTS.ceptorAddress,
+    abi: CONSTANTS.ceptorABI,
+    functionName: "userTimers",
+    args: [address],
+  })
+
+  const diceContract = {
+    address: CONSTANTS.diceAddress,
+    abi: CONSTANTS.diceABI,
+  }
+
+  const {
+    data: diceBalance,
+    isError,
+    isLoading,
+  } = useContractReads({
+    contracts: [
+      {
+        ...diceContract,
+        functionName: "balanceOf",
+        args: [address, 0],
+      },
+      {
+        ...diceContract,
+        functionName: "balanceOf",
+        args: [address, 1],
+      },
+      {
+        ...diceContract,
+        functionName: "balanceOf",
+        args: [address, 2],
+      },
+      {
+        ...diceContract,
+        functionName: "balanceOf",
+        args: [address, 3],
+      },
+      {
+        ...diceContract,
+        functionName: "balanceOf",
+        args: [address, 4],
+      },
+      {
+        ...diceContract,
+        functionName: "balanceOf",
+        args: [address, 5],
+      },
+    ],
+    // allowFailure: true,
+  })
 
   //states: no data, pdf uploaded, images generated, nft minted
 
@@ -45,6 +106,19 @@ export const Create = ({ pdfData, setPdfData }) => {
     }
   }, [prompt])
 
+  useEffect(() => {
+    if (isConnected) {
+      console.log("wallet is connected", address)
+      //call the dice contract
+
+      console.log("userTimer: ", parseInt(userTimer))
+
+      diceBalance.map((balance, i) => {
+        console.log("balance: ", i, parseInt(balance))
+      })
+    }
+  }, [isConnected, diceBalance])
+
   const retry = () => {
     setConditionalCreate("")
     setError(null)
@@ -63,7 +137,9 @@ export const Create = ({ pdfData, setPdfData }) => {
 
       <div className="bobby flex xl:flex-nowrap w-screen gap-2 justify-center items-center">
         <div className="flex flex-col w-full justify-center items-center">
-          {imageProcessing ? (
+          {!isConnected ? (
+            <div onClick={() => open()}>Connect</div>
+          ) : imageProcessing ? (
             <>
               <GenerateLoading />
             </>
