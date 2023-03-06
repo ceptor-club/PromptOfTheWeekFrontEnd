@@ -107,7 +107,7 @@ const createPrompt = (data) => {
       ? conversions[data.background.toLowerCase()]
       : data.background // or "in a cavern" or "in a mine"
   }, ${
-    conversions[data.alignment] ? `${conversions[data.alignment]},` : ""
+    conversions[data.alignment.toLowerCase()] ? `${conversions[data.alignment.toLowerCase()]},` : ""
   } ${descriptives}.`;
 
   // Non-Dragonborn Solution 1.
