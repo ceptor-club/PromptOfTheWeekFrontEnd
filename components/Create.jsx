@@ -19,7 +19,17 @@ import { useAccount, useDisconnect, useContractReads, useContractRead } from "wa
 import { useWeb3Modal } from "@web3modal/react"
 import { CONSTANTS } from "../utils/CONSTANTS"
 
-export const Create = ({ pdfData, setPdfData }) => {
+// wallet connect
+// buy dice/ display dice + timer
+// burn dice for time
+// show stats/create character stuff
+// generate image
+// select image
+// mint image
+
+//time dongxi:   const timeLeft = userTimer - Math.floor(Date.now() / 1000)
+
+export const Create = () => {
   const [prompt, setPrompt] = useState(null) //url
   const [imageProcessing, setImageProcessing] = useState(false) //processing state ie. loading...
   const [error, setError] = useState(null) //error msg
@@ -28,6 +38,15 @@ export const Create = ({ pdfData, setPdfData }) => {
   const [conditionalCreate, setConditionalCreate] = useState("")
   const [isMinting, setIsMinting] = useState(false) //minting nft state ie. loading...
   const [userDice, setUserDice] = useState([0, 0, 0, 0, 0, 0]) //dice balance
+  const [pdfData, setPdfData] = useState({
+    race: "DnDDragonbornGeneral",
+    class: "",
+    armorWorn: "",
+    background: "",
+    alignment: "",
+    feature: "",
+    gender: "",
+  })
 
   const { address, isConnected } = useAccount()
   const { open, isOpen, close } = useWeb3Modal()
