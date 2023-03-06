@@ -113,6 +113,8 @@ export const Create = ({ pdfData, setPdfData }) => {
 
       console.log("userTimer: ", parseInt(userTimer))
 
+      console.log("diceBalance: ", diceBalance)
+
       diceBalance.map((balance, i) => {
         console.log("balance: ", i, parseInt(balance))
       })
