@@ -33,7 +33,6 @@ a {
   }
 } */
 
-
 h1 {
   margin: auto;
   text-align: center;
@@ -90,7 +89,7 @@ button {
 }
 
 .stats {
-  background-image: url('../public/images/CREATE/char-stat-bg.svg');
+  background-image: url("../public/images/CREATE/char-stat-bg.svg");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -124,6 +123,3 @@ button {
 .checkbox-stats:checked {
   background-color: rgb(255, 45, 80);
 }
-
-
-
