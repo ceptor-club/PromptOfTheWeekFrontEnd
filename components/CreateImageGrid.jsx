@@ -39,17 +39,18 @@ export const CreateImageGrid = ({
     );
   if (imageProcessing)
     //TODO: RENDER TIPS
-    return (
-      <div className="flex justify-center items-center h-full text-3xl">
-        <LoadingTips />
-        {/* <Image
+    return;
+
+  // <div className="flex justify-center items-center h-full text-3xl">
+  // <LoadingTips />
+  /* <Image
           src="https://media.tenor.com/43s33wGTNo0AAAAC/sweating-nervous.gif"
           alt="sweating-nervous"
           width={256}
           height={256}
-        /> */}
-      </div>
-    );
+        /> */
+  // </div>
+
   if (!pdfData)
     return (
       <div className="flex justify-center items-center h-full text-3xl">

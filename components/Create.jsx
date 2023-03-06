@@ -23,6 +23,7 @@ import {
 } from "wagmi";
 import { useWeb3Modal } from "@web3modal/react";
 import { CONSTANTS } from "../utils/CONSTANTS";
+import { LoadingTips } from "./LoadingTips";
 
 // wallet connect
 // buy dice/ display dice + timer
@@ -170,7 +171,7 @@ export const Create = () => {
         <div className="flex flex-col w-full justify-center items-center">
           {imageProcessing ? (
             <>
-              null
+              <LoadingTips />
             </>
           ) : error ? (
             <>
@@ -193,7 +194,7 @@ export const Create = () => {
             </>
           ) : null}
 
-          {imageResult ? (
+          {imageResult && !imageProcessing ? (
             <>
               <div className="flex flex-col items-center bg-black mt-8">
                 <h3 id="results" className="text-4xl mb-4">
@@ -215,7 +216,7 @@ export const Create = () => {
             </>
           ) : null}
 
-          {error ? null : (
+          {!error && !imageProcessing ? (
             <GenerateButton
               setConditionalCreate={setConditionalCreate}
               setImageProcessing={setImageProcessing}
@@ -227,9 +228,9 @@ export const Create = () => {
               imageProcessing={imageProcessing}
               prompt={prompt}
             />
-          )}
+          ) : null}
 
-          {imageResult ? (
+          {imageResult && !imageProcessing ? (
             <div className="flex gap-4 justify-center items-center">
               <MintButton
                 selectedImage={selectedImage}
