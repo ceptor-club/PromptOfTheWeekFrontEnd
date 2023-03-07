@@ -36,7 +36,7 @@ export default function Home() {
 
         <Logo setConditionalRender={setConditionalRender} />
 
-        <div className="absolute top-0 w-screen h-screen z-0">
+        <div className="fixed top-0 w-screen h-screen z-0">
           <Image
             src="/images/CREATE-midpage/midPageImage.png"
             fill
