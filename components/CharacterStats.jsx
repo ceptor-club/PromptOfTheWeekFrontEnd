@@ -25,9 +25,9 @@ const CharacterStats = ({
 
   const handleGenderSelect = (e) => {
     const input = document.getElementById("genderInput");
+setPdfData(input.value)
     if (
-      document.getElementById("genderCheck").checked === true &&
-      input.value !== ""
+      document.getElementById("genderCheck").checked === true
     ) {
       setPdfData({ ...pdfData, gender: input.value });
     } else {
@@ -35,10 +35,11 @@ const CharacterStats = ({
     }
   };
 
-  const handleLevelSelect = (e) => {
-    const input = document.getElementById("levelInput");
+  const handleClassSelect = (e) => {
+    const input = document.getElementById("classInput");
+
     if (
-      document.getElementById("levelCheck").checked === true &&
+      document.getElementById("classCheck").checked === true &&
       input.value !== ""
     ) {
       setPdfData({ ...pdfData, class: input.value });
@@ -75,8 +76,7 @@ const CharacterStats = ({
   const handleAlignmentSelect = (e) => {
     const input = document.getElementById("alignmentInput");
     if (
-      document.getElementById("alignmentCheck").checked === true &&
-      input.value !== ""
+      document.getElementById("alignmentCheck").checked === true
     ) {
       setPdfData({ ...pdfData, alignment: input.value });
     } else {
@@ -126,21 +126,23 @@ const CharacterStats = ({
                 </div>
                 <div className="flex items-center mx-[48px] mt-2 mb-4">
                   <input
-                    id="levelCheck"
+                    id="classCheck"
                     type="checkbox"
                     className="checkbox-stats"
-                    onChange={handleLevelSelect}
+                    onChange={handleClassSelect}
                     defaultChecked
                     readOnly
                   ></input>
                   <p className="mx-4">CLASS: </p>
                   <select
-                    id="levelInput"
+                    id="classInput"
                     placeholder="Class"
                     className="bg-transparent resize-none h-6 w-[200px]"
-                    onChange={handleLevelSelect}
+                    onChange={handleClassSelect}
                   >
-                    <option value="" selected>Select Class...</option>
+                    <option value="" disabled selected hidden>
+                      {pdfData.class ? pdfData.class : "Select a Class"}
+                      </option>
                       {CONSTANTS.characterClass.map((characterClass) => (
                         <option key={characterClass}>{characterClass}</option>
                       ))}
@@ -152,6 +154,7 @@ const CharacterStats = ({
                     className="checkbox-stats"
                     id="armorCheck"
                     onChange={handleArmorSelect}
+                    defaultChecked
                   ></input>
                   <p className="mx-4">ARMOR: </p>
                   <textarea
@@ -159,7 +162,8 @@ const CharacterStats = ({
                     placeholder="Armor"
                     className="bg-transparent resize-none h-6 overflow-hidden"
                     onChange={handleArmorSelect}
-                  ></textarea>
+                    value={pdfData.armorWorn ? pdfData.armorWorn : null}
+                  >{pdfData.armorWorn}</textarea>
                 </div>
                 <div className="flex items-center mx-[48px] mt-2 mb-4">
                   <input
@@ -176,7 +180,9 @@ const CharacterStats = ({
                     className="bg-transparent resize-none h-6 w-[200px]"
                     onChange={handleBackgroundSelect}
                   >
-                    <option value="" selected>Select Background...</option>
+                    <option value="" selected>
+                    {pdfData.background ? pdfData.background : "Select Background..."}
+                    </option>
                     {CONSTANTS.characterBackground.map((characterBackground) => (
                         <option key={characterBackground}>{characterBackground}</option>
                       ))}
@@ -188,6 +194,7 @@ const CharacterStats = ({
                     type="checkbox"
                     className="checkbox-stats"
                     onChange={handleAlignmentSelect}
+                    defaultChecked
                   ></input>
                   <p className="mx-4">ALIGNMENT: </p>
                   <select
@@ -196,7 +203,9 @@ const CharacterStats = ({
                     className="bg-transparent resize-none h-6 w-[200px]"
                     onChange={handleAlignmentSelect}
                   >
-                    <option value="" selected>Select Alignment...</option>
+                    <option value="" selected>
+                      {pdfData.alignment ? pdfData.alignment : "Select Alignment..."}
+                      </option>
                     {CONSTANTS.characterAlignment.map((characterAlignment) => (
                         <option key={characterAlignment}>{characterAlignment}</option>
                       ))}
@@ -216,7 +225,7 @@ const CharacterStats = ({
                     placeholder="Feature"
                     className="bg-transparent resize-none h-6 overflow-hidden"
                     onChange={handleFeatureSelect}
-                  ></textarea>
+                  >{pdfData.feature}</textarea>
                 </div>
                 <div className="flex items-center mx-[48px] mt-2 mb-4">
                   <input
@@ -224,6 +233,7 @@ const CharacterStats = ({
                     type="checkbox"
                     className="checkbox-stats"
                     onChange={handleGenderSelect}
+                    defaultChecked
                   ></input>
                   <p className="mx-4">GENDER : </p>
                   <textarea
@@ -231,7 +241,7 @@ const CharacterStats = ({
                     placeholder="Gender"
                     className="bg-transparent resize-none h-6"
                     onChange={handleGenderSelect}
-                  ></textarea>
+                    >{pdfData.gender}</textarea>
                 </div>
               </div>
             </div>
@@ -246,8 +256,8 @@ const CharacterStats = ({
                   <textarea
                     onChange={(e) => setPrompt(e.target.value)}
                     className="w-full h-[150px] bg-transparent resize-none"
-                    value={prompt || ""}
-                  />
+                    value={prompt}
+                  ></textarea>
                 </div>
               </>
             ) : null}
