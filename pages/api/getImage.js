@@ -42,8 +42,7 @@ export default function handler(req, res) {
     .catch(function (error) {
       console.log(error);
       res.status(500).json({
-        error:
-          "Since we're in the early prototyping stage, our GPU is currently down while we continue working.",
+        error: "Error Generating Images",
       });
     });
 
