@@ -28,7 +28,7 @@ const WalletConnectButton = () => {
     if (isConnected) {
       console.log("connected to wallet", address);
     }
-  }, [isConnected]);
+  }, [isConnected, address]);
 
   return (
     <div>

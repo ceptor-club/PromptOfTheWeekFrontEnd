@@ -1,7 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
-<link id="pagestyle" href="default.css" rel="stylesheet" type="text/css" />;
+{
+  /* <link id="pagestyle" href="default.css" rel="stylesheet" type="text/css" />; */
+}
 
 export default function Home() {
   const [data, setData] = useState({

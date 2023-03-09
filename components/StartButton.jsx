@@ -12,7 +12,7 @@ const StartButton = ({ setConditionalRender }) => {
         <p>Press</p>
       </div>
       <a>
-        <Image src={buttonImage} />
+        <Image src={buttonImage} alt="button image"/>
         <div className="relative bottom-10 text-black text-3xl left-8 mx-auto">
           <p>Start</p>
         </div>

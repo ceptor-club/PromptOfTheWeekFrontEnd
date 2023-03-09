@@ -22,7 +22,7 @@ const CharacterStats = ({
       setPrompt(prompt);
       setError(null);
     }
-  }, [pdfData]);
+  }, [pdfData, setPrompt, setError]);
 
   const handleGenderSelect = (e) => {
     const input = document.getElementById("genderInput");

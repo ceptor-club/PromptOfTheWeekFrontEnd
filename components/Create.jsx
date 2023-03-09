@@ -144,7 +144,7 @@ export const Create = () => {
         console.log("balance: ", i, parseInt(balance));
       });
     }
-  }, [isConnected, diceBalance]);
+  }, [isConnected, diceBalance, address, userTimer ]);
 
   const retry = () => {
     setConditionalCreate("");
@@ -193,7 +193,7 @@ export const Create = () => {
               >
                 <div className="absolute top-0 w-full h-[300px] bg-black opacity-70 p-4 rounded-xl mt-6"></div> 
 <div className="absolute top-0 flex flex-col align-center items-center justify-between h-[300px] p-4 mt-6">
-                  <p className="opacity-100">Since we're in the early prototyping stage, our GPU is currently down while we continue working.</p>
+                  <p className="opacity-100">Since we are in the early prototyping stage, our GPU is currently down while we continue working.</p>
                   <br></br>
                   <a  href="https://discord.gg/eV2zs5fq" className="bg-gray-300 rounded-xl text-black hover:bg-gray-100 p-4 cursor-pointer">Join our Discord <span className="">https://discord.gg/eV2zs5fq</span></a>
                   </div>
