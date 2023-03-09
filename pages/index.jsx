@@ -32,7 +32,10 @@ export default function Home() {
     <>
       <Meta />
       <div className="flex flex-col justify-center items-center w-full">
-        <p className="z-10">Version 0.3.06*</p>
+        <p className="z-10">Version 0.3.09*</p>
+        <p className="z-10">
+          *This is a test version of the site. Just try to mint an NFT.
+        </p>
 
         <Logo setConditionalRender={setConditionalRender} />
 
