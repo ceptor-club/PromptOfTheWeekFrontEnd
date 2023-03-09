@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { createPrompt } from "../utils/promptGen";
 import AdvancedButton from "./AdvancedButton";
 import { CONSTANTS } from "../utils/CONSTANTS";
+import Image from "next/image";
 
 const CharacterStats = ({
   pdfData,
@@ -100,11 +101,11 @@ setPdfData(input.value)
     <>
       {true ? (
         <>
-          <div>
-            <div className="stats text-white py-10 w-full md:3/6 overflow-visible mt-10">
-              <h3>Your Stats</h3>
+          <div className="relative">
+            <div className="text-sm relative top-0 text-white w-screen sm:w-full overflow-visible mt-2 opacity-in opacity-load">
 
-              <h4 className="text-center">From your Character Sheet</h4>
+
+              <h4 className="text-center text-2xl pt-4">Character Stats</h4>
 
               <p className="mx-[48px] mb-2 mt-4">ON</p>
               <div className="h-full">
@@ -182,14 +183,14 @@ setPdfData(input.value)
                     onChange={handleBackgroundSelect}
                   >
                     <option value="" selected>
-                    {pdfData.background ? pdfData.background : "Select Background..."}
+                    {pdfData.background ? pdfData.background : "Background..."}
                     </option>
                     {CONSTANTS.characterBackground.map((characterBackground) => (
                         <option key={characterBackground}>{characterBackground}</option>
                       ))}
                   </select>
                 </div>
-                <div className="flex items-center mx-[48px] mt-2 mb-4">
+                <div className="flex items-center mx-[48px] mt-2 mb-4 overflow-hidden">
                   <input
                     id="alignmentCheck"
                     type="checkbox"
@@ -205,7 +206,7 @@ setPdfData(input.value)
                     onChange={handleAlignmentSelect}
                   >
                     <option value="" selected>
-                      {pdfData.alignment ? pdfData.alignment : "Select Alignment..."}
+                      {pdfData.alignment ? pdfData.alignment : "Alignment..."}
                       </option>
                     {CONSTANTS.characterAlignment.map((characterAlignment) => (
                         <option key={characterAlignment}>{characterAlignment}</option>
@@ -246,6 +247,13 @@ setPdfData(input.value)
                 </div>
               </div>
             </div>
+            <Image
+        src="/images/CREATE/char-stat-bg.svg"
+        alt=""
+        width={400}
+        height={400}
+        className="absolute top-0 w-full mx-auto -z-10"
+      />
             <AdvancedButton advanced={advanced} setAdvanced={setAdvanced} />
             {advanced ? (
               <>
