@@ -174,12 +174,17 @@ export const Create = () => {
             </>
           ) : error ? (
             <>
-              <h1
-                className="text-4xl bg-red-400 text-red-800 cursor-pointer mt-48 animate-pulse"
-                onClick={retry}
+              <div
+                className="relative text-center text-2xl w-full h-[400px] md:w-[500px]"
+                /* onClick={retry} */
               >
-                {error}
-              </h1>
+                <div className="absolute top-0 w-full h-[300px] bg-black opacity-70 p-4 rounded-xl mt-6"></div> 
+<div className="absolute top-0 flex flex-col align-center items-center justify-between h-[300px] p-4 mt-6">
+                  <p className="opacity-100">{error}</p>
+                  <br></br>
+                  <a  href="https://discord.gg/eV2zs5fq" className="bg-gray-300 rounded-xl text-black hover:bg-gray-100 p-4 cursor-pointer">Join our Discord <span className="">https://discord.gg/eV2zs5fq</span></a>
+                  </div>
+                </div>
             </>
           ) : !imageProcessing ? (
             <>
