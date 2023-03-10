@@ -23,6 +23,7 @@ import {
 } from "wagmi";
 import { useWeb3Modal } from "@web3modal/react";
 import { CONSTANTS } from "../utils/CONSTANTS";
+import { LoadingTips } from "./LoadingTips";
 
 // wallet connect
 // buy dice/ display dice + timer
@@ -143,7 +144,7 @@ export const Create = () => {
         console.log("balance: ", i, parseInt(balance));
       });
     }
-  }, [isConnected, diceBalance, address, userTimer ]);
+  }, [isConnected, diceBalance, address, userTimer]);
 
   const retry = () => {
     setConditionalCreate("");
@@ -170,7 +171,7 @@ export const Create = () => {
         <div className="flex flex-col w-full justify-center items-center">
           {imageProcessing ? (
             <>
-              null
+              <LoadingTips />
             </>
           ) : error ? (
             <>
@@ -178,25 +179,36 @@ export const Create = () => {
                 className="relative text-center text-2xl w-full h-[400px] md:w-[500px] cursor-pointer"
                 onClick={retry}
               >
-                <div className="absolute top-0 w-full h-[300px] bg-black opacity-70 p-4 rounded-xl mt-6"></div> 
-<div className="absolute top-0 flex flex-col align-center items-center justify-between h-[300px] p-4 mt-6 w-full">
-                  <p className="opacity-100 cursor-pointer text-center w-full">{error}</p>
-                  </div>
+                <div className="absolute top-0 w-full h-[300px] bg-black opacity-70 p-4 rounded-xl mt-6"></div>
+                <div className="absolute top-0 flex flex-col align-center items-center justify-between h-[300px] p-4 mt-6 w-full">
+                  <p className="opacity-100 cursor-pointer text-center w-full">
+                    {error}
+                  </p>
                 </div>
+              </div>
             </>
           ) : !imageProcessing ? (
             <>
-                          <div
+              <div
                 className="relative text-center text-2xl w-full h-[350px] md:w-[500px]"
                 /* onClick={retry} */
               >
-                <div className="absolute top-0 w-full h-[300px] bg-black opacity-70 p-4 rounded-xl mt-6"></div> 
-<div className="absolute top-0 flex flex-col align-center items-center justify-between h-[300px] p-4 mt-6">
-                  <p className="opacity-100">Since we are in the early prototyping stage, our GPU is currently down while we continue working.</p>
+                <div className="absolute top-0 w-full h-[300px] bg-black opacity-70 p-4 rounded-xl mt-6"></div>
+                <div className="absolute top-0 flex flex-col align-center items-center justify-between h-[300px] p-4 mt-6">
+                  <p className="opacity-100 text-red-300">
+                    Since we are in the early prototyping stage, our GPU is
+                    currently down while we continue working.
+                  </p>
                   <br></br>
-                  <a  href="https://discord.gg/eV2zs5fq" className="bg-gray-300 rounded-xl text-black hover:bg-gray-100 p-4 cursor-pointer">Join our Discord <span className="">https://discord.gg/eV2zs5fq</span></a>
-                  </div>
+                  <a
+                    href="https://discord.gg/eV2zs5fq"
+                    className="bg-gray-300 rounded-xl text-black hover:bg-gray-100 p-4 cursor-pointer"
+                  >
+                    Join our Discord and clamor for more!{" "}
+                    <span className="">https://discord.gg/eV2zs5fq</span>
+                  </a>
                 </div>
+              </div>
               <CharacterStats
                 pdfData={pdfData}
                 prompt={prompt}
@@ -207,7 +219,7 @@ export const Create = () => {
             </>
           ) : null}
 
-          {imageResult ? (
+          {imageResult && !imageProcessing ? (
             <>
               <div className="flex flex-col items-center bg-black mt-8">
                 <h3 id="results" className="text-4xl mb-4">
@@ -229,7 +241,7 @@ export const Create = () => {
             </>
           ) : null}
 
-          {error ? null : (
+          {!error && !imageProcessing ? (
             <GenerateButton
               setConditionalCreate={setConditionalCreate}
               setImageProcessing={setImageProcessing}
@@ -241,9 +253,9 @@ export const Create = () => {
               imageProcessing={imageProcessing}
               prompt={prompt}
             />
-          )}
+          ) : null}
 
-          {imageResult ? (
+          {imageResult && !imageProcessing ? (
             <div className="flex gap-4 justify-center items-center">
               <MintButton
                 selectedImage={selectedImage}

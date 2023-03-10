@@ -9,19 +9,24 @@ import { useWeb3Modal } from "@web3modal/react"
 
 const MintButton = ({ selectedImage, pdfData, setIsMinting, prompt, isMinting }) => {
   const [metadataUrl, setMetadataUrl] = useState(null) //url
+  const [mintError, setMintError] = useState(null) //error
   const grayDisable = selectedImage ? "grayscale-0 cursor-pointer" : "grayscale opacity-50"
-  const { data, isLoading, isSuccess, write } = useContractWrite({
+  const { data, isLoading, isSuccess, write, writeAsync, isError } = useContractWrite({
     mode: "recklesslyUnprepared",
     address: CONSTANTS.ceptorAddress,
     abi: CONSTANTS.ceptorABI,
     functionName: "mint",
     // args: [],
-    chainId: 11155111,
+    chainId: process.env.NEXT_PUBLIC_NETWORK_ID,
   })
 
   const { address, isConnected } = useAccount()
   const { open, isOpen, close } = useWeb3Modal()
   const { disconnect } = useDisconnect()
+
+  useEffect(() => {
+    console.log("ISCONNECTED: ", isConnected)
+  }, [isConnected])
 
   const mintAvatar = async () => {
     if (!selectedImage) {
@@ -29,27 +34,50 @@ const MintButton = ({ selectedImage, pdfData, setIsMinting, prompt, isMinting })
       return
     }
 
-    if (!isConnected) {
-      open()
-    } else if (isConnected) {
-      console.log("wallet is connected")
+    try {
+      if (!isConnected) {
+        open()
+      } else if (isConnected) {
+        console.log("wallet is connected")
+      }
+
+      setIsMinting(true)
+      console.log("Minting avatar...")
+
+      const _metadataUrl = await avatarNFTSTORAGE(selectedImage, prompt, pdfData) //returns url of metadata json
+      console.log("metadata url: ", _metadataUrl)
+      setMetadataUrl(_metadataUrl)
+
+      //mint nft
+      const mintResult = await writeAsync({
+        recklesslySetUnpreparedArgs: [_metadataUrl],
+      })
+      console.log("mintResult: ", mintResult) //this one isn't async, so it will never have the right data
+      //check for error
+      // setIsMinting(false)
+    } catch (error) {
+      console.log("MINT ERROR CATCH: ", error.reason)
+      setMintError(error.reason)
     }
-
-    setIsMinting(true)
-    console.log("Minting avatar...")
-
-    const _metadataUrl = await avatarNFTSTORAGE(selectedImage, prompt, pdfData) //returns url of metadata json
-    console.log("metadata url: ", _metadataUrl)
-    setMetadataUrl(_metadataUrl)
-
-    //mint nft
-    const mintResult = write({
-      recklesslySetUnpreparedArgs: [_metadataUrl],
-    })
-    console.log("mintResult: ", mintResult)
-    //check for error
-    setIsMinting(false)
   }
+
+  useEffect(() => {
+    data && console.log("MINT DATA: ", data)
+  }, [data])
+
+  useEffect(() => {
+    if (isError) {
+      console.log("MINT ERROR: ", isError)
+      setIsMinting(false)
+    }
+  }, [isError])
+
+  useEffect(() => {
+    if (isSuccess) {
+      console.log("MINT SUCCESS: ", isSuccess)
+      setIsMinting(false)
+    }
+  }, [isSuccess])
 
   return (
     <>
@@ -61,6 +89,7 @@ const MintButton = ({ selectedImage, pdfData, setIsMinting, prompt, isMinting })
           height={201}
           className="col-span-full row-span-full self-center"
         />
+        {mintError && <p className="text-red-500 font-bold text-sm col-span-full row-start-1 w-42">{mintError}</p>}
         {isMinting ? (
           <p className="flex items-end justify-center col-span-full row-start-1 p-1">MINTING</p>
         ) : (

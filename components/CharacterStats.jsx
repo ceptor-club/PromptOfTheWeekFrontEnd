@@ -122,7 +122,7 @@ setPdfData(input.value)
 
               <p className="mx-[48px] mb-2 mt-4">ON</p>
               <div className="h-full">
-              <div className="flex items-center mx-[48px] mt-2 mb-4">
+                <div className="flex items-center mx-[48px] mt-2 mb-4">
                   <input
                     type="checkbox"
                     className="checkbox-stats"
@@ -160,6 +160,7 @@ setPdfData(input.value)
                       {CONSTANTS.characterClass.map((characterClass) => (
                         <option key={characterClass}>{characterClass}</option>
                       ))}
+
                   </select>
                 </div>
                 <div className="flex items-center mx-[48px] mt-2 mb-4">
