@@ -42,7 +42,7 @@ export default function PDFParser({ setPdfData, pdfData, setError }) {
       setError(null)
       handleUpload()
     }
-  }, [pdf, setError, handleUpload])
+  }, [pdf, setError])
 
   return (
     <div className={` ${oswald.className} relative h-64 w-72 grid ${!pdf}`}>

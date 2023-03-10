@@ -24,17 +24,6 @@ const CharacterStats = ({
     }
   }, [pdfData, setPrompt, setError]);
 
-  const handleGenderSelect = (e) => {
-    const input = document.getElementById("genderInput");
-setPdfData(input.value)
-    if (
-      document.getElementById("genderCheck").checked === true
-    ) {
-      setPdfData({ ...pdfData, gender: input.value });
-    } else {
-      setPdfData({ ...pdfData, gender: "" });
-    }
-  };
 
   const handleClassSelect = (e) => {
     const input = document.getElementById("classInput");
@@ -94,6 +83,30 @@ setPdfData(input.value)
       setPdfData({ ...pdfData, feature: input.value });
     } else {
       setPdfData({ ...pdfData, feature: "" });
+    }
+  };
+
+  const handleColorSelect = (e) => {
+    const input = document.getElementById("colorInput");
+setPdfData(input.value)
+    if (
+      document.getElementById("colorCheck").checked === true
+    ) {
+      setPdfData({ ...pdfData, color: input.value });
+    } else {
+      setPdfData({ ...pdfData, color: "" });
+    }
+  };
+
+  const handleGenderSelect = (e) => {
+    const input = document.getElementById("genderInput");
+setPdfData(input.value)
+    if (
+      document.getElementById("genderCheck").checked === true
+    ) {
+      setPdfData({ ...pdfData, gender: input.value });
+    } else {
+      setPdfData({ ...pdfData, gender: "" });
     }
   };
 
@@ -228,6 +241,31 @@ setPdfData(input.value)
                     onChange={handleFeatureSelect}
                   >{pdfData.feature}</textarea>
                 </div>
+
+                <div className="flex items-center mx-[48px] mt-2 mb-4">
+                  <input
+                    id="colorCheck"
+                    type="checkbox"
+                    className="checkbox-stats"
+                    onChange={handleColorSelect}
+                    defaultChecked
+                  ></input>
+                  <p className="mx-4">COLOR: </p>
+                  <select
+                    id="colorInput"
+                    placeholder="Colors"
+                    className="bg-transparent resize-none h-6 w-[200px]"
+                    onChange={handleColorSelect}
+                  >
+                    <option value="" selected>
+                    {pdfData.color ? pdfData.color : "Color..."}
+                    </option>
+                    {CONSTANTS.colors.map((colors) => (
+                        <option key={colors}>{colors}</option>
+                      ))}
+                  </select>
+                </div>
+
                 <div className="flex items-center mx-[48px] mt-2 mb-4">
                   <input
                     id="genderCheck"
