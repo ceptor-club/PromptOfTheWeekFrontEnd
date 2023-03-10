@@ -6,7 +6,7 @@ import { goerli, sepolia } from "wagmi/chains"
 import Layout from "../components/Layout"
 // import Meta from "../components/Meta";
 
-const chains = [sepolia]
+const chains = [goerli]
 // const chains = [arbitrum, mainnet, polygon, goerli];
 const projectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID
 // Wagmi client
