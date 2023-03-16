@@ -95,7 +95,7 @@ const createPrompt = (data) => {
   // alignment, race (converted to prompt language or our unique identifier such as DnDDragonborn),
   // class, armorWorn, background & scene, descriptives
   return `${styleOf} of ${data.feature} ${data.gender ? data.gender : ""} ${
-    data.color
+    data.color ? data.color : ""
   } ${
     conversions[data.race.toLowerCase()]
       ? conversions[data.race.toLowerCase()]

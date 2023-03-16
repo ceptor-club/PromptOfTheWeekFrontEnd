@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import Image from "next/image";
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 const GenerateButton = ({
   setConditionalCreate,
@@ -14,22 +14,22 @@ const GenerateButton = ({
   // Attempting to scroll to the results section whenever imageResult is updated
   useEffect(() => {
     if (imageResult) {
-      const resultSection = document.getElementById("results");
-      resultSection.scrollIntoView({ behavior: "smooth" });
+      const resultSection = document.getElementById('results');
+      resultSection.scrollIntoView({ behavior: 'smooth' });
     }
   }, [imageResult]);
 
   const generateImages = async () => {
-    console.log("Generating images... for ", prompt);
+    console.log('Generating images... for ', prompt);
     setError(false);
     setImageProcessing(true);
-    setConditionalCreate("results");
-    const fetchResult = await fetch("/api/getImage", {
+    setConditionalCreate('results');
+    const fetchResult = await fetch('/api/getImage', {
       // <------------- COMMENTED OUT FOR TESTING
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
       body: JSON.stringify({
         data: prompt,
@@ -40,7 +40,7 @@ const GenerateButton = ({
     // const result = { images: [CONSTANTS.testBase64Image] }; // <------------- THIS IS FOR TESTING
 
     // console.log("result: ", result)
-    console.log("res prompt:", result.prompted);
+    console.log('res prompt:', result.prompted);
     setImageProcessing(false);
     if (result.error) {
       return setError(result.error);
@@ -49,38 +49,49 @@ const GenerateButton = ({
   };
 
   return (
-    <div
-      className="flex w-72 item-center justify-center text-center align-center bg-black p-4 mt-6 animate-pulse cursor-pointer rounded-md"
-      onClick={generateImages}
-      disabled={pdfData ? false : true}
-    >
-      <Image
-        src="/images\CREATE\dice.svg"
-        alt=""
-        width={64}
-        height={64}
-        className="mr-4"
-      />
-      <div className="flex items-center text-4xl">
-        {imageResult ? (
-          <p className="w-fit bg-[#D89A00] hover:bg-[#ab8933] py-1 px-6 rounded-full text-black cursor-pointer animate-pulse">
-            Reroll
-          </p>
-        ) : imageProcessing ? (
-          <p className="w-fit bg-[#D89A00] hover:bg-[#ab8933] py-1 px-6 rounded-full text-black cursor-not-allowed">
-            images loading...
-          </p>
-        ) : pdfData ? (
-          <p className="w-fit bg-emerald-600 hover:bg-emerald-500 py-1 px-6 rounded-full text-black cursor-pointer animate-pulse">
-            Generate Images
-          </p>
-        ) : (
-          <p className="w-fit bg-[#D89A00] hover:bg-[#ab8933] py-1 px-6 rounded-full text-black cursor-not-allowed">
-            Generate
-          </p>
-        )}
+    <>
+      <div
+        className='relative flex justify-center text-center align-center mt-6 cursor-pointer w-96 h-28 m-4'
+        onClick={generateImages}
+        disabled={pdfData ? false : true}
+      >
+        <Image
+          src='/images/Buttons/generateBackground.png'
+          alt=''
+          width={200}
+          height={150}
+          className='absolute my-auto w-full h-full'
+        />
+        <Image
+          src='/images/Buttons/generateBackground2.png'
+          alt=''
+          width={200}
+          height={120}
+          className='absolute my-auto w-full h-full bottom-[2px] left-[2px] -z-10'
+        />
+        <Image
+          src='/images/CREATE/dice.svg'
+          alt=''
+          width={36}
+          height={36}
+          className='mr-4 my-auto'
+        />
+        <div className='flex justify-center items-center text-4xl text-white'>
+          {imageResult ? (
+            <p className='w-fit py-1 px-6 cursor-pointer'>Reroll</p>
+          ) : imageProcessing ? (
+            <p className='w-fit py-1 px-6 cursor-not-allowed'>
+              images loading...
+            </p>
+          ) : pdfData ? (
+            <p className='w-fit py-1 px-6 cursor-pointer'>Generate</p>
+          ) : (
+            <p className='w-fit py-1 px-6 cursor-not-allowed'>Generate</p>
+          )}
+        </div>
       </div>
-    </div>
+      <p className='m-0'>Character Images</p>
+    </>
   );
 };
 
