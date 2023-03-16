@@ -112,7 +112,7 @@ export const Create = () => {
 
   //states: no data, pdf uploaded, images generated, nft minted
 
-  useEffect(() => {
+  /*   useEffect(() => {
     if (pdfData) {
       console.log("pdfData: ", pdfData);
       //create text prompt using pdfData and other data
@@ -121,15 +121,15 @@ export const Create = () => {
       setPrompt(prompt);
       setError(null);
     }
-  }, [pdfData]);
+  }, [pdfData]); */
 
-  useEffect(() => {
+  /*   useEffect(() => {
     if (prompt) {
       console.log("prompt update: ", prompt);
       // setPrompt(prompt);
       setError(null);
     }
-  }, [prompt]);
+  }, [prompt]); */
 
   useEffect(() => {
     if (isConnected && diceBalance) {
