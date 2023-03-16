@@ -14,15 +14,15 @@ const CharacterStats = ({
 }) => {
   const [advanced, setAdvanced] = useState(false);
 
-  /*   useEffect(() => {
-    if (pdfData) { */
-  /* console.log("pdfData: ", pdfData); */
-  //create text prompt using pdfData and other data
-  /*       const prompt = createPrompt(pdfData);
+  useEffect(() => {
+    if (pdfData) {
+      /* console.log("pdfData: ", pdfData); */
+      //create text prompt using pdfData and other data
+      const prompt = createPrompt(pdfData);
       setPrompt(prompt);
       setError(null);
     }
-  }, [setPdfData]); */
+  }, [pdfData]);
 
   const handleClassSelect = (e) => {
     const input = document.getElementById('classInput');
@@ -118,6 +118,7 @@ const CharacterStats = ({
                     type='checkbox'
                     className='checkbox-stats'
                     checked
+                    readOnly
                   ></input>
                   <p className='mx-4'>SYSTEM: D&D 5e (LOCKED)</p>
                 </div>
@@ -126,6 +127,7 @@ const CharacterStats = ({
                     type='checkbox'
                     className='checkbox-stats'
                     checked
+                    readOnly
                   ></input>
                   <p className='mx-4'>RACE: Dragonborn (LOCKED)</p>
                 </div>
@@ -136,7 +138,6 @@ const CharacterStats = ({
                     className='checkbox-stats'
                     onChange={handleClassSelect}
                     defaultChecked
-                    readOnly
                   ></input>
                   <p className='mx-4'>CLASS: </p>
                   <select
@@ -145,7 +146,7 @@ const CharacterStats = ({
                     className='bg-transparent resize-none h-6 w-[200px]'
                     onChange={handleClassSelect}
                   >
-                    <option value='' disabled selected hidden>
+                    <option value=''>
                       {pdfData.class ? pdfData.class : 'Select a Class'}
                     </option>
                     {CONSTANTS.characterClass.map((characterClass) => (
@@ -167,10 +168,8 @@ const CharacterStats = ({
                     placeholder='Armor'
                     className='bg-transparent resize-none h-6 overflow-hidden'
                     onChange={handleArmorSelect}
-                    value={pdfData.armorWorn ? pdfData.armorWorn : null}
-                  >
-                    {pdfData.armorWorn}
-                  </textarea>
+                    defaultValue={pdfData.armorWorn ? pdfData.armorWorn : ''}
+                  ></textarea>
                 </div>
                 <div className='flex items-center mx-[48px] mt-2 mb-4'>
                   <input
@@ -187,7 +186,7 @@ const CharacterStats = ({
                     className='bg-transparent resize-none h-6 w-[200px]'
                     onChange={handleBackgroundSelect}
                   >
-                    <option value='' selected>
+                    <option value=''>
                       {pdfData.background
                         ? pdfData.background
                         : 'Background...'}
@@ -216,7 +215,7 @@ const CharacterStats = ({
                     className='bg-transparent resize-none h-6 w-[200px]'
                     onChange={handleAlignmentSelect}
                   >
-                    <option value='' selected>
+                    <option value=''>
                       {pdfData.alignment ? pdfData.alignment : 'Alignment...'}
                     </option>
                     {CONSTANTS.characterAlignment.map((characterAlignment) => (
@@ -240,9 +239,8 @@ const CharacterStats = ({
                     placeholder='Feature'
                     className='bg-transparent resize-none h-6 overflow-hidden'
                     onChange={handleFeatureSelect}
-                  >
-                    {pdfData.feature}
-                  </textarea>
+                    defaultValue={pdfData.feature ? pdfData.feature : ''}
+                  ></textarea>
                 </div>
 
                 <div className='flex items-center mx-[48px] mt-2 mb-4'>
@@ -260,7 +258,7 @@ const CharacterStats = ({
                     className='bg-transparent resize-none h-6 w-[200px]'
                     onChange={handleColorSelect}
                   >
-                    <option value='' selected>
+                    <option value=''>
                       {pdfData.color ? pdfData.color : 'Color...'}
                     </option>
                     {CONSTANTS.colors.map((colors) => (
@@ -283,9 +281,8 @@ const CharacterStats = ({
                     placeholder='Gender'
                     className='bg-transparent resize-none h-6'
                     onChange={handleGenderSelect}
-                  >
-                    {pdfData.gender}
-                  </textarea>
+                    defaultValue={pdfData.gender ? pdfData.gender : ''}
+                  ></textarea>
                 </div>
               </div>
             </div>
@@ -308,7 +305,7 @@ const CharacterStats = ({
                   <textarea
                     onChange={(e) => setPrompt(e.target.value)}
                     className='w-full h-[150px] bg-transparent resize-none'
-                    value={prompt}
+                    value={prompt ? prompt : 'asdfg'}
                   ></textarea>
                   <div onClick={() => console.log(pdfData, 'PROMPT', prompt)}>
                     TEST pdfData
