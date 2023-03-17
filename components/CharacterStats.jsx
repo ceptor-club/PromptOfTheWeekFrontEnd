@@ -11,9 +11,8 @@ const CharacterStats = ({
   setPrompt,
   setError,
   setPdfData,
+  imageResult,
 }) => {
-  const [advanced, setAdvanced] = useState(false);
-
   useEffect(() => {
     if (pdfData) {
       /* console.log("pdfData: ", pdfData); */
@@ -108,7 +107,7 @@ const CharacterStats = ({
       {true ? (
         <>
           <div className='relative'>
-            <div className='text-sm relative top-0 text-white w-screen sm:w-full overflow-visible mt-2 opacity-in opacity-load'>
+            <div className='text-sm relative top-0 text-white w-screen sm:w-full opacity-in opacity-load'>
               <h4 className='text-center text-2xl pt-4'>Character Stats</h4>
 
               <p className='mx-[48px] mb-2 mt-4'>ON</p>
@@ -285,34 +284,15 @@ const CharacterStats = ({
                   ></textarea>
                 </div>
               </div>
+              <h4 className='text-center mb-8'>EDIT THIS LATER IN ADVANCED</h4>
+              <Image
+                src='/images/CREATE/char-stat-bg.svg'
+                alt=''
+                width={80}
+                height={100}
+                className='absolute top-0 -z-10 object-cover h-full w-full'
+              />
             </div>
-            <Image
-              src='/images/CREATE/char-stat-bg.svg'
-              alt=''
-              width={400}
-              height={400}
-              className='absolute top-0 w-full mx-auto -z-10'
-            />
-
-            <AdvancedButton advanced={advanced} setAdvanced={setAdvanced} />
-            {advanced ? (
-              <>
-                <h3>Edit Your Prompt Manually</h3>
-                <div className='bg-black text-left text-sm p-2'>
-                  <h3 className='mb-4'>
-                    Your Prompt Was Recovered from the Fires of the Forge!
-                  </h3>
-                  <textarea
-                    onChange={(e) => setPrompt(e.target.value)}
-                    className='w-full h-[150px] bg-transparent resize-none'
-                    value={prompt ? prompt : 'asdfg'}
-                  ></textarea>
-                  <div onClick={() => console.log(pdfData, 'PROMPT', prompt)}>
-                    TEST pdfData
-                  </div>
-                </div>
-              </>
-            ) : null}
           </div>
         </>
       ) : null}

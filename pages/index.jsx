@@ -1,12 +1,12 @@
 // import Head from "next/head";
-import { useState, useEffect } from "react";
-import CreateHero from "../components/CreateHero";
-import { Create } from "../components/Create";
-import { Logo } from "../components/Logo";
-import HamburgerMenu from "../components/HamburgerMenu";
-import VectorImage from "../components/VectorImage";
-import Meta from "../components/Meta";
-import Image from "next/image";
+import { useState, useEffect } from 'react';
+import CreateHero from '../components/CreateHero';
+import { Create } from '../components/Create';
+import { Logo } from '../components/Logo';
+import HamburgerMenu from '../components/HamburgerMenu';
+import VectorImage from '../components/VectorImage';
+import Meta from '../components/Meta';
+import Image from 'next/image';
 
 export default function Home() {
   /*   const [data, setData] = useState({
@@ -15,7 +15,7 @@ export default function Home() {
     }); */
 
   const [imageProcessing, setImageProcessing] = useState(false); //processing state ie. loading...
-  const [conditionalRender, setConditionalRender] = useState("");
+  const [conditionalRender, setConditionalRender] = useState('');
 
   const toggleImageProcessing = async () => {
     setImageProcessing(false);
@@ -31,29 +31,29 @@ export default function Home() {
   return (
     <>
       <Meta />
-      <div className="flex flex-col justify-center items-center w-full">
-        <p className="z-10">Version 0.3.09*</p>
-        <p className="z-10">
+      <div className='flex flex-col justify-center items-center w-full'>
+        <p className='z-10'>Version 0.3.09*</p>
+        <p className='z-10'>
           *This is a test version of the site. Just try to mint an NFT.
         </p>
 
         <Logo setConditionalRender={setConditionalRender} />
 
-        <div className="fixed top-0 w-screen h-screen z-0">
+        <div className='fixed top-0 w-screen h-screen z-0'>
           <Image
-            src="/images/CREATE-midpage/midPageImage.png"
+            src='/images/CREATE-midpage/midPageImage.png'
             fill
-            alt="midPage"
-            className=" object-cover h-screen z-0"
+            alt='midPage'
+            className=' object-cover h-screen z-0'
           />
         </div>
 
-        <div className="z-10 flex w-full">
+        <div className='z-10 flex w-full'>
           {/* <div className="w-1/6 h-screen bg-slate-300">
             <p className="">SIDEBAR</p>
           </div> */}
 
-          <div className=" z-10">
+          <div className=' z-10'>
             <Create />
           </div>
         </div>
