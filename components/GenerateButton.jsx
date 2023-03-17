@@ -13,8 +13,6 @@ const GenerateButton = ({
   imageResult,
   imageProcessing,
 }) => {
-  const [rerollColor, setRerollColor] = useState('');
-
   const router = useRouter();
 
   // Attempting to scroll to the results section whenever imageResult is updated
@@ -22,7 +20,6 @@ const GenerateButton = ({
     if (imageResult) {
       const resultSection = document.getElementById('results');
       resultSection.scrollIntoView({ behavior: 'smooth' });
-      setRerollColor('#FF00F3');
     }
   }, [imageResult]);
 
@@ -111,7 +108,7 @@ const GenerateButton = ({
       )}
 
       {imageResult ? (
-        <p onClick={() => router.reload('/')} className='my-24'>
+        <p onClick={() => router.reload('/')} className='my-24 cursor-pointer'>
           &#60;&#60; BACK TO START
         </p>
       ) : null}
