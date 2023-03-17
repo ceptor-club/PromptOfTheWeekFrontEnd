@@ -153,22 +153,14 @@ export const Create = () => {
     setError(null);
   };
 
+  const advancedSection = () => {
+    setAdvanced(!advanced);
+    /*     const manualInput = document.getElementById('manualInput');
+    manualInput.scrollIntoView({ behavior: 'smooth' }); */
+  };
+
   return (
     <>
-      {/*       {(!pdfData) ? (
-        <GenerateHero
-          setPdfData={setPdfData}
-          pdfData={pdfData}
-          setError={setError}
-          setConditionalRender={setConditionalRender}
-        />
-      ) : null} */}
-
-      {/* danjo's code to check connect */}
-      {/* !isConnected ? (
-            <div onClick={() => open()}>Connect</div>
-          ) :  */}
-
       <div className='flex xl:flex-nowrap w-screen gap-2 justify-center items-center'>
         <div className='flex flex-col w-full justify-center items-center'>
           {imageProcessing ? (
@@ -191,10 +183,7 @@ export const Create = () => {
             </>
           ) : !imageProcessing ? (
             <>
-              <div
-                className='relative text-center text-2xl w-full h-[350px] md:w-[500px]'
-                /* onClick={retry} */
-              >
+              <div className='relative text-center text-2xl w-full h-[350px] md:w-[500px]'>
                 <div className='absolute top-0 w-full h-[300px] bg-black opacity-70 p-4 rounded-xl mt-6'></div>
                 <div className='absolute top-0 flex flex-col align-center items-center justify-between h-[300px] p-4 mt-6'>
                   <p className='opacity-100 text-red-300'>
@@ -218,6 +207,7 @@ export const Create = () => {
                 setError={setError}
                 setPdfData={setPdfData}
                 imageResult={imageResult}
+                advanced={advanced}
               />
             </>
           ) : null}
@@ -272,9 +262,18 @@ export const Create = () => {
             />
           ) : null}
 
-          {advanced && imageResult ? (
+          {imageResult ? (
             <>
-              <AdvancedButton advanced={advanced} setAdvanced={setAdvanced} />
+              <div className='flex cursor-pointer' onClick={advancedSection}>
+                <p className='text-2xl mr-4'>ADVANCED</p>
+                <span className='arrow-down' onClick={advancedSection}></span>
+              </div>
+            </>
+          ) : null}
+
+          {advanced && !imageProcessing ? (
+            <>
+              <h3 className='mt-8 text-2xl'>PROMPT SMITH</h3>
               <h3>Edit Your Prompt Manually</h3>
               <div className='bg-black text-left text-sm p-2'>
                 <h3 className='mb-4'>
@@ -283,16 +282,15 @@ export const Create = () => {
                 <textarea
                   onChange={(e) => setPrompt(e.target.value)}
                   className='w-full h-[150px] bg-transparent resize-none'
-                  value={prompt ? prompt : 'asdfg'}
+                  value={prompt ? prompt : ''}
+                  id='manualInput'
                 ></textarea>
                 <div onClick={() => console.log(pdfData, 'PROMPT', prompt)}>
                   TEST pdfData
                 </div>
               </div>
             </>
-          ) : imageResult ? (
-            <p onClick={() => setAdvanced(!advanced)}>ADVANCED</p>
-          ) : null}
+          ) : imageResult ? null : null}
         </div>
       </div>
     </>
