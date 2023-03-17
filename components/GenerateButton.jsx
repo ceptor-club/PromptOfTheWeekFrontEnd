@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { CONSTANTS } from '../utils/CONSTANTS';
+import { useRouter } from 'next/router';
 
 const GenerateButton = ({
   setConditionalCreate,
@@ -11,11 +13,16 @@ const GenerateButton = ({
   imageResult,
   imageProcessing,
 }) => {
+  const [rerollColor, setRerollColor] = useState('');
+
+  const router = useRouter();
+
   // Attempting to scroll to the results section whenever imageResult is updated
   useEffect(() => {
     if (imageResult) {
       const resultSection = document.getElementById('results');
       resultSection.scrollIntoView({ behavior: 'smooth' });
+      setRerollColor('#FF00F3');
     }
   }, [imageResult]);
 
@@ -35,9 +42,9 @@ const GenerateButton = ({
         data: prompt,
       }),
     }); //result is given as base64 encoded images
-    const result = await fetchResult.json();
+    //const result = await fetchResult.json();
 
-    // const result = { images: [CONSTANTS.testBase64Image] }; // <------------- THIS IS FOR TESTING
+    const result = { images: [CONSTANTS.testBase64Image] }; // <------------- THIS IS FOR TESTING
 
     // console.log("result: ", result)
     console.log('res prompt:', result.prompted);
@@ -56,18 +63,22 @@ const GenerateButton = ({
         disabled={pdfData ? false : true}
       >
         <Image
-          src='/images/Buttons/generateBackground.png'
-          alt=''
-          width={200}
-          height={150}
-          className='absolute my-auto w-full h-full'
-        />
-        <Image
           src='/images/Buttons/generateBackground2.png'
           alt=''
           width={200}
           height={120}
-          className='absolute my-auto w-full h-full bottom-[2px] left-[2px] -z-10'
+          className='absolute my-auto w-full h-full bottom-[2px] left-[2px] -z-20'
+        />
+        <Image
+          src={
+            imageResult
+              ? '/images/Buttons/rerollbackground.png'
+              : '/images/Buttons/generateBackground.png'
+          }
+          alt=''
+          width={200}
+          height={150}
+          className='absolute my-auto w-full h-full -z-10'
         />
         <Image
           src='/images/CREATE/dice.svg'
@@ -78,7 +89,7 @@ const GenerateButton = ({
         />
         <div className='flex justify-center items-center text-4xl text-white'>
           {imageResult ? (
-            <p className='w-fit py-1 px-6 cursor-pointer'>Reroll</p>
+            <p className='w-fit py-1 px-6 cursor-pointer'>REROLL</p>
           ) : imageProcessing ? (
             <p className='w-fit py-1 px-6 cursor-not-allowed'>
               images loading...
@@ -90,7 +101,20 @@ const GenerateButton = ({
           )}
         </div>
       </div>
-      <p className='m-0'>Character Images</p>
+      {imageResult ? (
+        <p className='w-[250px] text-center'>
+          Regenerate your avatar with the EXACT same prompt or make changes
+          below and then REROLL.
+        </p>
+      ) : (
+        <p className='m-0'>Character Images</p>
+      )}
+
+      {imageResult ? (
+        <p onClick={() => router.reload('/')} className='my-24'>
+          &#60;&#60; BACK TO START
+        </p>
+      ) : null}
     </>
   );
 };
