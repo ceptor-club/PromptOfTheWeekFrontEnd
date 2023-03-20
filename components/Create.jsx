@@ -14,6 +14,7 @@ import MintButton from "./MintButton";
 import GenerateButton from "./GenerateButton";
 import GenerateLoading from "./GenerateLoading";
 import Image from "next/image";
+import OCRParser from "./OCRParser";
 
 import {
   useAccount,
@@ -52,6 +53,7 @@ export const Create = () => {
     alignment: "",
     feature: "",
     gender: "",
+    colour: "",
   });
 
   const { address, isConnected } = useAccount();
@@ -208,6 +210,11 @@ export const Create = () => {
                     <span className="">https://discord.gg/eV2zs5fq</span>
                   </a>
                 </div>
+                <OCRParser
+                  pdfData={pdfData}
+                  setError={setError}
+                  setPdfData={setPdfData}
+                />
               </div>
               <CharacterStats
                 pdfData={pdfData}
