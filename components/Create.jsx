@@ -53,6 +53,8 @@ export const Create = () => {
     alignment: '',
     feature: '',
     gender: '',
+    color: '',
+    weapon: '',
   });
   const [advanced, setAdvanced] = useState(false);
 
@@ -192,11 +194,11 @@ export const Create = () => {
                   </p>
                   <br></br>
                   <a
-                    href='https://discord.gg/eV2zs5fq'
+                    href='https://discord.gg/kPC8GMK5'
                     className='bg-gray-300 rounded-xl text-black hover:bg-gray-100 p-4 cursor-pointer'
                   >
                     Join our Discord and clamor for more!{' '}
-                    <span className=''>https://discord.gg/eV2zs5fq</span>
+                    <span className=''>https://discord.gg/kPC8GMK5</span>
                   </a>
                 </div>
               </div>
@@ -291,6 +293,14 @@ export const Create = () => {
               </div>
             </>
           ) : imageResult ? null : null}
+          <a
+            href='https://ceptor.club/feedback/'
+            target='_blank'
+            rel='noreferrer'
+            className='mt-12 mb-4 hover:text-[#e137b1]'
+          >
+            FEEBACK / BUG REPORT
+          </a>
         </div>
       </div>
     </>

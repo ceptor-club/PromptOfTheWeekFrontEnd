@@ -22,7 +22,7 @@ const CharacterStats = ({
       setPrompt(prompt);
       setError(null);
     }
-  }, [pdfData]);
+  });
 
   const handleClassSelect = (e) => {
     const input = document.getElementById('classInput');
