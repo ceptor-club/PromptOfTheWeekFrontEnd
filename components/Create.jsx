@@ -296,6 +296,7 @@ export const Create = () => {
           <a
             href='https://ceptor.club/feedback/'
             target='_blank'
+            rel='noreferrer'
             className='mt-12 mb-4 hover:text-[#e137b1]'
           >
             FEEBACK / BUG REPORT

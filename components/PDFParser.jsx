@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Vector2 from '../public/images/CREATE-hero/Vector2.png';
 import Image from 'next/image';
 
@@ -11,35 +11,35 @@ export default function PDFParser({ setPdfData, pdfData, setError }) {
     setPdf(file);
   };
 
-  const handleUpload = async () => {
-    if (!pdf) return;
-    const body = new FormData();
-    body.set('file', pdf);
-    try {
-      const res = await fetch('/api/PDFParser', {
-        method: 'POST',
-        body: body,
-      });
-      // console.log("raw res parse dpf: ", res);
-      const data = await res.json();
-      // console.log("data: ", data);
-      if (data.error) {
-        setError(data.error);
-        return;
-      }
-      setPdfData(data);
-    } catch (error) {
-      console.log('error: ', error);
-      setError(error);
-    }
-  };
-
   useEffect(() => {
+    const handleUpload = async () => {
+      if (!pdf) return;
+      const body = new FormData();
+      body.set('file', pdf);
+      try {
+        const res = await fetch('/api/PDFParser', {
+          method: 'POST',
+          body: body,
+        });
+        // console.log("raw res parse dpf: ", res);
+        const data = await res.json();
+        // console.log("data: ", data);
+        if (data.error) {
+          setError(data.error);
+          return;
+        }
+        setPdfData(data);
+      } catch (error) {
+        console.log('error: ', error);
+        setError(error);
+      }
+    };
+
     if (pdf) {
       setError(null);
       handleUpload();
     }
-  }, [pdf, setError]);
+  }, [pdf, setError, setPdfData]);
 
   return (
     <div className={` ${oswald.className} relative h-64 w-72 grid ${!pdf}`}>

@@ -5,7 +5,6 @@ import { LoadingTips } from './LoadingTips';
 import Placeholder from '../public/images/CREATE/placeholder.png';
 import { useState } from 'react';
 import Script from 'next/script';
-import { NextScript } from 'next/document';
 
 export const CreateImageGrid = ({
   imageProcessing,
