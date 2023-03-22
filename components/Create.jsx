@@ -293,6 +293,13 @@ export const Create = () => {
               </div>
             </>
           ) : imageResult ? null : null}
+          <a
+            href='https://ceptor.club/feedback/'
+            target='_blank'
+            className='mt-12 mb-4 hover:text-[#e137b1]'
+          >
+            FEEBACK / BUG REPORT
+          </a>
         </div>
       </div>
     </>

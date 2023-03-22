@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { LoadingTips } from './LoadingTips';
 import Placeholder from '../public/images/CREATE/placeholder.png';
 import { useState } from 'react';
+import Script from 'next/script';
+import { NextScript } from 'next/document';
 
 export const CreateImageGrid = ({
   imageProcessing,
@@ -82,17 +84,17 @@ export const CreateImageGrid = ({
                   />
                   {currentSelection === i ? (
                     <>
+                      {/*                       <Script
+                        type='text/javascript'
+                        async
+                        src='https://platform.twitter.com/widgets.js'
+                      />
                       <a
                         className='twitter-share-button'
-                        href='https://twitter.com/intent/tweet?text=Ceptor%20Club'
-                        target='_blank'
-                        data-text='Check out my new DnD avatar made with Ceptor Club'
-                        data-hashtags='dnd'
-                        data-via='CeptorClub'
-                        data-related='twitterapi,twitter'
+                        href='https://twitter.com/intent/tweet?text=Check%20out%20my%20new%20DnD%20avatar%20made%20with%20Ceptor%20Club'
                       >
                         Tweet
-                      </a>
+                      </a> */}
                     </>
                   ) : null}
                 </div>
