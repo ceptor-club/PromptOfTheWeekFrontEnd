@@ -53,7 +53,7 @@ export const Create = () => {
     alignment: '',
     feature: '',
     gender: '',
-    colour: '',
+    color: '',
   });
 
   const { address, isConnected } = useAccount();

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Vector2 from '../public/images/CREATE-hero/Vector2.png';
 import Image from 'next/image';
 import { Oswald } from '@next/font/google';
@@ -32,7 +32,7 @@ export default function IMAGEParser({
     body.set('file', image);
     try {
       console.log('made call here');
-      const res = await fetch('http://1b5d-34-124-247-203.ngrok.io/ocr', {
+      const res = await fetch('http://efdd-34-142-247-67.ngrok.io/ocr', {
         method: 'POST',
         body: body,
       });
@@ -43,21 +43,21 @@ export default function IMAGEParser({
         setError(data.error);
         return;
       }
-      console.log(object.background);
-      setPdfData({ ...pdfData, object });
-      console.log('pdfData from OCRParser: ', pdfData);
+      setPdfData((prevPdfData) => Object.assign({}, prevPdfData, object));
     } catch (error) {
       console.log('error: ', error);
       setError(error);
     }
   };
 
+  // Could add a useCallback to this so I don't console.log a non updated pdfData
   useEffect(() => {
     if (image) {
       // setError(null);
       handleUpload();
+      console.log('pdfData set from OCRParser: ', pdfData);
     }
-  }, [image, setError]);
+  }, [image, setError, pdfData]);
 
   return (
     <div className={` ${oswald.className} relative h-64 w-72 grid ${!image}`}>

@@ -14,15 +14,15 @@ const CharacterStats = ({
 }) => {
   const [advanced, setAdvanced] = useState(false);
 
-  /*   useEffect(() => {
-    if (pdfData) { */
-  /* console.log("pdfData: ", pdfData); */
-  //create text prompt using pdfData and other data
-  /*       const prompt = createPrompt(pdfData);
+  useEffect(() => {
+    if (pdfData) {
+      /* console.log("pdfData: ", pdfData); */
+      //create text prompt using pdfData and other data
+      const prompt = createPrompt(pdfData);
       setPrompt(prompt);
       setError(null);
     }
-  }, [pdfData]); */
+  }, [pdfData]);
 
   const handleClassSelect = (e) => {
     const input = document.getElementById('classInput');
