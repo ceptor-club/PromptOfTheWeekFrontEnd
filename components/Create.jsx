@@ -14,7 +14,9 @@ import MintButton from './MintButton';
 import GenerateButton from './GenerateButton';
 import GenerateLoading from './GenerateLoading';
 import Image from 'next/image';
+import AdvancedButton from './AdvancedButton';
 import OCRParser from './OCRParser';
+
 
 import {
   useAccount,
@@ -54,7 +56,10 @@ export const Create = () => {
     feature: '',
     gender: '',
     color: '',
+    weapon: '',
+
   });
+  const [advanced, setAdvanced] = useState(false);
 
   const { address, isConnected } = useAccount();
   const { open, isOpen, close } = useWeb3Modal();
@@ -153,21 +158,14 @@ export const Create = () => {
     setError(null);
   };
 
+  const advancedSection = () => {
+    setAdvanced(!advanced);
+    /*     const manualInput = document.getElementById('manualInput');
+    manualInput.scrollIntoView({ behavior: 'smooth' }); */
+  };
+
   return (
     <>
-      {/*       {(!pdfData) ? (
-        <GenerateHero
-          setPdfData={setPdfData}
-          pdfData={pdfData}
-          setError={setError}
-          setConditionalRender={setConditionalRender}
-        />
-      ) : null} */}
-
-      {/* danjo's code to check connect */}
-      {/* !isConnected ? (
-            <div onClick={() => open()}>Connect</div>
-          ) :  */}
 
       <div className='flex xl:flex-nowrap w-screen gap-2 justify-center items-center'>
         <div className='flex flex-col w-full justify-center items-center'>
@@ -191,10 +189,9 @@ export const Create = () => {
             </>
           ) : !imageProcessing ? (
             <>
-              <div
-                className='relative text-center text-2xl w-full h-[350px] md:w-[500px]'
-                /* onClick={retry} */
-              >
+
+              <div className='relative text-center text-2xl w-full h-[350px] md:w-[500px]'>
+
                 <div className='absolute top-0 w-full h-[300px] bg-black opacity-70 p-4 rounded-xl mt-6'></div>
                 <div className='absolute top-0 flex flex-col align-center items-center justify-between h-[300px] p-4 mt-6'>
                   <p className='opacity-100 text-red-300'>
@@ -203,11 +200,12 @@ export const Create = () => {
                   </p>
                   <br></br>
                   <a
-                    href='https://discord.gg/eV2zs5fq'
+                    href='https://discord.gg/kPC8GMK5'
                     className='bg-gray-300 rounded-xl text-black hover:bg-gray-100 p-4 cursor-pointer'
                   >
                     Join our Discord and clamor for more!{' '}
-                    <span className=''>https://discord.gg/eV2zs5fq</span>
+                    <span className=''>https://discord.gg/kPC8GMK5</span>
+
                   </a>
                 </div>
                 <OCRParser
@@ -222,6 +220,8 @@ export const Create = () => {
                 setPrompt={setPrompt}
                 setError={setError}
                 setPdfData={setPdfData}
+                imageResult={imageResult}
+                advanced={advanced}
               />
             </>
           ) : null}
@@ -248,6 +248,20 @@ export const Create = () => {
             </>
           ) : null}
 
+          {imageResult && !imageProcessing ? (
+            <div className='flex gap-4 justify-center items-center'>
+              <MintButton
+                selectedImage={selectedImage}
+                pdfData={pdfData}
+                setIsMinting={setIsMinting}
+                isMinting={isMinting}
+                prompt={prompt}
+              />
+              <SaveButton selectedImage={selectedImage} />
+              {/* <CopyButton selectedImage={currentSelection} /> */}
+            </div>
+          ) : null}
+
           {!error && !imageProcessing ? (
             <GenerateButton
               setConditionalCreate={setConditionalCreate}
@@ -262,19 +276,45 @@ export const Create = () => {
             />
           ) : null}
 
-          {imageResult && !imageProcessing ? (
-            <div className='flex gap-4 justify-center items-center'>
-              <MintButton
-                selectedImage={selectedImage}
-                pdfData={pdfData}
-                setIsMinting={setIsMinting}
-                isMinting={isMinting}
-                prompt={prompt}
-              />
-              <SaveButton selectedImage={selectedImage} />
-              {/* <CopyButton selectedImage={currentSelection} /> */}
-            </div>
+
+          {imageResult ? (
+            <>
+              <div className='flex cursor-pointer' onClick={advancedSection}>
+                <p className='text-2xl mr-4'>ADVANCED</p>
+                <span className='arrow-down' onClick={advancedSection}></span>
+              </div>
+            </>
+
           ) : null}
+
+          {advanced && !imageProcessing ? (
+            <>
+              <h3 className='mt-8 text-2xl'>PROMPT SMITH</h3>
+              <h3>Edit Your Prompt Manually</h3>
+              <div className='bg-black text-left text-sm p-2'>
+                <h3 className='mb-4'>
+                  Your Prompt Was Recovered from the Fires of the Forge!
+                </h3>
+                <textarea
+                  onChange={(e) => setPrompt(e.target.value)}
+                  className='w-full h-[150px] bg-transparent resize-none'
+                  value={prompt ? prompt : ''}
+                  id='manualInput'
+                ></textarea>
+                <div onClick={() => console.log(pdfData, 'PROMPT', prompt)}>
+                  TEST pdfData
+                </div>
+              </div>
+            </>
+          ) : imageResult ? null : null}
+          <a
+            href='https://ceptor.club/feedback/'
+            target='_blank'
+            rel='noreferrer'
+            className='mt-12 mb-4 hover:text-[#e137b1]'
+          >
+            FEEBACK / BUG REPORT
+          </a>
         </div>
       </div>
     </>
