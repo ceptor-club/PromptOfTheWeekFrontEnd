@@ -167,11 +167,11 @@ export const Create = () => {
       {error ? (
         <>
           <div
-            className='relative text-center text-2xl w-full h-[400px] md:w-[500px] cursor-pointer'
+            className='relative text-2xl w-full h-[400px] md:w-[500px] cursor-pointer'
             onClick={retry}
           >
             <div className='absolute top-0 w-full h-[300px] bg-black opacity-70 p-4 rounded-xl mt-6'></div>
-            <div className='absolute top-0 flex flex-col align-center items-center justify-between h-[300px] p-4 mt-6 w-full'>
+            <div className='absolute top-0 flex flex-col align-center items-center justify-center h-[300px] p-4 mt-6 w-full'>
               <p className='opacity-100 cursor-pointer text-center w-full'>
                 theres an error
               </p>

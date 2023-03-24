@@ -48,7 +48,7 @@ export default function Home() {
           />
         </div>
 
-        <div className='z-10 flex w-full'>
+        <div className='z-10 flex w-full justify-center'>
           {/* <div className="w-1/6 h-screen bg-slate-300">
             <p className="">SIDEBAR</p>
           </div> */}
