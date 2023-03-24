@@ -15,6 +15,8 @@ import GenerateButton from './GenerateButton';
 import GenerateLoading from './GenerateLoading';
 import Image from 'next/image';
 import AdvancedButton from './AdvancedButton';
+import OCRParser from './OCRParser';
+
 
 import {
   useAccount,
@@ -55,6 +57,7 @@ export const Create = () => {
     gender: '',
     color: '',
     weapon: '',
+
   });
   const [advanced, setAdvanced] = useState(false);
 
@@ -163,6 +166,7 @@ export const Create = () => {
 
   return (
     <>
+
       <div className='flex xl:flex-nowrap w-screen gap-2 justify-center items-center'>
         <div className='flex flex-col w-full justify-center items-center'>
           {imageProcessing ? (
@@ -185,7 +189,9 @@ export const Create = () => {
             </>
           ) : !imageProcessing ? (
             <>
+
               <div className='relative text-center text-2xl w-full h-[350px] md:w-[500px]'>
+
                 <div className='absolute top-0 w-full h-[300px] bg-black opacity-70 p-4 rounded-xl mt-6'></div>
                 <div className='absolute top-0 flex flex-col align-center items-center justify-between h-[300px] p-4 mt-6'>
                   <p className='opacity-100 text-red-300'>
@@ -199,8 +205,14 @@ export const Create = () => {
                   >
                     Join our Discord and clamor for more!{' '}
                     <span className=''>https://discord.gg/kPC8GMK5</span>
+
                   </a>
                 </div>
+                <OCRParser
+                  pdfData={pdfData}
+                  setError={setError}
+                  setPdfData={setPdfData}
+                />
               </div>
               <CharacterStats
                 pdfData={pdfData}
@@ -264,6 +276,7 @@ export const Create = () => {
             />
           ) : null}
 
+
           {imageResult ? (
             <>
               <div className='flex cursor-pointer' onClick={advancedSection}>
@@ -271,6 +284,7 @@ export const Create = () => {
                 <span className='arrow-down' onClick={advancedSection}></span>
               </div>
             </>
+
           ) : null}
 
           {advanced && !imageProcessing ? (
