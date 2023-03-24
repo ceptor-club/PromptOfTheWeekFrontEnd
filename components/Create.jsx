@@ -17,7 +17,6 @@ import Image from 'next/image';
 import AdvancedButton from './AdvancedButton';
 import OCRParser from './OCRParser';
 
-
 import {
   useAccount,
   useDisconnect,
@@ -57,7 +56,6 @@ export const Create = () => {
     gender: '',
     color: '',
     weapon: '',
-
   });
   const [advanced, setAdvanced] = useState(false);
 
@@ -166,157 +164,160 @@ export const Create = () => {
 
   return (
     <>
-
-      <div className='flex xl:flex-nowrap w-screen gap-2 justify-center items-center'>
-        <div className='flex flex-col w-full justify-center items-center'>
-          {imageProcessing ? (
-            <>
-              <LoadingTips />
-            </>
-          ) : error ? (
-            <>
-              <div
-                className='relative text-center text-2xl w-full h-[400px] md:w-[500px] cursor-pointer'
-                onClick={retry}
-              >
-                <div className='absolute top-0 w-full h-[300px] bg-black opacity-70 p-4 rounded-xl mt-6'></div>
-                <div className='absolute top-0 flex flex-col align-center items-center justify-between h-[300px] p-4 mt-6 w-full'>
-                  <p className='opacity-100 cursor-pointer text-center w-full'>
-                    {error}
-                  </p>
-                </div>
-              </div>
-            </>
-          ) : !imageProcessing ? (
-            <>
-
-              <div className='relative text-center text-2xl w-full h-[350px] md:w-[500px]'>
-
-                <div className='absolute top-0 w-full h-[300px] bg-black opacity-70 p-4 rounded-xl mt-6'></div>
-                <div className='absolute top-0 flex flex-col align-center items-center justify-between h-[300px] p-4 mt-6'>
-                  <p className='opacity-100 text-red-300'>
-                    Since we are in the early prototyping stage, our GPU is
-                    currently down while we continue working.
-                  </p>
-                  <br></br>
-                  <a
-                    href='https://discord.gg/kPC8GMK5'
-                    className='bg-gray-300 rounded-xl text-black hover:bg-gray-100 p-4 cursor-pointer'
-                  >
-                    Join our Discord and clamor for more!{' '}
-                    <span className=''>https://discord.gg/kPC8GMK5</span>
-
-                  </a>
-                </div>
-                <OCRParser
-                  pdfData={pdfData}
-                  setError={setError}
-                  setPdfData={setPdfData}
-                />
-              </div>
-              <CharacterStats
-                pdfData={pdfData}
-                prompt={prompt}
-                setPrompt={setPrompt}
-                setError={setError}
-                setPdfData={setPdfData}
-                imageResult={imageResult}
-                advanced={advanced}
-              />
-            </>
-          ) : null}
-
-          {imageResult && !imageProcessing ? (
-            <>
-              <div className='flex flex-col items-center bg-black mt-8'>
-                <h3 id='results' className='text-4xl mb-4'>
-                  RESULTS
-                </h3>
-                <p>Select an image to save or mint</p>
-                {/* images grid */}
-                <div className='m-4 mb-6'>
-                  {/* a grid of 9 images */}
-                  <CreateImageGrid
-                    imageResult={imageResult}
-                    imageProcessing={imageProcessing}
-                    error={error}
-                    pdfData={pdfData}
-                    setSelectedImage={setSelectedImage}
-                  />
-                </div>
-              </div>
-            </>
-          ) : null}
-
-          {imageResult && !imageProcessing ? (
-            <div className='flex gap-4 justify-center items-center'>
-              <MintButton
-                selectedImage={selectedImage}
-                pdfData={pdfData}
-                setIsMinting={setIsMinting}
-                isMinting={isMinting}
-                prompt={prompt}
-              />
-              <SaveButton selectedImage={selectedImage} />
-              {/* <CopyButton selectedImage={currentSelection} /> */}
-            </div>
-          ) : null}
-
-          {!error && !imageProcessing ? (
-            <GenerateButton
-              setConditionalCreate={setConditionalCreate}
-              setImageProcessing={setImageProcessing}
-              setError={setError}
-              setImageResult={setImageResult}
-              imageResult={imageResult}
-              pdfData={pdfData}
-              isMinting={isMinting}
-              imageProcessing={imageProcessing}
-              prompt={prompt}
-            />
-          ) : null}
-
-
-          {imageResult ? (
-            <>
-              <div className='flex cursor-pointer' onClick={advancedSection}>
-                <p className='text-2xl mr-4'>ADVANCED</p>
-                <span className='arrow-down' onClick={advancedSection}></span>
-              </div>
-            </>
-
-          ) : null}
-
-          {advanced && !imageProcessing ? (
-            <>
-              <h3 className='mt-8 text-2xl'>PROMPT SMITH</h3>
-              <h3>Edit Your Prompt Manually</h3>
-              <div className='bg-black text-left text-sm p-2'>
-                <h3 className='mb-4'>
-                  Your Prompt Was Recovered from the Fires of the Forge!
-                </h3>
-                <textarea
-                  onChange={(e) => setPrompt(e.target.value)}
-                  className='w-full h-[150px] bg-transparent resize-none'
-                  value={prompt ? prompt : ''}
-                  id='manualInput'
-                ></textarea>
-                <div onClick={() => console.log(pdfData, 'PROMPT', prompt)}>
-                  TEST pdfData
-                </div>
-              </div>
-            </>
-          ) : imageResult ? null : null}
-          <a
-            href='https://ceptor.club/feedback/'
-            target='_blank'
-            rel='noreferrer'
-            className='mt-12 mb-4 hover:text-[#e137b1]'
+      {error ? (
+        <>
+          <div
+            className='relative text-center text-2xl w-full h-[400px] md:w-[500px] cursor-pointer'
+            onClick={retry}
           >
-            FEEBACK / BUG REPORT
-          </a>
-        </div>
-      </div>
+            <div className='absolute top-0 w-full h-[300px] bg-black opacity-70 p-4 rounded-xl mt-6'></div>
+            <div className='absolute top-0 flex flex-col align-center items-center justify-between h-[300px] p-4 mt-6 w-full'>
+              <p className='opacity-100 cursor-pointer text-center w-full'>
+                theres an error
+              </p>
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className='flex xl:flex-nowrap w-screen gap-2 justify-center items-center'>
+            <div className='flex flex-col w-full justify-center items-center'>
+              {imageProcessing ? (
+                <>
+                  <LoadingTips />
+                </>
+              ) : !imageProcessing ? (
+                <>
+                  <div className='relative text-center text-2xl w-full h-[350px] md:w-[500px]'>
+                    <div className='absolute top-0 w-full h-[300px] bg-black opacity-70 p-4 rounded-xl mt-6'></div>
+                    <div className='absolute top-0 flex flex-col align-center items-center justify-between h-[300px] p-4 mt-6'>
+                      <p className='opacity-100 text-red-300'>
+                        Since we are in the early prototyping stage, our GPU is
+                        currently down while we continue working.
+                      </p>
+                      <br></br>
+                      <a
+                        href='https://discord.gg/kPC8GMK5'
+                        className='bg-gray-300 rounded-xl text-black hover:bg-gray-100 p-4 cursor-pointer'
+                      >
+                        Join our Discord and clamor for more!{' '}
+                        <span className=''>https://discord.gg/kPC8GMK5</span>
+                      </a>
+                    </div>
+                  </div>
+                  <OCRParser
+                    pdfData={pdfData}
+                    setError={setError}
+                    setPdfData={setPdfData}
+                    imageProcessing={imageProcessing}
+                    setImageProcessing={setImageProcessing}
+                  />
+                  <CharacterStats
+                    pdfData={pdfData}
+                    prompt={prompt}
+                    setPrompt={setPrompt}
+                    setError={setError}
+                    setPdfData={setPdfData}
+                    imageResult={imageResult}
+                    advanced={advanced}
+                  />
+                </>
+              ) : null}
+
+              {imageResult && !imageProcessing ? (
+                <>
+                  <div className='flex flex-col items-center bg-black mt-8'>
+                    <h3 id='results' className='text-4xl mb-4'>
+                      RESULTS
+                    </h3>
+                    <p>Select an image to save or mint</p>
+                    {/* images grid */}
+                    <div className='m-4 mb-6'>
+                      {/* a grid of 9 images */}
+                      <CreateImageGrid
+                        imageResult={imageResult}
+                        imageProcessing={imageProcessing}
+                        error={error}
+                        pdfData={pdfData}
+                        setSelectedImage={setSelectedImage}
+                      />
+                    </div>
+                  </div>
+                </>
+              ) : null}
+
+              {imageResult && !imageProcessing ? (
+                <div className='flex gap-4 justify-center items-center'>
+                  <MintButton
+                    selectedImage={selectedImage}
+                    pdfData={pdfData}
+                    setIsMinting={setIsMinting}
+                    isMinting={isMinting}
+                    prompt={prompt}
+                  />
+                  <SaveButton selectedImage={selectedImage} />
+                  {/* <CopyButton selectedImage={currentSelection} /> */}
+                </div>
+              ) : null}
+
+              {!error && !imageProcessing ? (
+                <GenerateButton
+                  setConditionalCreate={setConditionalCreate}
+                  setImageProcessing={setImageProcessing}
+                  setError={setError}
+                  setImageResult={setImageResult}
+                  imageResult={imageResult}
+                  pdfData={pdfData}
+                  isMinting={isMinting}
+                  imageProcessing={imageProcessing}
+                  prompt={prompt}
+                />
+              ) : null}
+
+              {imageResult ? (
+                <>
+                  <div
+                    className='flex cursor-pointer'
+                    onClick={advancedSection}
+                  >
+                    <p className='text-2xl mr-4'>ADVANCED</p>
+                    <span
+                      className='arrow-down'
+                      onClick={advancedSection}
+                    ></span>
+                  </div>
+                </>
+              ) : null}
+
+              {advanced && !imageProcessing ? (
+                <>
+                  <h3 className='mt-8 text-2xl'>PROMPT SMITH</h3>
+                  <h3>Edit Your Prompt Manually</h3>
+                  <div className='bg-black text-left text-sm p-2'>
+                    <h3 className='mb-4'>
+                      Your Prompt Was Recovered from the Fires of the Forge!
+                    </h3>
+                    <textarea
+                      onChange={(e) => setPrompt(e.target.value)}
+                      className='w-full h-[150px] bg-transparent resize-none'
+                      value={prompt ? prompt : ''}
+                      id='manualInput'
+                    ></textarea>
+                  </div>
+                </>
+              ) : imageResult ? null : null}
+              <a
+                href='https://ceptor.club/feedback/'
+                target='_blank'
+                rel='noreferrer'
+                className='mt-12 mb-4 hover:text-[#e137b1]'
+              >
+                FEEBACK / BUG REPORT
+              </a>
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };

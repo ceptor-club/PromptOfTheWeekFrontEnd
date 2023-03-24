@@ -243,7 +243,6 @@ const CharacterStats = ({
                     type='checkbox'
                     className='checkbox-stats'
                     onChange={handleFeatureSelect}
-                    defaultChecked
                     disabled={imageResult}
                   ></input>
                   <p className='mx-4'>FEATURE: </p>
@@ -289,7 +288,6 @@ const CharacterStats = ({
                     type='checkbox'
                     className='checkbox-stats'
                     onChange={handleGenderSelect}
-                    defaultChecked
                     disabled={imageResult}
                   ></input>
                   <p className='mx-4'>GENDER : </p>
