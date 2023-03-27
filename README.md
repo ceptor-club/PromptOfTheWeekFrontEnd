@@ -88,7 +88,7 @@ Just do it! And ask q in the group :D
 
 - [x] using next/Image everywhere instead of img
 
-  - [ ] using at least one cool next/Image feature
+  - [x] using at least one cool next/Image feature
 
 - [x] [poetic product roadmaps](https://danj-o.notion.site/Product-Roadmap-S-1-3-bd2480b5be144ba4bef2b8b26ba336fe) by Tippi
 
@@ -130,5 +130,7 @@ Tippi had trouble connecting his local stable diffusion to the front-end and we 
 Thinking this is a good UI.
 
 -- giving the words "level 1" to stable diffusion in the image prompt.
+
 # FrontEndV2
+
 # FrontEndV2

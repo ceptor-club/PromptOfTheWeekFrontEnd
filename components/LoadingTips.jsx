@@ -45,7 +45,7 @@ export const LoadingTips = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setTip(tips[Math.floor(Math.random() * tips.length)]);
-    }, 2000);
+    }, 3300);
     return () => clearInterval(interval);
   }, []);
 

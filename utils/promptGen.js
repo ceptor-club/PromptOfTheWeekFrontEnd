@@ -104,7 +104,7 @@ const createPrompt = (data) => {
     conversions[data.class.toLowerCase()]
       ? `${conversions[data.class.toLowerCase()]},`
       : data.class
-  } ${data.armorWorn ? `wearing ${data.armorWorn}` : data.armorWorn} ${
+  } ${data.armorWorn ? `wearing ${data.armorWorn} armor` : data.armorWorn} ${
     conversions[data.background.toLowerCase()]
       ? conversions[data.background.toLowerCase()]
       : data.background // or "in a cavern" or "in a mine"
