@@ -70,7 +70,7 @@ export default function IMAGEParser({
     <div
       className={` ${
         oswald.className
-      } relative h-64 w-72 grid ${!image} flex items-center justify-center`}
+      } relative h-64 w-72 ${!image} flex items-center justify-center`}
     >
       <Image
         src="/images/CREATE-hero/Vector2.png"

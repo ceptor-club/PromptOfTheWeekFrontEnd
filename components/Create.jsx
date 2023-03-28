@@ -316,7 +316,7 @@ export const Create = () => {
               </a>
               <a
                 href="https://discord.gg/kPC8GMK5"
-                className="bg-gray-300 rounded-xl text-black hover:bg-gray-100 p-4 cursor-pointer"
+                className="bg-gray-300 bg-opacity-50 rounded-sm text-black hover:bg-gray-100 p-4 cursor-pointer"
               >
                 Join our Discord and clamor for more!{" "}
                 <span className="">https://discord.gg/kPC8GMK5</span>
