@@ -35,7 +35,7 @@ export default function IMAGEParser({
     setImage;
     try {
       console.log("made call here");
-      const res = await fetch("https://fa73-196-216-134-244.ngrok.io/ocr", {
+      const res = await fetch(process.env.NEXT_PUBLIC_OCR_NGROK, {
         method: "POST",
         body: body,
       });

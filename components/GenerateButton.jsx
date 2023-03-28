@@ -100,8 +100,8 @@ const GenerateButton = ({
       </div>
       {imageResult ? (
         <p className="w-[250px] text-center bg-black bg-opacity-30 rounded-lg p-2 m-2">
-          Regenerate your avatar with the EXACT same prompt or make changes
-          below and then REROLL.
+          Regenerate your avatar with the EXACT same prompt or{" "}
+          <b> make changes below in ADVANCED </b> and then REROLL.
         </p>
       ) : (
         <p className="m-0">Character Images</p>
