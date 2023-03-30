@@ -58,7 +58,6 @@ export const Create = () => {
     weapon: '',
   });
   const [advanced, setAdvanced] = useState(false);
-  const [modalOpen, setModalOpen] = useState(true);
 
   const { address, isConnected } = useAccount();
   const { open, isOpen, close } = useWeb3Modal();
@@ -161,10 +160,6 @@ export const Create = () => {
     setAdvanced(!advanced);
     /*     const manualInput = document.getElementById('manualInput');
     manualInput.scrollIntoView({ behavior: 'smooth' }); */
-  };
-
-  const handleX = () => {
-    setModalOpen(false);
   };
 
   return (
@@ -330,31 +325,6 @@ export const Create = () => {
           </div>
         </>
       )}
-      {modalOpen ? (
-        <>
-          <div className='w-screen h-screen absolute top-0 z-20 bg-black bg-opacity-80 flex items-center justify-center text-black'>
-            <div className='p-6 pt-2 bg-white text-center rounded-lg flex flex-col items-center'>
-              <p
-                className='w-full text-right text-4xl cursor-pointer'
-                onClick={handleX}
-              >
-                <b>&times;</b>
-              </p>
-              <p className=''>Congratulations!</p>
-              <p className='pb-2'>Share your creation with a friend</p>
-              <Image
-                src={
-                  selectedImage ? selectedImage : 'https://picsum.photos/200'
-                }
-                alt=''
-                width={200}
-                height={200}
-                className='w-full'
-              />
-            </div>
-          </div>
-        </>
-      ) : null}
     </>
   );
 };

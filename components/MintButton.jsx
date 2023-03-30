@@ -16,6 +16,8 @@ const MintButton = ({
 }) => {
   const [metadataUrl, setMetadataUrl] = useState(null); //url
   const [mintError, setMintError] = useState(null); //error
+  const [modalOpen, setModalOpen] = useState(false);
+
   const grayDisable = selectedImage
     ? 'grayscale-0 cursor-pointer'
     : 'grayscale opacity-50';
@@ -66,6 +68,10 @@ const MintButton = ({
         recklesslySetUnpreparedArgs: [_metadataUrl],
       });
       console.log('mintResult: ', mintResult); //this one isn't async, so it will never have the right data
+
+      // Mint will be a success, show model and selected image
+      setModalOpen(true);
+
       //check for error
       // setIsMinting(false)
     } catch (error) {
@@ -91,6 +97,10 @@ const MintButton = ({
       setIsMinting(false);
     }
   }, [isSuccess, setIsMinting]);
+
+  const handleX = () => {
+    setModalOpen(false);
+  };
 
   return (
     <>
@@ -132,6 +142,39 @@ const MintButton = ({
           <p className='flex items-center text-xl'>ERC-721 NFT</p>
         </div>
       </a>
+      {modalOpen ? (
+        <>
+          <div className='w-screen h-screen absolute top-0 z-50 bg-black bg-opacity-80 flex items-center justify-center text-black m-auto'>
+            <div className='p-6 pt-2 bg-white text-center rounded-lg flex flex-col items-center'>
+              <p
+                className='w-full text-right text-4xl cursor-pointer'
+                onClick={handleX}
+              >
+                <b>&times;</b>
+              </p>
+              <p className=''>Congratulations!</p>
+              <p className='pb-2'>Share your creation with a friend</p>
+              <Image
+                src={
+                  selectedImage ? selectedImage : 'https://picsum.photos/200'
+                }
+                alt=''
+                width={200}
+                height={200}
+                className='w-full'
+              />
+              <a
+                href='https://ceptor.club/feedback/'
+                target='_blank'
+                rel='noreferrer'
+                className='mt-2 hover:text-[#e137b1]'
+              >
+                Submit Feedback
+              </a>
+            </div>
+          </div>
+        </>
+      ) : null}
     </>
   );
 };
