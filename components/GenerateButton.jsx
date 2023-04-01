@@ -27,10 +27,8 @@ const GenerateButton = ({
 
   useEffect(() => {
     if (socket) {
-      console.log("Socket:", socket)
       socket.on("imageResponse", (result) => {
         console.log("result: ", result)
-        console.log("res prompt:", result.prompted)
         setImageProcessing(false)
         if (result.error) {
           return setError(result.error)
