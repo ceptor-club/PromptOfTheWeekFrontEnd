@@ -49,30 +49,10 @@ const GenerateButton = ({
     setError(false)
     setImageProcessing(true)
     setConditionalCreate("results")
-    // const fetchResult = await fetch("/api/getImage", {
-    //   // <------------- COMMENTED OUT FOR TESTING
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Accept: "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     data: prompt,
-    //   }),
-    // }); //result is given as base64 encoded images
-    // const result = await fetchResult.json();
 
     // const result = { images: [CONSTANTS.testBase64Image] }; // <------------- THIS IS FOR TESTING
 
     socket.emit("imageRequest", { prompt: prompt })
-
-    // console.log("result: ", result);
-    // console.log("res prompt:", result.prompted);
-    // setImageProcessing(false);
-    // if (result.error) {
-    //   return setError(result.error);
-    // }
-    // setImageResult(result);
   }
 
   return (
