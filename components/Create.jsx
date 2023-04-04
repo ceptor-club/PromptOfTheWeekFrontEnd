@@ -16,6 +16,7 @@ import GenerateLoading from './GenerateLoading';
 import Image from 'next/image';
 import AdvancedButton from './AdvancedButton';
 import OCRParser from './OCRParser';
+import SuccessModal from './SuccessModal';
 
 import {
   useAccount,
@@ -58,6 +59,7 @@ export const Create = () => {
     weapon: '',
   });
   const [advanced, setAdvanced] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const { address, isConnected } = useAccount();
   const { open, isOpen, close } = useWeb3Modal();
@@ -255,7 +257,10 @@ export const Create = () => {
                     isMinting={isMinting}
                     prompt={prompt}
                   />
-                  <SaveButton selectedImage={selectedImage} />
+                  <SaveButton
+                    selectedImage={selectedImage}
+                    setModalOpen={setModalOpen}
+                  />
                   {/* <CopyButton selectedImage={currentSelection} /> */}
                 </div>
               ) : null}
@@ -323,6 +328,11 @@ export const Create = () => {
               </a>
             </div>
           </div>
+          <SuccessModal
+            selectedImage={selectedImage}
+            modalOpen={modalOpen}
+            setModalOpen={setModalOpen}
+          />
         </>
       )}
     </>
