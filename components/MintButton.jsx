@@ -16,6 +16,7 @@ const MintButton = ({
 }) => {
   const [metadataUrl, setMetadataUrl] = useState(null); //url
   const [mintError, setMintError] = useState(null); //error
+
   const grayDisable = selectedImage
     ? 'grayscale-0 cursor-pointer'
     : 'grayscale opacity-50';
@@ -66,6 +67,7 @@ const MintButton = ({
         recklesslySetUnpreparedArgs: [_metadataUrl],
       });
       console.log('mintResult: ', mintResult); //this one isn't async, so it will never have the right data
+
       //check for error
       // setIsMinting(false)
     } catch (error) {
