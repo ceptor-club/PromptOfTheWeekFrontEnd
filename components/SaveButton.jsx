@@ -1,14 +1,21 @@
 import Image from 'next/image';
 
-const SaveButton = ({ selectedImage, setModalOpen }) => {
+const SaveButton = ({ selectedImage, setModalOpen, setModalMessage }) => {
   const grayDisable = selectedImage ? 'grayscale-0' : 'grayscale opacity-50';
+
+  const saving = () => {
+    setModalMessage(
+      `You've downloaded an avatar! Share with a friend and start playing`
+    );
+    setModalOpen(true);
+  };
 
   return (
     <>
       <a
         href={selectedImage}
-        download='character_image'
-        onClick={() => setModalOpen(true)}
+        download='ceptorclub_avatar'
+        onClick={saving}
         className={`${grayDisable} grid grid-cols-1 grid-rows-2 text-black text-4xl mt-6`}
       >
         <Image

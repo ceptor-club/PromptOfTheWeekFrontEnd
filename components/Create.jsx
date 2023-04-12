@@ -60,6 +60,8 @@ export const Create = () => {
   });
   const [advanced, setAdvanced] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+  const [successTxnHash, setSuccessTxnHash] = useState('');
 
   const { address, isConnected } = useAccount();
   const { open, isOpen, close } = useWeb3Modal();
@@ -257,10 +259,13 @@ export const Create = () => {
                     isMinting={isMinting}
                     prompt={prompt}
                     setModalOpen={setModalOpen}
+                    setModalMessage={setModalMessage}
+                    setSuccessTxnHash={setSuccessTxnHash}
                   />
                   <SaveButton
                     selectedImage={selectedImage}
                     setModalOpen={setModalOpen}
+                    setModalMessage={setModalMessage}
                   />
                   {/* <CopyButton selectedImage={currentSelection} /> */}
                 </div>
@@ -333,6 +338,8 @@ export const Create = () => {
             selectedImage={selectedImage}
             modalOpen={modalOpen}
             setModalOpen={setModalOpen}
+            modalMessage={modalMessage}
+            successTxnHash={successTxnHash}
           />
         </>
       )}

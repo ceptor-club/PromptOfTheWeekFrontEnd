@@ -19,6 +19,8 @@ const MintButton = ({
   prompt,
   isMinting,
   setModalOpen,
+  setModalMessage,
+  setSuccessTxnHash,
 }) => {
   const [metadataUrl, setMetadataUrl] = useState(null); //url
   const [mintError, setMintError] = useState(null); //error
@@ -56,6 +58,7 @@ const MintButton = ({
   useEffect(() => {
     if (txnSuccess) {
       console.log('HEY IT WORKED, TXN SUCCESSFUL', data?.hash);
+
       setModalOpen(true);
     }
   }, [txnSuccess]);
@@ -80,7 +83,8 @@ const MintButton = ({
       } else if (isConnected) {
         console.log('wallet is connected');
       }
-
+      setModalMessage(`You've minted an avatar!`);
+      setSuccessTxnHash(data?.hash);
       setIsMinting(true);
       console.log('Minting avatar...');
 
@@ -126,7 +130,6 @@ const MintButton = ({
 
   return (
     <>
-      <SuccessModal />
       <a
         onClick={mintAvatar}
         className={`${grayDisable} grid grid-cols-1 grid-rows-2 text-black text-4xl mt-6`}
