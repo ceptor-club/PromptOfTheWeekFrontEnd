@@ -317,21 +317,26 @@ export const Create = () => {
                   </div>
                 </>
               ) : imageResult ? null : null}
-              <a
-                href='https://ceptor.club/feedback/'
-                target='_blank'
-                rel='noreferrer'
-                className='mt-12 mb-4 hover:text-[#e137b1]'
-              >
-                FEEBACK / BUG REPORT
-              </a>
-              <a
-                href='https://discord.gg/kPC8GMK5'
-                className='bg-gray-300 bg-opacity-50 rounded-sm text-black hover:bg-gray-100 p-4 cursor-pointer'
-              >
-                Join our Discord and clamor for more!{' '}
-                <span className=''>https://discord.gg/kPC8GMK5</span>
-              </a>
+
+              {imageProcessing ? null : (
+                <>
+                  <a
+                    href='https://ceptor.club/feedback/'
+                    target='_blank'
+                    rel='noreferrer'
+                    className='text-xl mt-12 mb-4 font-bold text-white underline hover:text-[#e137b1]'
+                  >
+                    FEEBACK / BUG REPORT
+                  </a>
+                  <a
+                    href='https://discord.gg/kPC8GMK5'
+                    className='bg-black bg-opacity-50 rounded-sm text-white hover:text-[#e137b1] cursor-pointer w-full text-center py-2'
+                  >
+                    Join our Discord and clamor for more!
+                    <p className=''>https://discord.gg/kPC8GMK5</p>
+                  </a>
+                </>
+              )}
             </div>
           </div>
           <SuccessModal

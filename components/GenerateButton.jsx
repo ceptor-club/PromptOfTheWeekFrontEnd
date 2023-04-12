@@ -103,9 +103,7 @@ const GenerateButton = ({
           Regenerate your avatar with the EXACT same prompt or{' '}
           <b> make changes below in ADVANCED </b> and then REROLL.
         </p>
-      ) : (
-        <p className='m-0'>Character Images</p>
-      )}
+      ) : null}
 
       {imageResult ? (
         <p
