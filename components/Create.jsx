@@ -256,6 +256,7 @@ export const Create = () => {
                     setIsMinting={setIsMinting}
                     isMinting={isMinting}
                     prompt={prompt}
+                    setModalOpen={setModalOpen}
                   />
                   <SaveButton
                     selectedImage={selectedImage}
