@@ -144,9 +144,17 @@ const MintButton = ({
           </p>
         )}
         {txnPending ? (
-          <p className='flex items-end justify-center col-span-full row-start-1 p-1'>
-            MINTING
-          </p>
+          <div className='flex items-end justify-center col-span-full row-start-1 p-'>
+            <Image
+              src='/images/Buttons/spinner.gif'
+              alt='spinner icon'
+              width={50}
+              height={50}
+            />
+            <p className='flex items-end justify-center col-span-full row-start-1 p-1 ml-2'>
+              MINTING
+            </p>
+          </div>
         ) : (
           <p className='flex items-end justify-center col-span-full row-start-1 p-1'>
             MINT
