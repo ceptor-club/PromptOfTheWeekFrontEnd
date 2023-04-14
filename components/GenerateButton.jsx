@@ -55,7 +55,7 @@ const GenerateButton = ({
   return (
     <>
       <div
-        className='relative flex justify-center text-center align-center mt-6 cursor-pointer w-96 h-28 m-4'
+        className='relative flex justify-center text-center align-center mt-6 cursor-pointer w-80 h-28 m-'
         onClick={generateImages}
         disabled={pdfData ? false : true}
       >

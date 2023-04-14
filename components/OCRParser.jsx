@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
-import Vector2 from "../public/images/CREATE-hero/Vector2.png";
-import Image from "next/image";
-import { Oswald } from "@next/font/google";
+import React, { useState, useEffect, useCallback } from 'react';
+import Vector2 from '../public/images/CREATE-hero/Vector2.png';
+import Image from 'next/image';
+import { Oswald } from '@next/font/google';
 
-const oswald = Oswald({ weight: "700", subsets: ["latin"] });
+const oswald = Oswald({ weight: '700', subsets: ['latin'] });
 
 export default function IMAGEParser({
   setImageData,
@@ -21,7 +21,7 @@ export default function IMAGEParser({
     const file = e.target.files[0];
     const allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
     if (!allowedExtensions.exec(file.name)) {
-      setError("Invalid file type. Only JPEG, JPG, and PNG files are allowed.");
+      setError('Invalid file type. Only JPEG, JPG, and PNG files are allowed.');
       return;
     }
     setImage(file);
@@ -31,28 +31,28 @@ export default function IMAGEParser({
     if (!image) return;
     setImageProcessing(true);
     const body = new FormData();
-    body.set("file", image);
+    body.set('file', image);
     setImage;
     try {
-      console.log("made call here");
+      console.log('made call here');
       const res = await fetch(process.env.NEXT_PUBLIC_OCR_NGROK, {
-        method: "POST",
+        method: 'POST',
         body: body,
       });
       // console.log("raw res parse dpf: ", res);
       const data = await res.json();
       const object = JSON.parse(data);
-      console.log("DATA OBJECT", object);
+      console.log('DATA OBJECT', object);
       if (data.error) {
         setError(data.error);
         return;
       }
-      object.feature = "";
+      object.feature = '';
       setPdfData((prevPdfData) => Object.assign({}, prevPdfData, object));
     } catch (error) {
-      console.log("error: ", error);
+      console.log('error: ', error);
       setError(error);
-      console.log("state error: ", error);
+      console.log('state error: ', error);
     }
     setImageProcessing(false);
   };
@@ -62,7 +62,7 @@ export default function IMAGEParser({
     if (image) {
       // setError(null);
       handleUpload();
-      console.log("pdfData set from OCRParser: ", pdfData);
+      console.log('pdfData set from OCRParser: ', pdfData);
     }
   }, [image, setError, pdfData]);
 
@@ -70,28 +70,35 @@ export default function IMAGEParser({
     <div
       className={` ${
         oswald.className
-      } relative h-64 w-72 ${!image} flex items-center justify-center`}
+      } relative ${!image} flex items-center justify-center my-4 mx-2`}
     >
       <Image
-        src="/images/CREATE-hero/Vector2.png"
-        alt="background image"
-        className="h-full w-full object-contain cursor-pointer"
+        src='/images/CREATE-hero/Vector2.png'
+        alt='background image'
+        className='h-full w-full object-contain cursor-pointer'
         height={400}
         width={400}
-        onClick={() => document.getElementById("dropzone-file").click()}
+        onClick={() => document.getElementById('dropzone-file').click()}
       />
 
       <input
         onChange={handleIMAGEChange}
-        id="dropzone-file"
-        type="file"
-        className="hidden"
+        id='dropzone-file'
+        type='file'
+        className='hidden'
       />
 
-      <div className="absolute my-auto px-6 text-2xl text-center cursor-pointer">
-        <p onClick={() => document.getElementById("dropzone-file").click()}>
+      <div className='absolute my-auto px-12 text-2xl text-center cursor-pointer flex flex-col justify-center items-center'>
+        <p onClick={() => document.getElementById('dropzone-file').click()}>
           <strong>UPLOAD A FAST CHARACTER SHEET AS AN IMAGE</strong>
         </p>
+        <Image
+          src='/images/Buttons/upload.png'
+          alt='upload icon'
+          className='mt-4'
+          height={50}
+          width={50}
+        />
       </div>
     </div>
   );

@@ -105,11 +105,18 @@ const CharacterStats = ({
     <>
       {true ? (
         <>
-          <div className='relative'>
+          <div className='relative px-6 py-10'>
+            <Image
+              src='/images/CREATE/char-stat-bg.svg'
+              alt=''
+              width={100}
+              height={100}
+              className='absolute top-0 left-0 -z-10 object-cover min-h-full min-w-full'
+            />
             <div
               className={`${
                 imageResult ? 'grayscale' : ''
-              } text-sm relative top-0 text-white w-screen sm:w-full opacity-in opacity-load`}
+              } text-sm relative top-0 text-white sm:w-full opacity-in opacity-load`}
             >
               <h4 className='text-center text-2xl pt-4'>Character Stats</h4>
 
@@ -147,8 +154,7 @@ const CharacterStats = ({
                   <p className='mx-4'>CLASS: </p>
                   <select
                     id='classInput'
-                    placeholder='Class'
-                    className='bg-transparent resize-none h-6 w-[200px]'
+                    className='bg-transparent resize-none h-6  bg-slate-200 text-black flex-grow'
                     onChange={handleClassSelect}
                     disabled={imageResult}
                   >
@@ -192,7 +198,7 @@ const CharacterStats = ({
                   <select
                     id='backgroundInput'
                     placeholder='Background'
-                    className='bg-transparent resize-none h-6 w-[200px]'
+                    className='bg-transparent resize-none h-6 bg-slate-200 text-black  flex-grow'
                     onChange={handleBackgroundSelect}
                     disabled={imageResult}
                   >
@@ -223,7 +229,7 @@ const CharacterStats = ({
                   <select
                     id='alignmentInput'
                     placeholder='Neutral Good'
-                    className='bg-transparent resize-none h-6 w-[200px]'
+                    className='bg-transparent resize-none h-6 bg-slate-200 text-black flex-grow'
                     onChange={handleAlignmentSelect}
                     disabled={imageResult}
                   >
@@ -269,7 +275,7 @@ const CharacterStats = ({
                   <select
                     id='colorInput'
                     placeholder=''
-                    className='bg-transparent resize-none h-6 w-[200px]'
+                    className='bg-transparent resize-none h-6 bg-slate-200 text-black flex-grow'
                     onChange={handleColorSelect}
                     disabled={imageResult}
                   >
@@ -301,14 +307,7 @@ const CharacterStats = ({
                   ></textarea>
                 </div>
               </div>
-              <h4 className='text-center mb-8'>EDIT THIS LATER IN ADVANCED</h4>
-              <Image
-                src='/images/CREATE/char-stat-bg.svg'
-                alt=''
-                width={80}
-                height={100}
-                className='absolute top-0 -z-10 object-cover h-full w-full'
-              />
+              <h4 className='text-center'>EDIT THIS LATER IN ADVANCED</h4>
             </div>
           </div>
         </>

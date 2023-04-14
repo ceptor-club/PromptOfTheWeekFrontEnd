@@ -320,21 +320,23 @@ export const Create = () => {
 
               {imageProcessing ? null : (
                 <>
-                  <a
-                    href='https://ceptor.club/feedback/'
-                    target='_blank'
-                    rel='noreferrer'
-                    className='text-xl mt-12 mb-4 font-bold text-white underline hover:text-[#e137b1]'
-                  >
-                    FEEBACK / BUG REPORT
-                  </a>
-                  <a
-                    href='https://discord.gg/kPC8GMK5'
-                    className='bg-black bg-opacity-50 rounded-sm text-white hover:text-[#e137b1] cursor-pointer w-full text-center py-2'
-                  >
-                    Join our Discord and clamor for more!
-                    <p className=''>https://discord.gg/kPC8GMK5</p>
-                  </a>
+                  <div className='w-full flex flex-col items-center'>
+                    <a
+                      href='https://ceptor.club/feedback/'
+                      target='_blank'
+                      rel='noreferrer'
+                      className='text-xl mt-12 mb-4 font-bold text-white underline hover:text-[#e137b1]'
+                    >
+                      FEEBACK / BUG REPORT
+                    </a>
+                    <a
+                      href='https://discord.gg/kPC8GMK5'
+                      className='bg-black bg-opacity-50 rounded-sm text-white hover:text-[#e137b1] cursor-pointer w-full text-center py-2'
+                    >
+                      Join our Discord and clamor for more!
+                      <p className=''>https://discord.gg/kPC8GMK5</p>
+                    </a>
+                  </div>
                 </>
               )}
             </div>
