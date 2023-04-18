@@ -9,6 +9,7 @@ import { configureChains, createClient, WagmiConfig } from 'wagmi';
 import { goerli, sepolia } from 'wagmi/chains';
 import Layout from '../components/Layout';
 
+
 // import Meta from "../components/Meta";
 
 /* import { Oswald } from '@next/font/google';
@@ -51,7 +52,7 @@ function MyApp({ Component, pageProps }) {
       <WagmiConfig client={wagmiClient}>
         <Layout>
           <Component {...pageProps} />
-        </Layout>
+          </Layout>
       </WagmiConfig>
 
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
