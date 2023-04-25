@@ -8,10 +8,10 @@ import NftCard from "../components/NftCard";
 const NFTPage = ({ serverSideProviderUrl }) => {
   const [alchemy, setAlchemy] = useState(null);
   const [latestBlock, setLatestBlock] = useState(null);
-  const [nftData, setNftData] = useState(null);
   const [nfts, setNfts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 10;
+  const [enlargedCard, setEnlargedCard] = useState(null);
 
   const startIndex = (currentPage - 1) * cardsPerPage;
   const endIndex = startIndex + cardsPerPage;
@@ -82,6 +82,15 @@ const NFTPage = ({ serverSideProviderUrl }) => {
     }
   };
 
+  const handleCardClick = (cardId) => {
+    if (enlargedCard === cardId) {
+      setEnlargedCard(null);
+    } else {
+      setEnlargedCard(cardId);
+    }
+  };
+  
+  
 
   return (
     <div>
@@ -90,7 +99,12 @@ const NFTPage = ({ serverSideProviderUrl }) => {
       <div className="flex flex-wrap">
         {Array.isArray(nfts) &&
           nfts.slice(startIndex, endIndex).map((nft) => {
-            return <NftCard key={nft.tokenId} nft={nft} />;
+            return <NftCard
+              key={nft.tokenId}
+              nft={nft}
+              isEnlarged={enlargedCard === nft.tokenId}
+              onCardClick={handleCardClick}
+            />;
           })}
               <button
         onClick={() => setCurrentPage(currentPage - 1)}
