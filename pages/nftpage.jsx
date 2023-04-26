@@ -3,43 +3,57 @@ import { ethers } from 'ethers';
 import { Alchemy, Network } from "alchemy-sdk";
 import NftCard from "../components/NftCard";
 
-// https://docs.alchemy.com/reference/getnftsforcollection
+export async function getServerSideProps() {
+  const ALCHEMY_GOERLI_API_KEY = process.env.ALCHEMY_GOERLI_API_KEY;
+  const ALCHEMY_SEPOLIA_API_KEY = process.env.ALCHEMY_SEPOLIA_API_KEY;
 
-const NFTPage = ({ serverSideProviderUrl }) => {
+  return {
+    props: {
+      ALCHEMY_GOERLI_API_KEY,
+      ALCHEMY_SEPOLIA_API_KEY,
+    },
+  };
+}
+
+const NFTPage = ({ ALCHEMY_GOERLI_API_KEY, ALCHEMY_SEPOLIA_API_KEY }) => {
   const [alchemy, setAlchemy] = useState(null);
   const [latestBlock, setLatestBlock] = useState(null);
   const [nfts, setNfts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 10;
   const [enlargedCard, setEnlargedCard] = useState(null);
-
   const startIndex = (currentPage - 1) * cardsPerPage;
   const endIndex = startIndex + cardsPerPage;
-
+  
   useEffect(() => {
     const initializeAlchemy = async () => {
-      if (serverSideProviderUrl) {
-        const settings = {
-          apiKey: serverSideProviderUrl,
+      if (ALCHEMY_GOERLI_API_KEY) {
+        const goerliSettings = {
+          apiKey: ALCHEMY_GOERLI_API_KEY,
           network: Network.ETH_GOERLI,
         };
-
-        const alchemyInstance = new Alchemy(settings);
-        setAlchemy(alchemyInstance);
-
-        // Perform any additional async operations here
+        const goerliAlchemyInstance = new Alchemy(goerliSettings);
+        setAlchemy((prev) => ({ ...prev, goerli: goerliAlchemyInstance }));
       }
+  
+      if (ALCHEMY_SEPOLIA_API_KEY) {
+        const sepoliaSettings = {
+          apiKey: ALCHEMY_SEPOLIA_API_KEY,
+          network: Network.ETH_SEPOLIA,
+        };
+        const sepoliaAlchemyInstance = new Alchemy(sepoliaSettings);
+        setAlchemy((prev) => ({ ...prev, sepolia: sepoliaAlchemyInstance }));
+      }
+  
     };
     initializeAlchemy();
-
-  }, [serverSideProviderUrl]);
+  }, [ALCHEMY_GOERLI_API_KEY, ALCHEMY_SEPOLIA_API_KEY]);
+  
   
   useEffect(() => {
     console.log("nfts state updated:", nfts);
   }, [nfts]);
   
-
-  // New getblockNum function
   const getblockNum = async () => {
     try {
       const blockNumber = await alchemy.core.getBlockNumber();
@@ -60,19 +74,44 @@ const NFTPage = ({ serverSideProviderUrl }) => {
     }
   };
   
-
   const getNfts = async () => {
-    // define the contract address whose NFTs you want to fetch
-    const address = "0x4379044facb5f0879de15e70b45afd495a197674";
-
-    //Call the method to fetch metadata
-    const response = await alchemy.nft.getNftsForContract(address)
-
-    //Logging the response to the console
-    console.log(response)
-    updateNfts(response);
-  }
-
+    const exploreCeptor = [
+      {
+        network: 'goerli',
+        address: '0x4379044facb5f0879de15e70b45afd495a197674',
+      },
+      {
+        network: 'goerli',
+        address: '0x60fAF5FAe9F2EA10504d505B50104E783bf505B1',
+      },
+      {
+        network: 'sepolia',//Sep Ceptors
+        address: '0x4dBe3E96d429b9fE5F2Bb89728E39138aC4F817A',
+      },
+      {
+        network: 'sepolia',//Sep Dice
+        address: '0xEd1dbc1f6E5e9f4066AAa341c87e157Ad40328A9', 
+      },
+    ];
+  
+    let allNfts = [];
+  
+    for (const { network, address } of exploreCeptor) {
+      // Get the Alchemy instance for the current network
+      const currentAlchemy = alchemy[network];
+  
+      // Call the method to fetch metadata for the current network's address
+      const response = await currentAlchemy.nft.getNftsForContract(address);
+  
+      // Add the fetched NFTs to the allNfts array
+      allNfts = allNfts.concat(response.nfts);
+    }
+  
+    // Log the response to the console and update the NFTs state
+    console.log(allNfts);
+    updateNfts({ nfts: allNfts });
+  };
+  
 
   const logNfts = () => {
     if (Array.isArray(nfts)) {
@@ -90,8 +129,6 @@ const NFTPage = ({ serverSideProviderUrl }) => {
     }
   };
   
-  
-
   return (
     <div>
       <button onClick={getNfts}>Get NFTs</button>
@@ -121,17 +158,6 @@ const NFTPage = ({ serverSideProviderUrl }) => {
       </div>
     </div>
   );
-
 };
-
-export async function getServerSideProps() {
-  const serverSideProviderUrl = process.env.ALCHEMY_API_KEY;
-
-  return {
-    props: {
-      serverSideProviderUrl,
-    },
-  };
-}
 
 export default NFTPage;
