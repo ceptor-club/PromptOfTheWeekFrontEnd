@@ -39,9 +39,9 @@ const GenerateButton = ({
         data: prompt,
       }),
     }); //result is given as base64 encoded images
-    //const result = await fetchResult.json();
+    const result = await fetchResult.json();
 
-    const result = { images: [CONSTANTS.testBase64Image] }; // <------------- THIS IS FOR TESTING
+    //const result = { images: [CONSTANTS.testBase64Image] }; // <------------- THIS IS FOR TESTING
 
     console.log('result: ', result);
     console.log('res prompt:', result.prompted);

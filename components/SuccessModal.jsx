@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { TwitterShareButton } from 'react-twitter-embed';
 
 const SuccessModal = ({
   selectedImage,
@@ -6,6 +7,7 @@ const SuccessModal = ({
   setModalOpen,
   modalMessage,
   successTxnHash,
+  storedNFTImage,
 }) => {
   /*   const handleX = () => {
     setModalOpen(false);
@@ -39,17 +41,17 @@ const SuccessModal = ({
                 <>
                   <a
                     href={`https://sepolia.etherscan.io/tx/${successTxnHash}`}
-                    target={_blank}
+                    target='_blank'
                     className='text-blue-500'
                   >
                     See your Transaction on Etherscan
                   </a>
                   <a
-                    href={`https://testnets.opensea.io/`}
-                    target={_blank}
+                    href={storedNFTImage}
+                    target='_blank'
                     className='text-blue-500'
                   >
-                    See your Avatar on OpenSea
+                    See your Avatar Image
                   </a>
                 </>
               )}
@@ -61,7 +63,15 @@ const SuccessModal = ({
                 alt=''
                 width={200}
                 height={200}
-                className='w-full'
+                className='w-full mb-4'
+              />
+              <TwitterShareButton
+                className='mt-4'
+                url='ceptor.club'
+                options={{
+                  text: `Just made a DND character using CeptorClub!`,
+                  card: 'photo',
+                }}
               />
               <a
                 href='https://ceptor.club/feedback/'

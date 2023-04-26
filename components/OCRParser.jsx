@@ -90,7 +90,7 @@ export default function IMAGEParser({
 
       <div className='absolute my-auto px-12 text-2xl text-center cursor-pointer flex flex-col justify-center items-center'>
         <p onClick={() => document.getElementById('dropzone-file').click()}>
-          <strong>UPLOAD A FAST CHARACTER SHEET AS AN IMAGE</strong>
+          UPLOAD A FAST CHARACTER SHEET AS AN IMAGE
         </p>
         <Image
           src='/images/Buttons/upload.png'

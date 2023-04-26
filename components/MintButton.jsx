@@ -21,6 +21,8 @@ const MintButton = ({
   setModalOpen,
   setModalMessage,
   setSuccessTxnHash,
+  setStoredNFTImage,
+  storedNFTImage,
 }) => {
   const [metadataUrl, setMetadataUrl] = useState(null); //url
   const [mintError, setMintError] = useState(null); //error
@@ -59,7 +61,13 @@ const MintButton = ({
     if (txnSuccess) {
       console.log('HEY IT WORKED, TXN SUCCESSFUL', data?.hash);
 
+      console.log(storedNFTImage);
+
       setModalOpen(true);
+    }
+    if (metadataUrl) {
+      console.log(metadataUrl);
+      console.log('this is going to be image data', storedNFTImage);
     }
   }, [txnSuccess]);
 
@@ -85,6 +93,7 @@ const MintButton = ({
       }
       setModalMessage(`You've minted an avatar!`);
       setSuccessTxnHash(data?.hash);
+
       setIsMinting(true);
       console.log('Minting avatar...');
 
@@ -95,6 +104,26 @@ const MintButton = ({
       ); //returns url of metadata json
       console.log('metadata url: ', _metadataUrl);
       setMetadataUrl(_metadataUrl);
+
+      //IPFS Image Link
+      if (typeof _metadataUrl === 'string') {
+        const prefix = 'https://gateway.ipfs.io/ipfs/';
+        const cleanedJson = _metadataUrl.replace('ipfs://', '');
+        const smash = prefix + cleanedJson;
+        console.log('cleanedJSON', smash);
+        fetch(smash)
+          .then((response) => response.json())
+          .then((data) => {
+            console.log('smash object', data);
+            const cleaner = data.image;
+            const cleanedSmash = cleaner.replace('ipfs://', '');
+
+            setStoredNFTImage(prefix + cleanedSmash);
+          })
+          .catch((error) => console.error(error));
+      } else {
+        console.log('ITS NOT A STRING');
+      }
 
       //mint nft
       const mintResult = await writeAsync({
@@ -127,6 +156,11 @@ const MintButton = ({
       setIsMinting(false);
     }
   }, [isSuccess, setIsMinting]);
+
+  // Just for testing
+  useEffect(() => {
+    console.log('this is where the image is', storedNFTImage);
+  }, [storedNFTImage]);
 
   return (
     <>

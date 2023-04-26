@@ -62,6 +62,7 @@ export const Create = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [successTxnHash, setSuccessTxnHash] = useState('');
+  const [storedNFTImage, setStoredNFTImage] = useState('');
 
   const { address, isConnected } = useAccount();
   const { open, isOpen, close } = useWeb3Modal();
@@ -209,13 +210,17 @@ export const Create = () => {
                       </a>
                     </div>
                   </div> */}
-                  <OCRParser
-                    pdfData={pdfData}
-                    setError={setError}
-                    setPdfData={setPdfData}
-                    imageProcessing={imageProcessing}
-                    setImageProcessing={setImageProcessing}
-                  />
+                  {!imageResult && (
+                    <div className='w-full max-w-[450px]'>
+                      <OCRParser
+                        pdfData={pdfData}
+                        setError={setError}
+                        setPdfData={setPdfData}
+                        imageProcessing={imageProcessing}
+                        setImageProcessing={setImageProcessing}
+                      />
+                    </div>
+                  )}
                   <CharacterStats
                     pdfData={pdfData}
                     prompt={prompt}
@@ -244,6 +249,7 @@ export const Create = () => {
                         error={error}
                         pdfData={pdfData}
                         setSelectedImage={setSelectedImage}
+                        storedNFTImage={storedNFTImage}
                       />
                     </div>
                   </div>
@@ -261,6 +267,8 @@ export const Create = () => {
                     setModalOpen={setModalOpen}
                     setModalMessage={setModalMessage}
                     setSuccessTxnHash={setSuccessTxnHash}
+                    setStoredNFTImage={setStoredNFTImage}
+                    storedNFTImage={storedNFTImage}
                   />
                   <SaveButton
                     selectedImage={selectedImage}
@@ -347,6 +355,7 @@ export const Create = () => {
             setModalOpen={setModalOpen}
             modalMessage={modalMessage}
             successTxnHash={successTxnHash}
+            storedNFTImage={storedNFTImage}
           />
         </>
       )}
