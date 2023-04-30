@@ -19,11 +19,9 @@ const NFTPage = ({ ALCHEMY_GOERLI_API_KEY, ALCHEMY_SEPOLIA_API_KEY }) => {
   const [alchemy, setAlchemy] = useState(null);
   const [latestBlock, setLatestBlock] = useState(null);
   const [nfts, setNfts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const cardsPerPage = 10;
+  const cardsPerPage = 20;
+  const [displayedCards, setDisplayedCards] = useState(cardsPerPage);
   const [enlargedCard, setEnlargedCard] = useState(null);
-  const startIndex = (currentPage - 1) * cardsPerPage;
-  const endIndex = startIndex + cardsPerPage;
   
   useEffect(() => {
     const initializeAlchemy = async () => {
@@ -53,6 +51,25 @@ const NFTPage = ({ ALCHEMY_GOERLI_API_KEY, ALCHEMY_SEPOLIA_API_KEY }) => {
   useEffect(() => {
     console.log("nfts state updated:", nfts);
   }, [nfts]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+  
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  
+  const handleScroll = () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = window.innerHeight;
+  
+    if (scrollTop + clientHeight >= scrollHeight - 50) {
+      setDisplayedCards((prev) => prev + cardsPerPage);
+    }
+  };
+  
   
   const getblockNum = async () => {
     try {
@@ -132,29 +149,18 @@ const NFTPage = ({ ALCHEMY_GOERLI_API_KEY, ALCHEMY_SEPOLIA_API_KEY }) => {
   return (
     <div>
       <button onClick={getNfts}>Get NFTs</button>
-      <button onClick={logNfts}>Log NFTs</button>
       <div className="flex flex-wrap">
         {Array.isArray(nfts) &&
-          nfts.slice(startIndex, endIndex).map((nft) => {
-            return <NftCard
-              key={nft.tokenId}
-              nft={nft}
-              isEnlarged={enlargedCard === nft.tokenId}
-              onCardClick={handleCardClick}
-            />;
+          nfts.slice(0, displayedCards).map((nft) => {
+            return (
+              <NftCard
+                key={nft.tokenId}
+                nft={nft}
+                isEnlarged={enlargedCard === nft.tokenId}
+                onCardClick={handleCardClick}
+              />
+            );
           })}
-              <button
-        onClick={() => setCurrentPage(currentPage - 1)}
-        disabled={currentPage === 1}
-      >
-        Previous
-      </button>
-      <button
-        onClick={() => setCurrentPage(currentPage + 1)}
-        disabled={currentPage * cardsPerPage >= nfts.length}
-      >
-        Next
-      </button>
       </div>
     </div>
   );
