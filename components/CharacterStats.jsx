@@ -1,9 +1,9 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-import { createPrompt } from '../utils/promptGen';
-import AdvancedButton from './AdvancedButton';
-import { CONSTANTS } from '../utils/CONSTANTS';
-import Image from 'next/image';
+import React from "react";
+import { useEffect, useState } from "react";
+import { createPrompt } from "../utils/promptGen";
+import AdvancedButton from "./AdvancedButton";
+import { CONSTANTS } from "../utils/CONSTANTS";
+import Image from "next/image";
 
 const CharacterStats = ({
   pdfData,
@@ -25,187 +25,187 @@ const CharacterStats = ({
   });
 
   const handleClassSelect = (e) => {
-    const input = document.getElementById('classInput');
+    const input = document.getElementById("classInput");
     if (
-      document.getElementById('classCheck').checked === true &&
-      input.value !== ''
+      document.getElementById("classCheck").checked === true &&
+      input.value !== ""
     ) {
       setPdfData({ ...pdfData, class: input.value });
     } else {
-      setPdfData({ ...pdfData, class: '' });
+      setPdfData({ ...pdfData, class: "" });
     }
   };
 
   const handleArmorSelect = (e) => {
-    const input = document.getElementById('armorInput');
+    const input = document.getElementById("armorInput");
     if (
-      document.getElementById('armorCheck').checked === true &&
-      input.value !== ''
+      document.getElementById("armorCheck").checked === true &&
+      input.value !== ""
     ) {
       setPdfData({ ...pdfData, armorWorn: input.value });
     } else {
-      setPdfData({ ...pdfData, armorWorn: '' });
+      setPdfData({ ...pdfData, armorWorn: "" });
     }
   };
 
   const handleBackgroundSelect = (e) => {
-    const input = document.getElementById('backgroundInput');
+    const input = document.getElementById("backgroundInput");
     if (
-      document.getElementById('backgroundCheck').checked === true &&
-      input.value !== ''
+      document.getElementById("backgroundCheck").checked === true &&
+      input.value !== ""
     ) {
       setPdfData({ ...pdfData, background: input.value });
     } else {
-      setPdfData({ ...pdfData, background: '' });
+      setPdfData({ ...pdfData, background: "" });
     }
   };
 
   const handleAlignmentSelect = (e) => {
-    const input = document.getElementById('alignmentInput');
-    if (document.getElementById('alignmentCheck').checked === true) {
+    const input = document.getElementById("alignmentInput");
+    if (document.getElementById("alignmentCheck").checked === true) {
       setPdfData({ ...pdfData, alignment: input.value });
     } else {
-      setPdfData({ ...pdfData, alignment: '' });
+      setPdfData({ ...pdfData, alignment: "" });
     }
   };
 
   const handleFeatureSelect = (e) => {
-    const input = document.getElementById('featureInput');
+    const input = document.getElementById("featureInput");
     if (
-      document.getElementById('featureCheck').checked === true &&
-      input.value !== ''
+      document.getElementById("featureCheck").checked === true &&
+      input.value !== ""
     ) {
       setPdfData({ ...pdfData, feature: input.value });
     } else {
-      setPdfData({ ...pdfData, feature: '' });
+      setPdfData({ ...pdfData, feature: "" });
     }
   };
 
   const handleColorSelect = (e) => {
-    const input = document.getElementById('colorInput');
+    const input = document.getElementById("colorInput");
     setPdfData(input.value);
-    if (document.getElementById('colorCheck').checked === true) {
+    if (document.getElementById("colorCheck").checked === true) {
       setPdfData({ ...pdfData, color: input.value });
     } else {
-      setPdfData({ ...pdfData, color: '' });
+      setPdfData({ ...pdfData, color: "" });
     }
   };
 
   const handleGenderSelect = (e) => {
-    const input = document.getElementById('genderInput');
+    const input = document.getElementById("genderInput");
     setPdfData(input.value);
-    if (document.getElementById('genderCheck').checked === true) {
+    if (document.getElementById("genderCheck").checked === true) {
       setPdfData({ ...pdfData, gender: input.value });
     } else {
-      setPdfData({ ...pdfData, gender: '' });
+      setPdfData({ ...pdfData, gender: "" });
     }
   };
 
   return (
     <>
-      {true ? (
+      {!imageResult ? (
         <>
-          <div className='relative px-6 py-10'>
+          <div className="relative px-6 py-10">
             <Image
-              src='/images/CREATE/char-stat-bg.svg'
-              alt=''
+              src="/images/CREATE/char-stat-bg.svg"
+              alt=""
               width={100}
               height={100}
-              className='absolute top-0 left-0 -z-10 object-cover min-h-full min-w-full'
+              className="absolute top-0 left-0 -z-10 object-cover min-h-full min-w-full"
             />
             <div
               className={`${
-                imageResult ? 'grayscale' : ''
+                imageResult ? "grayscale" : ""
               } text-sm relative top-0 text-white sm:w-full opacity-in opacity-load`}
             >
-              <h4 className='text-center text-2xl pt-4'>Character Stats</h4>
+              <h4 className="text-center text-2xl pt-4">Character Stats</h4>
 
-              <p className='mx-[48px] mb-2 mt-4'>ON</p>
-              <div className='h-full'>
-                <div className='flex items-center mx-[48px] mt-2 mb-4'>
+              <p className="mx-[48px] mb-2 mt-4">ON</p>
+              <div className="h-full">
+                <div className="flex items-center mx-[48px] mt-2 mb-4">
                   <input
-                    type='checkbox'
-                    className='checkbox-stats'
+                    type="checkbox"
+                    className="checkbox-stats"
                     checked
                     readOnly
                     disabled={imageResult}
                   ></input>
-                  <p className='mx-4'>SYSTEM: D&D 5e (LOCKED)</p>
+                  <p className="mx-4">(LOCKED) SYSTEM: D&D 5e</p>
                 </div>
-                <div className='flex items-center mx-[48px] mt-2 mb-4'>
+                <div className="flex items-center mx-[48px] mt-2 mb-4">
                   <input
-                    type='checkbox'
-                    className='checkbox-stats'
+                    type="checkbox"
+                    className="checkbox-stats"
                     checked
                     readOnly
                     disabled={imageResult}
                   ></input>
-                  <p className='mx-4'>RACE: Dragonborn (LOCKED)</p>
+                  <p className="mx-4">(LOCKED) RACE: Dragonborn</p>
                 </div>
-                <div className='flex items-center mx-[48px] mt-2 mb-4'>
+                <div className="flex items-center mx-[48px] mt-2 mb-4">
                   <input
-                    id='classCheck'
-                    type='checkbox'
-                    className='checkbox-stats'
+                    id="classCheck"
+                    type="checkbox"
+                    className="checkbox-stats"
                     onChange={handleClassSelect}
                     defaultChecked
                     disabled={imageResult}
                   ></input>
-                  <p className='mx-4'>CLASS: </p>
+                  <p className="mx-4">CLASS: </p>
                   <select
-                    id='classInput'
-                    className='bg-transparent resize-none h-6  bg-slate-200 text-black flex-grow'
+                    id="classInput"
+                    className="bg-transparent resize-none h-6  bg-slate-200 text-black flex-grow"
                     onChange={handleClassSelect}
                     disabled={imageResult}
                   >
-                    <option value=''>
-                      {pdfData.class ? pdfData.class : 'Select a Class'}
+                    <option value="">
+                      {pdfData.class ? pdfData.class : "Select a Class"}
                     </option>
                     {CONSTANTS.characterClass.map((characterClass) => (
                       <option key={characterClass}>{characterClass}</option>
                     ))}
                   </select>
                 </div>
-                <div className='flex items-center mx-[48px] mt-2 mb-4'>
+                <div className="flex items-center mx-[48px] mt-2 mb-4">
                   <input
-                    type='checkbox'
-                    className='checkbox-stats'
-                    id='armorCheck'
+                    type="checkbox"
+                    className="checkbox-stats"
+                    id="armorCheck"
                     onChange={handleArmorSelect}
                     defaultChecked
                     disabled={imageResult}
                   ></input>
-                  <p className='mx-4'>ARMOR: </p>
+                  <p className="mx-4">ARMOR: </p>
                   <textarea
-                    id='armorInput'
-                    placeholder='Armor'
-                    className='bg-transparent resize-none h-6 overflow-hidden'
+                    id="armorInput"
+                    placeholder="eg. studded leather armor"
+                    className="bg-transparent resize-none h-6 overflow-hidden"
                     onChange={handleArmorSelect}
-                    defaultValue={pdfData.armorWorn ? pdfData.armorWorn : ''}
+                    defaultValue={pdfData.armorWorn ? pdfData.armorWorn : ""}
                     disabled={imageResult}
                   ></textarea>
                 </div>
-                <div className='flex items-center mx-[48px] mt-2 mb-4'>
+                <div className="flex items-center mx-[48px] mt-2 mb-4">
                   <input
-                    id='backgroundCheck'
-                    type='checkbox'
-                    className='checkbox-stats'
+                    id="backgroundCheck"
+                    type="checkbox"
+                    className="checkbox-stats"
                     onChange={handleBackgroundSelect}
                     defaultChecked
                     disabled={imageResult}
                   ></input>
-                  <p className='mx-4'>BACKGROUND: </p>
+                  <p className="mx-4">BACKGROUND: </p>
                   <select
-                    id='backgroundInput'
-                    placeholder='Background'
-                    className='bg-transparent resize-none h-6 bg-slate-200 text-black  flex-grow'
+                    id="backgroundInput"
+                    placeholder="Background"
+                    className="bg-transparent resize-none h-6 bg-slate-200 text-black  flex-grow"
                     onChange={handleBackgroundSelect}
                     disabled={imageResult}
                   >
-                    <option value=''>
+                    <option value="">
                       {pdfData.background
                         ? pdfData.background
-                        : 'Background...'}
+                        : "Background..."}
                     </option>
                     {CONSTANTS.characterBackground.map(
                       (characterBackground) => (
@@ -216,25 +216,25 @@ const CharacterStats = ({
                     )}
                   </select>
                 </div>
-                <div className='flex items-center mx-[48px] mt-2 mb-4 overflow-hidden'>
+                <div className="flex items-center mx-[48px] mt-2 mb-4 overflow-hidden">
                   <input
-                    id='alignmentCheck'
-                    type='checkbox'
-                    className='checkbox-stats'
+                    id="alignmentCheck"
+                    type="checkbox"
+                    className="checkbox-stats"
                     onChange={handleAlignmentSelect}
                     defaultChecked
                     disabled={imageResult}
                   ></input>
-                  <p className='mx-4'>ALIGNMENT: </p>
+                  <p className="mx-4">ALIGNMENT: </p>
                   <select
-                    id='alignmentInput'
-                    placeholder='Neutral Good'
-                    className='bg-transparent resize-none h-6 bg-slate-200 text-black flex-grow'
+                    id="alignmentInput"
+                    placeholder="Neutral Good"
+                    className="bg-transparent resize-none h-6 bg-slate-200 text-black flex-grow"
                     onChange={handleAlignmentSelect}
                     disabled={imageResult}
                   >
-                    <option value=''>
-                      {pdfData.alignment ? pdfData.alignment : 'Alignment...'}
+                    <option value="">
+                      {pdfData.alignment ? pdfData.alignment : "Alignment..."}
                     </option>
                     {CONSTANTS.characterAlignment.map((characterAlignment) => (
                       <option key={characterAlignment}>
@@ -243,44 +243,44 @@ const CharacterStats = ({
                     ))}
                   </select>
                 </div>
-                <div className='flex items-center ml-[48px] mt-2 mb-4'>
+                <div className="flex items-center ml-[48px] mt-2 mb-4">
                   <input
-                    id='featureCheck'
-                    type='checkbox'
-                    className='checkbox-stats'
+                    id="featureCheck"
+                    type="checkbox"
+                    className="checkbox-stats"
                     onChange={handleFeatureSelect}
                     disabled={imageResult}
                   ></input>
-                  <p className='mx-4'>FEATURE: </p>
+                  <p className="mx-4">FEATURE: </p>
                   <textarea
-                    id='featureInput'
-                    placeholder='Feature'
-                    className='bg-transparent resize-none h-6 overflow-hidden'
+                    id="featureInput"
+                    placeholder="Feature"
+                    className="bg-transparent resize-none h-6 overflow-hidden"
                     onChange={handleFeatureSelect}
-                    defaultValue={pdfData.feature ? pdfData.feature : ''}
+                    defaultValue={pdfData.feature ? pdfData.feature : ""}
                     disabled={imageResult}
                   ></textarea>
                 </div>
 
-                <div className='flex items-center mx-[48px] mt-2 mb-4'>
+                <div className="flex items-center mx-[48px] mt-2 mb-4">
                   <input
-                    id='colorCheck'
-                    type='checkbox'
-                    className='checkbox-stats'
+                    id="colorCheck"
+                    type="checkbox"
+                    className="checkbox-stats"
                     onChange={handleColorSelect}
                     defaultChecked
                     disabled={imageResult}
                   ></input>
-                  <p className='mx-4'>COLOR: </p>
+                  <p className="mx-4">COLOR: </p>
                   <select
-                    id='colorInput'
-                    placeholder=''
-                    className='bg-transparent resize-none h-6 bg-slate-200 text-black flex-grow'
+                    id="colorInput"
+                    placeholder=""
+                    className="bg-transparent resize-none h-6 bg-slate-200 text-black flex-grow"
                     onChange={handleColorSelect}
                     disabled={imageResult}
                   >
-                    <option value=''>
-                      {pdfData.color ? pdfData.color : 'Color...'}
+                    <option value="">
+                      {pdfData.color ? pdfData.color : "Color..."}
                     </option>
                     {CONSTANTS.colors.map((colors) => (
                       <option key={colors}>{colors}</option>
@@ -288,26 +288,26 @@ const CharacterStats = ({
                   </select>
                 </div>
 
-                <div className='flex items-center mx-[48px] mt-2 mb-4'>
+                <div className="flex items-center mx-[48px] mt-2 mb-4">
                   <input
-                    id='genderCheck'
-                    type='checkbox'
-                    className='checkbox-stats'
+                    id="genderCheck"
+                    type="checkbox"
+                    className="checkbox-stats"
                     onChange={handleGenderSelect}
                     disabled={imageResult}
                   ></input>
-                  <p className='mx-4'>GENDER : </p>
+                  <p className="mx-4">GENDER : </p>
                   <textarea
-                    id='genderInput'
-                    placeholder='Gender'
-                    className='bg-transparent resize-none h-6'
+                    id="genderInput"
+                    placeholder="Gender"
+                    className="bg-transparent resize-none h-6"
                     onChange={handleGenderSelect}
-                    defaultValue={pdfData.gender ? pdfData.gender : ''}
+                    defaultValue={pdfData.gender ? pdfData.gender : ""}
                     disabled={imageResult}
                   ></textarea>
                 </div>
               </div>
-              <h4 className='text-center'>EDIT THIS LATER IN ADVANCED</h4>
+              <h4 className="text-center">EDIT THIS LATER IN ADVANCED</h4>
             </div>
           </div>
         </>

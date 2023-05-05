@@ -15,7 +15,7 @@ export default function handler(req, res) {
     height: 512,
     sampler_index: "Euler a",
     send_images: true,
-    save_images: true,
+    save_images: false,
   };
 
   const stringData = JSON.stringify(obj);

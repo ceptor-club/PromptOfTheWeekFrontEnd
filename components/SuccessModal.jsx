@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import { TwitterShareButton } from 'react-twitter-embed';
+import Image from "next/image";
+import { TwitterShareButton } from "react-twitter-embed";
 
 const SuccessModal = ({
   selectedImage,
@@ -16,7 +16,7 @@ const SuccessModal = ({
   const closeModal = (e) => {
     console.log(e);
     const search = e.target.className;
-    if (search.includes('modal')) {
+    if (search.includes("modal")) {
       setModalOpen(false);
     }
   };
@@ -26,30 +26,32 @@ const SuccessModal = ({
       {modalOpen && selectedImage ? (
         <>
           <div
-            className='modal fixed top-0 left-0 w-full h-full z-50 bg-black bg-opacity-80 flex items-center justify-center text-black'
+            className="modal fixed top-0 left-0 w-full h-full z-50 bg-black bg-opacity-80 flex items-center justify-center text-black"
             onClick={closeModal}
           >
-            <div className='p-6 pt-2 bg-white text-center rounded-lg flex flex-col items-center'>
-              <p className='w-full text-right text-4xl'>
-                <b className='modal cursor-pointer' onClick={closeModal}>
+            <div className="p-6 pt-2 bg-white text-center rounded-lg flex flex-col items-center">
+              <p className="w-full text-right text-4xl">
+                <b className="modal cursor-pointer" onClick={closeModal}>
                   &times;
                 </b>
               </p>
-              <p className='mb-2 '>{modalMessage}</p>
+              <p className="mb-2 ">{modalMessage}</p>
 
               {successTxnHash && (
                 <>
                   <a
                     href={`https://sepolia.etherscan.io/tx/${successTxnHash}`}
-                    target='_blank'
-                    className='text-blue-500'
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blue-500"
                   >
                     See your Transaction on Etherscan
                   </a>
                   <a
                     href={storedNFTImage}
-                    target='_blank'
-                    className='text-blue-500'
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blue-500"
                   >
                     See your Avatar Image
                   </a>
@@ -58,26 +60,26 @@ const SuccessModal = ({
 
               <Image
                 src={
-                  selectedImage ? selectedImage : 'https://picsum.photos/200'
+                  selectedImage ? selectedImage : "https://picsum.photos/200"
                 }
-                alt=''
+                alt=""
                 width={200}
                 height={200}
-                className='w-full mb-4'
+                className="w-full mb-4"
               />
               <TwitterShareButton
-                className='mt-4'
-                url='ceptor.club'
+                className="mt-4"
+                url="https://ceptorclub-git-connect-sepolia-ceptor.vercel.app/nftpage"
                 options={{
-                  text: `Just made a DND character using CeptorClub!`,
-                  card: 'photo',
+                  text: `Just made a DND character using CeptorClub! [paste your image here] see it on the nft explorer`,
+                  card: "photo",
                 }}
               />
               <a
-                href='https://ceptor.club/feedback/'
-                target='_blank'
-                rel='noreferrer'
-                className='mt-2 hover:text-[#e137b1] text-blue-500 underline'
+                href="https://ceptor.club/feedback/"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-2 hover:text-[#e137b1] text-blue-500 underline"
               >
                 Submit Feedback
               </a>
