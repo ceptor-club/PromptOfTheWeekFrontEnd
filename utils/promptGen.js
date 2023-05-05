@@ -48,16 +48,20 @@ const conversions = {
   hermit: "meditating in a cave",
   criminal: "stealing from a shop",
   noble: "dressed in finery, in a fancy noble's castle",
-  soldier: "in a battle",
+  soldier: "fighting in a battle",
   sage: "wearing glasses in a fantastic ancient library",
-  acolyte: "in a church",
+  acolyte: "wearing a robe in a temple",
   charlatan: "in a tavern, telling a tall tale",
+  gladiator: "in a colosseum, fighting a beast",
   folkhero: "rescuing a cat from a tree",
-  guildartisan: "in a workshop",
-  outlander: "in a forest",
-  urchin: "in an alleyway",
-  pirate: "on a ship",
-  fartraveller: "sitting on cloud",
+  "guild artisan": "in a workshop",
+  "guild merchant": "in a shop with gold coins",
+  knight: "charging in a castle",
+  outlander: "wandering in a forest",
+  urchin: "poor in an alleyway",
+  pirate: "pirate on a ship, in the style of piratepunk",
+  fartraveller: "walking on cloud",
+
   //armorWorn
 
   //9 alignments converted into 9 different cinematic lighting descriptive
@@ -68,7 +72,7 @@ const conversions = {
   "true neutral": "balanced light and shadow",
   "chaotic neutral": "dramatic lighting, high contrast",
   "lawful evil": "evil dark lighting, underlight, cinematic lighting",
-  "neutral evil": "ambient lighting, deep shadows, smoke",
+  "neutral evil": "disdainful ambient lighting, deep shadows, smoke",
   "chaotic evil": "sinister dramatic dark lighting, mysterious glows",
 };
 

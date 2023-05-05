@@ -6,9 +6,15 @@ export const CONSTANTS = {
   gptPrefixDescription:
     "Parse this javascript object into a description. The object is a character in Dungeons and Dragons. The description should be several long paragraphs and detailed. Do not use the values in the object directly like saying 'her strength is +2', instead use them to generate a description and expand on each. Focus on physical descriptions and attributes of the character. Explain the feature value with a story: ",
   diceABI: diceABI,
-  diceAddress: "0x15B48433F420ab4Eec2F232Ddaeb8d718Fd8dce9",
+  // Sepolia
+  diceAddress: "0xEd1dbc1f6E5e9f4066AAa341c87e157Ad40328A9",
+  //Goerli
+  /* diceAddress: '0x15B48433F420ab4Eec2F232Ddaeb8d718Fd8dce9', */
   ceptorABI: ceptorABI,
-  ceptorAddress: "0x60fAF5FAe9F2EA10504d505B50104E783bf505B1",
+  // Sepolia
+  ceptorAddress: "0x4dBe3E96d429b9fE5F2Bb89728E39138aC4F817A",
+  //Goerli
+  /* ceptorAddress: '0x60fAF5FAe9F2EA10504d505B50104E783bf505B1', */
   colors: [
     "red",
     "green",

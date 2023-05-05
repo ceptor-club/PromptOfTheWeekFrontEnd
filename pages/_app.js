@@ -6,7 +6,7 @@ import {
 } from '@web3modal/ethereum';
 import { Web3Modal } from '@web3modal/react';
 import { configureChains, createClient, WagmiConfig } from 'wagmi';
-import { goerli, sepolia } from 'wagmi/chains';
+import { sepolia } from 'wagmi/chains';
 import Layout from '../components/Layout';
 
 // import Meta from "../components/Meta";
@@ -19,7 +19,7 @@ const oswald = Oswald({
   variable: '--font-oswald',
 }); */
 
-const chains = [goerli];
+const chains = [sepolia];
 // const chains = [arbitrum, mainnet, polygon, goerli];
 const projectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID;
 // Wagmi client
