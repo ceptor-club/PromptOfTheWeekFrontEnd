@@ -1,18 +1,26 @@
-// import Head from "next/head";
-import { useState, useEffect } from "react";
-import CreateHero from "../components/CreateHero";
+import { useState, useEffect, useContext } from "react";
 import { Create } from "../components/Create";
 import { Logo } from "../components/Logo";
-import HamburgerMenu from "../components/HamburgerMenu";
-import VectorImage from "../components/VectorImage";
 import Meta from "../components/Meta";
 import Image from "next/image";
+import { SocketContext } from "../utils/socketContext";
 
 export default function Home() {
-  /*   const [data, setData] = useState({
-      race: "",
-      class: "",
-    }); */
+  const socket = useContext(SocketContext);
+
+  useEffect(() => {
+    if (socket) {
+      socket.emit("test", "test");
+      console.log("Socket:", socket);
+      socket.on("test", (message) => {
+        console.log("New test message:", message);
+      });
+
+      return () => {
+        socket.off("message");
+      };
+    }
+  }, [socket]);
 
   const [imageProcessing, setImageProcessing] = useState(false); //processing state ie. loading...
   const [conditionalRender, setConditionalRender] = useState("");
