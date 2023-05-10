@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import { Alchemy, Network } from "alchemy-sdk";
 import NftCard from "../components/NftCard";
+import Link from "next/link";
+
 
 export async function getServerSideProps() {
   const ALCHEMY_GOERLI_API_KEY = process.env.ALCHEMY_GOERLI_API_KEY;
@@ -48,16 +50,16 @@ const NFTPage = ({ ALCHEMY_GOERLI_API_KEY, ALCHEMY_SEPOLIA_API_KEY }) => {
   }, [ALCHEMY_GOERLI_API_KEY, ALCHEMY_SEPOLIA_API_KEY]);
   
   
-  useEffect(() => {
-    console.log("nfts state updated:", nfts);
-  }, [nfts]);
+  // useEffect(() => {
+  //   console.log("nfts state updated:", nfts);
+  // }, [nfts]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
   
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    // return () => {
+    //   window.removeEventListener('scroll', handleScroll);
+    // };
   }, []);
   
   const handleScroll = () => {
@@ -148,6 +150,7 @@ const NFTPage = ({ ALCHEMY_GOERLI_API_KEY, ALCHEMY_SEPOLIA_API_KEY }) => {
   
   return (
     <div>
+      <Link href="/">Return</Link>
       <button onClick={getNfts}>Get NFTs</button>
       <div className="flex flex-wrap">
         {Array.isArray(nfts) &&

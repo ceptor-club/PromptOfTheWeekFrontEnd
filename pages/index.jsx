@@ -7,6 +7,8 @@ import HamburgerMenu from "../components/HamburgerMenu";
 import VectorImage from "../components/VectorImage";
 import Meta from "../components/Meta";
 import Image from "next/image";
+import Link from "next/link";
+
 
 export default function Home() {
   /*   const [data, setData] = useState({
@@ -36,7 +38,21 @@ export default function Home() {
         <p className="z-10">
           *Now with ORCS--Optical Character Recognition System!
         </p>
-
+                <Link href="/nftpage">
+          <span
+            style={{
+              fontSize: `20px`,
+              zIndex: 10,
+              position: 'relative',
+              color: 'white',
+              textDecoration: 'underline',
+              cursor: 'pointer',
+              fontFamily: 'Arial Black',
+            }}
+          >
+            NFT Explorer
+          </span>
+        </Link>
         <Logo setConditionalRender={setConditionalRender} />
 
         <div className="fixed top-0 w-screen h-screen z-0">
