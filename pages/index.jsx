@@ -1,4 +1,3 @@
-// import Head from "next/head";
 import { useState, useEffect } from "react";
 import CreateHero from "../components/CreateHero";
 import { Create } from "../components/Create";
@@ -38,18 +37,8 @@ export default function Home() {
         <p className="z-10">
           *Now with ORCS--Optical Character Recognition System!
         </p>
-                <Link href="/nftpage">
-          <span
-            style={{
-              fontSize: `20px`,
-              zIndex: 10,
-              position: 'relative',
-              color: 'white',
-              textDecoration: 'underline',
-              cursor: 'pointer',
-              fontFamily: 'Arial Black',
-            }}
-          >
+        <Link href="/nftpage">
+          <span className="text-2xl relative z-10 text-white underline cursor-pointer font-black">
             NFT Explorer
           </span>
         </Link>
