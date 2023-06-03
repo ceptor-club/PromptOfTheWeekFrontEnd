@@ -5,6 +5,8 @@ import { LoadingTips } from './LoadingTips';
 import Placeholder from '../public/images/CREATE/placeholder.png';
 import { useState } from 'react';
 import Script from 'next/script';
+import { TwitterShareButton } from 'react-twitter-embed';
+import { CONSTANTS } from '../utils/CONSTANTS';
 
 export const CreateImageGrid = ({
   imageProcessing,
@@ -12,8 +14,65 @@ export const CreateImageGrid = ({
   error,
   pdfData,
   setSelectedImage,
+  storedNFTImage,
 }) => {
   const [currentSelection, setCurrentSelection] = useState(false);
+
+  //needs work
+  function shareTweetTest() {
+    // Data for Tweet
+    const url = 'https://ceptor.club/';
+    const tweetText = 'Check out my new CeptorClub Avatar!';
+    const hashtags = 'dnd';
+    const media_id = '1536740723734741009';
+
+    const credentials = `${process.env.TWITTER_CONSUMER_KEY}:${process.env.TWITTER_CONSUMER_SECRET}`;
+    const encodedKey = btoa('AJ5rAMxJu006udZlBd4S2agZH');
+    const encodedSecret = btoa(
+      'a77mb6hZUWR908rxo7JkOmy9NliBP34LC7ZDWZrRKkJ69jKxti'
+    );
+    console.log('encoded', encodedKey, encodedSecret);
+
+    // Combine tweet data, open a new page for tweeting
+    const twitterShareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${tweetText}&hashtags=${hashtags}&media_id=${media_id}`;
+    window.open(twitterShareUrl, '_blank');
+  }
+
+  // Not working currently
+  async function shareTweet() {
+    // Upload base64Image data to twitter and get back media_id
+    try {
+      const response = await fetch('/api/twitter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          imageData: CONSTANTS.testBase64Image,
+        }),
+      });
+
+      // Need to get media_id, not getting the right data back, authentication issues
+      const data = await response.json();
+
+      // Data for Tweet
+      const url = 'https://ceptor.club/';
+      const tweetText = 'Check out my new CeptorClub Avatar!';
+      const hashtags = 'dnd';
+      const media_id = '1536740723734741009';
+
+      // Combine tweet data, open a new page for tweeting
+      const twitterShareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${tweetText}&hashtags=${hashtags}&media_id=${media_id}`;
+      window.open(twitterShareUrl, '_blank');
+
+      if (data) {
+        // data is just the 64image file not the uploaded image, need the media id of the stored image
+        console.log(data, 'success');
+      } else {
+        console.error(data.error);
+      }
+    } catch (error) {
+      console.error('HEY YOU', error);
+    }
+  }
 
   useEffect(() => {
     if (imageProcessing) console.log('imageProcessing: ', imageProcessing);
@@ -81,21 +140,6 @@ export const CreateImageGrid = ({
                     width={512}
                     height={512}
                   />
-                  {currentSelection === i ? (
-                    <>
-                      {/*                       <Script
-                        type='text/javascript'
-                        async
-                        src='https://platform.twitter.com/widgets.js'
-                      />
-                      <a
-                        className='twitter-share-button'
-                        href='https://twitter.com/intent/tweet?text=Check%20out%20my%20new%20DnD%20avatar%20made%20with%20Ceptor%20Club'
-                      >
-                        Tweet
-                      </a> */}
-                    </>
-                  ) : null}
                 </div>
               </>
             );
