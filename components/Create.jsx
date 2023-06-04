@@ -66,12 +66,12 @@ export const Create = () => {
 
   const { address, isConnected } = useAccount();
   const { open, isOpen, close } = useWeb3Modal();
-  const { disconnect } = useDisconnect();
+  // const { disconnect } = useDisconnect();
 
-  const { data: userTimer } = useContractRead({
+  /*   const { data: userTimer } = useContractRead({
     address: CONSTANTS.ceptorAddress,
     abi: CONSTANTS.ceptorABI,
-    functionName: "userTimers",
+    functionName: 'userTimers',
     args: [address],
   });
 
@@ -88,37 +88,37 @@ export const Create = () => {
     contracts: [
       {
         ...diceContract,
-        functionName: "balanceOf",
+        functionName: 'balanceOf',
         args: [address, 0],
       },
       {
         ...diceContract,
-        functionName: "balanceOf",
+        functionName: 'balanceOf',
         args: [address, 1],
       },
       {
         ...diceContract,
-        functionName: "balanceOf",
+        functionName: 'balanceOf',
         args: [address, 2],
       },
       {
         ...diceContract,
-        functionName: "balanceOf",
+        functionName: 'balanceOf',
         args: [address, 3],
       },
       {
         ...diceContract,
-        functionName: "balanceOf",
+        functionName: 'balanceOf',
         args: [address, 4],
       },
       {
         ...diceContract,
-        functionName: "balanceOf",
+        functionName: 'balanceOf',
         args: [address, 5],
       },
     ],
     // allowFailure: true,
-  });
+  }); */
 
   //states: no data, pdf uploaded, images generated, nft minted
 
@@ -141,20 +141,20 @@ export const Create = () => {
     }
   }, [prompt]); */
 
-  useEffect(() => {
+  /*   useEffect(() => {
     if (isConnected && diceBalance) {
-      console.log("wallet is connected", address);
+      console.log('wallet is connected', address);
       //call the dice contract
 
-      console.log("userTimer: ", parseInt(userTimer));
+      console.log('userTimer: ', parseInt(userTimer));
 
-      console.log("diceBalance: ", diceBalance);
+      console.log('diceBalance: ', diceBalance);
 
       diceBalance.map((balance, i) => {
-        console.log("balance: ", i, parseInt(balance));
+        console.log('balance: ', i, parseInt(balance));
       });
     }
-  }, [isConnected, diceBalance, address, userTimer]);
+  }, [isConnected, diceBalance, address, userTimer]); */
 
   const retry = () => {
     setConditionalCreate("");
@@ -335,7 +335,7 @@ export const Create = () => {
                       rel="noreferrer"
                       className="text-xl mt-12 mb-4 font-bold text-white underline hover:text-[#e137b1]"
                     >
-                      FEEDBACK / BUG REPORT
+                      FEEBACK / BUG REPORT
                     </a>
                     <a
                       href="https://discord.gg/kPC8GMK5"

@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['media.tenor.com'],
+    domains: ['media.tenor.com','ipfs.io'],
     remotePatterns: [
       {
         protocol: 'https',

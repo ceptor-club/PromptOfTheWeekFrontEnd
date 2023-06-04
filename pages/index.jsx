@@ -1,9 +1,11 @@
 import { useState, useEffect, useContext } from "react";
+// import CreateHero from "../components/CreateHero";
 import { Create } from "../components/Create";
 import { Logo } from "../components/Logo";
 import Meta from "../components/Meta";
 import Image from "next/image";
 import { SocketContext } from "../utils/socketContext";
+import Link from "next/link";
 
 export default function Home() {
   const socket = useContext(SocketContext);
@@ -51,7 +53,11 @@ export default function Home() {
       <div className="flex flex-col justify-center items-center">
         <p className="z-10">Version 0.5.5*</p>
         <p className="z-10">*Now with SuccessModal! NavBar coming soon :D</p>
-
+        <Link href="/nftpage">
+          <span className="text-2xl relative z-10 text-white underline cursor-pointer font-black">
+            NFT Explorer
+          </span>
+        </Link>
         <Logo setConditionalRender={setConditionalRender} />
 
         <div className="z-10 flex w-full justify-center">
