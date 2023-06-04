@@ -1,34 +1,37 @@
 import "../styles/globals.css";
 import {
   EthereumClient,
-  modalConnectors,
-  walletConnectProvider,
+  w3mProvider,
+  w3mConnectors,
 } from "@web3modal/ethereum";
 import { Web3Modal } from "@web3modal/react";
-import { configureChains, createClient, WagmiConfig } from "wagmi";
+import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { sepolia, goerli } from "wagmi/chains";
 import Layout from "../components/Layout";
 import SocketProvider from "../utils/socketContext";
 
 const chains = [sepolia, goerli];
 const projectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID;
-const { provider } = configureChains(chains, [
-  walletConnectProvider({ projectId: projectId }),
+const { publicClient } = configureChains(chains, [
+  w3mProvider({ projectId: projectId }),
 ]);
-const wagmiClient = createClient({
+const wagmiConfig = createConfig({
   autoConnect: false,
-  connectors: modalConnectors({ appName: "web3Modal", chains }),
-  provider,
-  version: "2",
+  connectors: w3mConnectors({
+    projectId,
+    chains,
+    version: 1,
+  }),
+  publicClient,
 });
 
-const ethereumClient = new EthereumClient(wagmiClient, chains);
+const ethereumClient = new EthereumClient(wagmiConfig, chains);
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
       <SocketProvider>
-        <WagmiConfig client={wagmiClient}>
+        <WagmiConfig config={wagmiConfig}>
           <Layout>
             <Component {...pageProps} />
           </Layout>
