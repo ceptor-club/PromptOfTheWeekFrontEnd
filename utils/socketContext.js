@@ -17,9 +17,18 @@ export default function SocketProvider({ children }) {
         token: process.env.NEXT_PUBLIC_API_KEY,
       },
     })
+
+    /*Hackathon addition*/
+    newSocket.on('like', ({accountId, ownerId, tokenId}) => {
+      console.log(`User ${accountId} liked NFT ${tokenId} owned by ${ownerId}`);
+      // Do something when the 'like' event is received
+      // For example, you could update a state variable or call a function
+    });
+
     setSocket(newSocket)
 
     return () => {
+      newSocket.off('like'); // Stop listening to the 'like' event
       newSocket.close()
     }
   }, [])

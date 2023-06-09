@@ -1,3 +1,19 @@
+# Chainlink Hackathon Spring 2023 notes
+
+For the Hackathon, the following files were created:
+
+> pages/potw.jsx
+
+> components/NftCard.jsx
+
+The objective of this Hackathon was to create a contract that houses what's called the "Prompt of the Week", a suggested challenge to generate AI image and consequently mint Ceptor Collectibles in that theme. The contract can be found here:
+
+https://sepolia.etherscan.io/address/0x8dfec628e42cc35665c621ad04e03dc627d15432
+
+And a respository in this organization can also be found called ceptor-functions which houses the smart contract code. The contract houses 10 prompts in an array. Chainlink VRF chooses the prompt and Chainlink Automation triggers the VRF request once a week. The prompt will then be showcased on localhost:3000/potw.jsx for persons to "like" (click on the heart) of their favorite  NFT that aligns with the Prompt challenge. 
+
+Currently there is still the hurdle of connecting to the mongo database to store the information on the address liking the NFT, the NFT token Id, and the owner of the NFT. But this is where we stand as of this upload.
+
 # D&D Diffusion => Operation Dragonborn => ???
 
 > Medieval Tinder Profile Pic of (Lawful Neutral) DnDDragonborn dragonborn, druid, wearing leather armor, wooden shield and holding a small dragon egg, meditating in a cave, fantasy illustration, unreal 5 render, 8k, in the style of Medieval Tinder Profile Pic
