@@ -6,6 +6,8 @@ For the Hackathon, the following files were created:
 
 > components/NftCard.jsx
 
+> utils/queryLikes.js
+
 The objective of this Hackathon was to create a contract that houses what's called the "Prompt of the Week", a suggested challenge to generate AI image and consequently mint Ceptor Collectibles in that theme. The contract can be found here:
 
 https://sepolia.etherscan.io/address/0x8dfec628e42cc35665c621ad04e03dc627d15432
@@ -14,9 +16,18 @@ And a respository which houses the smart contract code can be found here:
 
 https://github.com/ceptor-club/PromptOfTheWeek
 
- The contract houses 10 prompts in an array. Chainlink VRF chooses the prompt and Chainlink Automation triggers the VRF request once a week. The prompt will then be showcased on localhost:3000/potw.jsx for persons to "like" (click on the heart) of their favorite  NFT that aligns with the Prompt challenge. 
+ The contract houses 10 prompts in an array. Chainlink VRF chooses the prompt and Chainlink Automation triggers the VRF request once a week. The prompt will then be showcased on localhost:3000/potw.jsx for persons to "like" (click on the heart) of their favorite  NFT that aligns with the Prompt challenge. Each like is saved and uploaded to a mongo database where each update includes:
 
-Currently there is still the hurdle of connecting to the mongo database to store the information on the address liking the NFT, the NFT token Id, and the owner of the NFT. But this is where we stand as of this upload.
+ address of the account that liked the NFT
+ contract Address of the NFT
+ tokenId of the NFT
+ Owner of the NFT
+
+TODO:
+
+Currently there is still the hurdle of delivering data from the mongo database to the contract to mint dice and airdrop to the winner. A RESTful API interface will need to be created in the smart contract-functions repository noted above.
+
+In addition, thanks to a new lead, research on the Twitter API will resume to post to Twitter the Prompt of the Week and query likes instead of querying from a database.
 
 # D&D Diffusion => Operation Dragonborn => ???
 

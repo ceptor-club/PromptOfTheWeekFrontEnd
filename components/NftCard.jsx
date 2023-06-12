@@ -4,7 +4,6 @@ import { useState, useContext } from "react";
 import { SocketContext } from '../utils/socketContext'; // import the SocketContext
 import { Alchemy, Network } from "alchemy-sdk";
 
-
 const NftCard = ({ nft, isEnlarged, id, onCardClick }) => {
   const { rawMetadata } = nft;
   const [isExpanded, setIsExpanded] = useState(false);
@@ -135,17 +134,28 @@ const NftCard = ({ nft, isEnlarged, id, onCardClick }) => {
   * HTML for NFT Card at when Enlarged
   */
 
-  const handleLikeClick = (e) => {
+  const handleLikeClick = async (e) => {
     e.stopPropagation(); // prevent click event from bubbling up to the card
     if (isLiked == false) {
-      console.log(`${id} liked! NFT ${nft.tokenId} created by ${nft.owner}!`);
-      // Emit 'like' event with tokenId and accountId
-      if (socket) {
-      socket.emit('like', {accountId: id, ownerId: nft.owner, tokenId: nft.tokenId});
-      } 
-    }
+      console.log(`${id} liked! NFT ${nft.tokenId} created by ${nft.owner} from contract ${nft.contract.address}!`);
+
+      const updateData = {
+        id: id,
+        contractAddress: nft.contract.address,
+        tokenId: nft.tokenId,
+        ownerId: nft.owner
+      }
+      const response = await fetch('/api/updateLike', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updateData)
+      });
+    };
     setIsLiked(!isLiked); // toggle heart filled state
-  };
+
+}
 
 
   const EnlargedView = () => {
